@@ -26,8 +26,11 @@
                 </button>
                 </div>
                     <div class="down">
-                        <button class="card3">
-                            <img src="../static/styles/shopping-cart-icon.png" width="45%" height="45%" class="warenkorb">                        </button>
+                        <a href="{{ url_for('warenkorb') }}">
+                        <button class="card3" onclick="window.location.href=''">
+                            <img src="../static/styles/shopping-cart-icon.png" width="45%" height="45%" class="warenkorb">
+                        </button>
+                        </a>
                         <button class="card4">
                             <img src="../static/styles/account-icon.png" width="45%" height="45%" class="account-icon">  
                         </button>
@@ -37,5 +40,13 @@
         </div>
     </div>
     {% block content %}{% endblock %}
+    <div class="footer">
+        <p>@DeskDunk 2026</p>
+        <a href="{{ url_for('about') }}">
+            <p>
+                About
+            </p>
+        </a>
+    </div>
 </body>
 </html>
