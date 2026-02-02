@@ -1,9 +1,10 @@
 body {
     background-color: #000000;
 }
-.videoHome{
+
+.videoHome {
     border-radius: 8%;
-    border: none;
+    border: 3px solid transparent;
     outline: none;
     background: transparent;
     display: block;
@@ -11,72 +12,220 @@ body {
     max-width: 100%;
     position: relative;
     z-index: 1;
+    transition: all 0.3s ease;
 }
-.homeScreen{
+
+.videoHome:hover {
+    border: 3px solid;
+    border-image: linear-gradient(45deg,
+    rgb(255, 69, 0),
+    rgb(255, 140, 0),
+    rgb(255, 165, 0),
+    rgb(255, 200, 0),
+    rgb(255, 165, 0),
+    rgb(255, 140, 0),
+    rgb(255, 69, 0)
+    ) 1;
+    animation: orange-glow 2s linear infinite;
+}
+
+@keyframes orange-glow {
+    0%, 100% {
+        filter: brightness(1) drop-shadow(0 0 10px rgba(255, 140, 0, 0.5));
+    }
+    50% {
+        filter: brightness(1.2) drop-shadow(0 0 20px rgba(255, 140, 0, 0.8));
+    }
+}
+
+.homeScreen {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-direction: column;
+    min-height: 100vh;
+    padding: 40px 20px;
+    gap: 40px;
+}
+
+.videoCarusselContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 80px;
+    width: 100%;
+    max-width: 800px;
+}
+
+/* From Uiverse.io by ilkhoeri */
+.wrapper {
+    width: 100%;
+    max-width: 600px;
+    height: 400px;
+    position: relative;
+    text-align: center;
     display: flex;
     align-items: center;
     justify-content: center;
-    min-height: 100vh;
-    position: relative;
-}
-.wrapper {
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  text-align: center;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-  z-index: 10;
+    overflow: visible;
 }
 
 .inner {
-  --w: 100px;
-  --h: 150px;
-  --translateZ: calc((var(--w) + var(--h)) + 0px);
-  --rotateX: -15deg;
-  --perspective: 1000px;
-  position: absolute;
-  width: var(--w);
-  height: var(--h);
-  top: 25%;
-  left: calc(50% - (var(--w) / 2) - 2.5px);
-  z-index: 2;
-  transform-style: preserve-3d;
-  transform: perspective(var(--perspective));
-  animation: rotating 20s linear infinite; /* */
+    --w: 190px;
+    --h: 220px;
+    --translateZ: calc((var(--w) + var(--h)) * 0.5);
+    --rotateX: -15deg;
+    --perspective: 1000px;
+    position: relative;
+    width: var(--w);
+    height: var(--h);
+    margin: 0 auto;
+    z-index: 2;
+    transform-style: preserve-3d;
+    transform: perspective(var(--perspective));
+    animation: rotating 30s linear infinite;
 }
+
 @keyframes rotating {
-  from {
-    transform: perspective(var(--perspective)) rotateX(var(--rotateX))
-      rotateY(0);
-  }
-  to {
-    transform: perspective(var(--perspective)) rotateX(var(--rotateX))
-      rotateY(1turn);
-  }
+    from {
+        transform: perspective(var(--perspective)) rotateX(var(--rotateX)) rotateY(0);
+    }
+    to {
+        transform: perspective(var(--perspective)) rotateX(var(--rotateX)) rotateY(1turn);
+    }
 }
 
 .card {
-  position: absolute;
-  border: 2px solid rgba(var(--color-card));
-  border-radius: 12px;
-  overflow: hidden;
-  inset: 0;
-  transform: rotateY(calc((360deg / var(--quantity)) * var(--index)))
-    translateZ(var(--translateZ));
+    position: absolute;
+    border: none;
+    border-radius: 12px;
+    overflow: hidden;
+    inset: 0;
+    transform: rotateY(calc((360deg / var(--quantity)) * var(--index))) translateZ(var(--translateZ));
+}
+
+.carousel-card {
+    position: absolute;
+    border: none;
+    border-radius: 12px;
+    overflow: hidden;
+    inset: 0;
+    transform: rotateY(calc((360deg / var(--quantity)) * var(--index))) translateZ(var(--translateZ));
 }
 
 .img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  background: #0000
-    radial-gradient(
-      circle,
-      rgba(var(--color-card), 0.2) 0%,
-      rgba(var(--color-card), 0.6) 80%,
-      rgba(var(--color-card), 0.9) 100%
-    );
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.purchaser {
+    color: #000000;
+    background-color: #F58800;
+    width: 600px;
+    padding: 16px 32px;
+    font-size: 18px;
+    font-weight: 600;
+    border: none;
+    border-radius: 12px;
+    transition: all 0.3s ease;
+}
+
+.purchaser:hover {
+    background-color: #ff9720;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(245, 136, 0, 0.4);
+}
+
+.imageHolder {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 100%;
+    max-width: 1000px;
+}
+
+.imageHolder .card {
+    position: relative;
+    width: 300px;
+    height: 200px;
+    background: linear-gradient(-45deg, #f89b29 0%, #ff0f7b 100%);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    transition: all 0.6s cubic-bezier(0.23, 1, 0.320, 1);
+    transform: none !important;
+    inset: auto !important;
+}
+
+.imageHolder .card svg {
+    width: 48px;
+    fill: #333;
+    transition: all 0.6s cubic-bezier(0.23, 1, 0.320, 1);
+}
+
+.imageHolder .card:hover {
+    transform: rotate(-0deg) scale(1.1) !important;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.imageHolder .card__content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(-45deg);
+    width: 100%;
+    height: 100%;
+    padding: 20px;
+    box-sizing: border-box;
+    background-color: #fff;
+    opacity: 0;
+    transition: all 0.6s cubic-bezier(0.23, 1, 0.320, 1);
+}
+
+.imageHolder .card:hover .card__content {
+    transform: translate(-50%, -50%) rotate(0deg);
+    opacity: 1;
+}
+
+.imageHolder .card__title {
+    margin: 0;
+    font-size: 24px;
+    color: #333;
+    font-weight: 700;
+    font-family: Arial, sans-serif;
+}
+
+.imageHolder .card__description {
+    margin: 10px 0 0;
+    font-size: 14px;
+    color: #777;
+    line-height: 1.4;
+    font-family: Arial, sans-serif;
+}
+
+.imageHolder .card:hover svg {
+    scale: 0;
+    transform: rotate(-45deg);
+}
+
+.descriptionImage {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+}
+.miniGameHolder{
+    height: 500px;
+    width: 1000px;
+    outline: 2px solid #FF8C00;
+    border-radius: 12px;
+    display: flex;
+    font-size: 30px;
+    font-family: Arial, sans-serif;
+    align-items: center;
+    justify-content: center;
+    color: #F58800;
 }

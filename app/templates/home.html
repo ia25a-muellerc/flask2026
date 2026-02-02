@@ -3,76 +3,109 @@
 {% block title %}Home{% endblock %}
 
 {% block head %}
-<link rel="stylesheet" href="{{ url_for('static', filename='styles/style2.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/style2.css') }}">
 {% endblock %}
 
 {% block content %}
 
+
     <div class="homeScreen">
-    <video id="hoverVideo" class="videoHome"
-       src="{{ url_for('static', filename='0121.mp4') }}"
-       height=auto
-       width="650"
-       playsinline
-       muted
-       preload="metadata"
-       style="cursor: pointer;">
-</video>
-    <div class="wrapper">
-  <div class="inner" style="--quantity: 10;">
-    <div class="card" style="--index: 0;--color-card: 142, 249, 252;">
-      <img class="img" src="https://teams.microsoft.com/l/message/19:0037cc71-2fe7-4bd6-9384-44d69b8e899c_edad9750-441f-4fa4-b8f7-2453f057ebfc@unq.gbl.spaces/1768311195738?context=%7B%22contextType%22%3A%22chat%22%7D">
+        <!-- Video -->
+        <video id="hoverVideo" class="videoHome"
+               src="{{ url_for('static', filename='0121.mp4') }}"
+               height=auto
+               width="650"
+               playsinline
+               muted
+               preload="metadata"
+               style="cursor: pointer;">
+        </video>
+
+        <!-- Karussell -->
+        <div class="wrapper">
+            <div class="inner" style="--quantity: 5;">
+                <div class="carousel-card" style="--index: 0;--color-card: 142, 249, 252;">
+                    <img class="img" src="{{ url_for('static', filename='Image (1).jpg') }}"/>
+                </div>
+                <div class="carousel-card" style="--index: 1;--color-card: 142, 252, 204;">
+                    <img class="img" src="{{ url_for('static', filename='Image (2).jpg') }}"/>
+                </div>
+                <div class="carousel-card" style="--index: 2;--color-card: 142, 252, 157;">
+                    <img class="img" src="{{ url_for('static', filename='Image (3).jpg') }}"/>
+                </div>
+                <div class="carousel-card" style="--index: 3;--color-card: 215, 252, 142;">
+                    <img class="img" src="{{ url_for('static', filename='Image (4).jpg') }}"/>
+                </div>
+                <div class="carousel-card" style="--index: 4;--color-card: 252, 252, 142;">
+                    <img class="img" src="{{ url_for('static', filename='Image (5).jpg') }}"/>
+                </div>
+            </div>
+        </div>
+
+        <!-- Button -->
+        <button class="purchaser">Purchase</button>
+
+        <!-- Karten mit Bildern -->
+        <div class="imageHolder">
+            <div class="card">
+                <img class="descriptionImage" src="{{ url_for('static', filename='Image (6).jpg') }}"
+                     alt="Description Image">
+                <div class="card__content">
+                    <p class="card__title">Coloring</p>
+                    <p class="card__description">The first step in creating our product was to draw the basketball court
+                        and design the balls. We used acrylic paints from Jumbo and painted the entire box white. After
+                        that, we outlined the basketball court.
+                        Once this was finished, we added the final details and glued our logo to the top of the box.</p>
+                </div>
+            </div>
+            <div class="card">
+                <img class="descriptionImage" src="{{ url_for('static', filename='Image (7).jpg') }}"
+                     alt="Description Image">
+                <div class="card__content">
+                    <p class="card__title">Construct</p>
+                    <p class="card__description">When we finished drawing the entire box, we started constructing our
+                        idea. First, we screwed both basketball buckets onto the box. Then, we built the net between the
+                        two buckets. After completing this step, we taped everything and glued it in place to ensure a
+                        better hold.</p>
+                </div>
+            </div>
+            <div class="card">
+                <img class="descriptionImage" src="{{ url_for('static', filename='Image (8).jpg') }}"
+                     alt="Description Image">
+                <div class="card__content">
+                    <p class="card__title">PLAY!</p>
+                    <p class="card__description">After constructing the entire project, the basketball game is ready to
+                        be played in your office. Everything is firmly attached and stable, allowing the game to be used
+                        safely and comfortably. Now you can enjoy playing basketball during breaks or in your free time
+                        and have fun with friends or colleagues. HAVE FUN!</p>
+                </div>
+            </div>
+        </div>
+        <div class="miniGameHolder">Coming soon!</div>
+
     </div>
-    <div class="card" style="--index: 1;--color-card: 142, 252, 204;">
-      <div class="img"></div>
-    </div>
-    <div class="card" style="--index: 2;--color-card: 142, 252, 157;">
-      <div class="img"></div>
-    </div>
-    <div class="card" style="--index: 3;--color-card: 215, 252, 142;">
-      <div class="img"></div>
-    </div>
-    <div class="card" style="--index: 4;--color-card: 252, 252, 142;">
-      <div class="img"></div>
-    </div>
-    <div class="card" style="--index: 5;--color-card: 252, 208, 142;">
-      <div class="img"></div>
-    </div>
-    <div class="card" style="--index: 6;--color-card: 252, 142, 142;">
-      <div class="img"></div>
-    </div>
-    <div class="card" style="--index: 7;--color-card: 252, 142, 239;">
-      <div class="img"></div>
-    </div>
-    <div class="card" style="--index: 8;--color-card: 204, 142, 252;">
-      <div class="img"></div>
-    </div>
-    <div class="card" style="--index: 9;--color-card: 142, 202, 252;">
-      <div class="img"></div>
-    </div>
-  </div>
-</div>
 
 
 
-    </div>
 
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const v = document.getElementById('hoverVideo');
+            if (!v) return;
 
+            v.addEventListener('mouseenter', () => v.play().catch(() => {
+            }));
+            v.addEventListener('mouseleave', () => {
+                v.pause();
+                v.currentTime = 0;
+            });
 
-
-<script>
-document.addEventListener('DOMContentLoaded', function () {
-  const v = document.getElementById('hoverVideo');
-  if (!v) return;
-
-  v.addEventListener('mouseenter', () => v.play().catch(()=>{}));
-  v.addEventListener('mouseleave', () => { v.pause(); v.currentTime = 0; });
-
-  v.addEventListener('touchstart', (e) => {
-    if (v.paused) v.play().catch(()=>{}); else v.pause();
-    e.preventDefault();
-  }, {passive:false});
-});
-</script>
+            v.addEventListener('touchstart', (e) => {
+                if (v.paused) v.play().catch(() => {
+                }); else v.pause();
+                e.preventDefault();
+            }, {passive: false});
+        });
+    </script>
 
 {% endblock %}
