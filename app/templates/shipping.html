@@ -5,11 +5,11 @@
 {% block content %}
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="{{ url_for('static', filename='styles/data.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/shipping.css') }}">
 </head>
 <div class="profile-card">
 
-    <p class="back">← Name</p>
+    <p class="back">← Shipping</p>
 
     <p class="label">Name</p>
     <input class="inputButton">Desk</input>
@@ -20,10 +20,10 @@
     <p class="label">Email</p>
     <input class="inputButton">deskdunker@gmail.com</input>
 
-    <div class="actions">
-        <button class="cancleButton">Cancel</button>
-        <button class="saveButton">Submit</button>
-    </div>
+    <p class="label">Adress</p>
+    <input class="inputButton">Hardstrasse 9</input>
+
+    <button class="saveButton">Submit</button>
 
 </div>
 {% endblock %}
