@@ -3,6 +3,13 @@ body {
     padding: 0;
     background-color: black; 
     cursor: url('minimal-orange-pack.png'), auto;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.blockContent {
+  flex-grow: 1;
 }
 
 p {
@@ -178,8 +185,8 @@ a {
   display: flex;
   flex-direction: column;
   align-items: center;
-  height: 100vh;
-  margin-top: 200px;
+  flex-grow: 0;
+  transform: translateY(100%);
 }
 
 .footer p {
