@@ -59,6 +59,15 @@ def about() -> str:
 def warenkorb() -> str:
     return render_template("warenkorb.html", languages=languages)
 
+@app.route("/data")
+def data() -> str:
+    return render_template("data.html", languages=languages)
+
+
+@app.route("/shipping")
+def shipping() -> str:
+    return render_template("shipping.html", languages=languages)
+
 @app.route("/submit", methods=["POST"])
 def submit():
     app.logger.info("Form submitted")
