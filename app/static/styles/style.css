@@ -8,6 +8,18 @@ body {
     min-height: 100vh;
 }
 
+a {
+  cursor: url('minimal-basketball-ball-pack.png'),pointer;
+}
+
+button {
+  cursor: url('minimal-basketball-ball-pack.png'),pointer;
+}
+
+input {
+  cursor: url('minimal-basketball-ball-pack.png'),pointer;
+}
+
 .blockContent {
   flex-grow: 1;
 }
@@ -36,7 +48,6 @@ a {
     height: 20%;
     margin-left: 25px;
     margin-right:  min(1%,25px);
-    cursor: pointer;
 }
 
 .logo:hover {
@@ -44,7 +55,7 @@ a {
     height: 20%;
     margin-left: 25px;
     margin-right:  min(1%,25px);
-    cursor: pointer;
+    cursor: url('minimal-basketball-ball-pack.png'),pointer;
     rotate: -4deg;
 }
 
@@ -141,9 +152,9 @@ a {
 }
 
 .card1:hover {
-  cursor: pointer;
   scale: 1.1;
   background-color: white;
+  cursor: url('minimal-basketball-ball-pack.png'),pointer;
 }
 
 .card1:hover .instagram {
@@ -151,7 +162,7 @@ a {
 }
 
 .card2:hover {
-  cursor: pointer;
+  cursor: url('minimal-basketball-ball-pack.png'),pointer;
   scale: 1.1;
   background-color: white;
 }
@@ -161,7 +172,7 @@ a {
 }
 
 .card3:hover {
-  cursor: pointer;
+  cursor: url('minimal-basketball-ball-pack.png'),pointer;
   scale: 1.1;
   background-color: white;
 }
@@ -171,7 +182,7 @@ a {
 }
 
 .card4:hover {
-  cursor: pointer;
+  cursor: url('minimal-basketball-ball-pack.png'),pointer;
   scale: 1.1;
   background-color: white;
 }
@@ -183,7 +194,7 @@ a {
 .footer {
   box-shadow: 0 0 20px #F58800;
   display: flex;
-  flex-direction: column;
+  justify-content: space-around;
   align-items: center;
   flex-grow: 0;
   transform: translateY(100%);
