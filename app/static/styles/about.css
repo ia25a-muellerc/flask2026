@@ -1,0 +1,28 @@
+p, h1 {
+    color: #F58800;
+    font-family: Arial, Helvetica, sans-serif;
+    font-style: normal;
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 30px;
+  font-size: xx-large;
+}
+
+.aboutContainer {
+  box-shadow: 0 0 20px #f58800;
+  size: 0;
+  display: flex;
+  width: 60vw;
+  margin-left: 20vw;
+  border-radius: 12px;
+  flex-direction: column;
+}
+
+.aboutContainer .aboutText {
+  font-size: x-large;
+  text-align: center;  
+  margin: 20px;
+}
+
