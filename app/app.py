@@ -55,6 +55,10 @@ def result(name) -> str:
 def about() -> str:
     return render_template("about.html", languages=languages)
 
+@app.route("/warenkorb")
+def warenkorb() -> str:
+    return render_template("warenkorb.html", languages=languages)
+
 @app.route("/submit", methods=["POST"])
 def submit():
     app.logger.info("Form submitted")
