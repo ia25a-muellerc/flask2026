@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block title %}Result{% endblock %}
+
+{% block content %}
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/data.css') }}">
+</head>
+<div class="profile-card">
+
+    <p class="back">← Name</p>
+
+    <p class="label">Name</p>
+    <button class="inputButton">Desk</button>
+
+    <p class="label">Surname</p>
+    <button class="inputButton">Dunk</button>
+
+    <p class="label">Email</p>
+    <button class="inputButton">deskdunker@gmail.com</button>
+
+    <div class="actions">
+        <button class="cancleButton">Cancel</button>
+        <button class="saveButton">Save</button>
+    </div>
+
+</div>
+{% endblock %}
