@@ -10,9 +10,19 @@ h1 {
   font-size: xx-large;
 }
 
-.aboutText {
-  font-size: x-large;
-  text-align: center;
+.aboutContainer {
+  box-shadow: 0 0 20px #f58800;
+  size: 0;
+  display: flex;
   width: 60vw;
   margin-left: 20vw;
+  border-radius: 12px;
+  flex-direction: column;
 }
+
+.aboutContainer .aboutText {
+  font-size: x-large;
+  text-align: center;  
+  margin: 20px;
+}
+
