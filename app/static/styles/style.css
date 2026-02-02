@@ -8,11 +8,11 @@ body {
     min-height: 100vh;
 }
 
-a {
+a:hover {
   cursor: url('minimal-basketball-ball-pack.png'),pointer;
 }
 
-button {
+button:hover {
   cursor: url('minimal-basketball-ball-pack.png'),pointer;
 }
 
