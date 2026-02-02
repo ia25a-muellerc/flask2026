@@ -177,3 +177,12 @@ a {
   font-size: x-large;
   font-family: "Black Han Sans";
 }
+
+.footer .aboutLinkText {
+  text-decoration: underline;
+}
+
+.footer .aboutLinkText:hover {
+  text-decoration: underline;
+  color:#d17402;
+}
