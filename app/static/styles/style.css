@@ -32,6 +32,15 @@ a {
     cursor: pointer;
 }
 
+.logo:hover {
+    width: 20%;
+    height: 20%;
+    margin-left: 25px;
+    margin-right:  min(1%,25px);
+    cursor: pointer;
+    rotate: -4deg;
+}
+
 .header p {
     font-family: "Black Han Sans";
     font-size: min(7vw, 100px);
