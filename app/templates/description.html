@@ -1,21 +1,72 @@
 {% extends 'base.html' %}
 
-{% block title %}Home{% endblock %}
+{% block title %}DESKDUNK - Produktbeschreibung{% endblock %}
 
 {% block content %}
 
-<h1 class="subtitle">Produktbeschreibung</h1>
+<link rel="stylesheet" href="{{ url_for('static', filename='description.css') }}">
 
-<!DOCTYPE html>
-<html lang="de">
-<head>
-    <meta charset="UTF-8">
-    <title>Desk Dunk – Product description</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='styles/description.css') }}">
-</head>
-<body>
-    <div class="description">class 
-         <img src="../static/styles/Image DeskDunk.jpg" alt="logo" class="logo">
-            <p>DESKDUNK</p>
+<div class="product-container">
+    <div class="product-header">
+        <div class="product-image">
+            <img src="../static/styles/Image DeskDunk.jpg" alt="DESKDUNK Produkt">
+        </div>
+        <div class="product-title-section">
+            <h1 class="product-title">DESKDUNK</h1>
+            <p class="product-subtitle">Dein perfekter Tisch-Begleiter</p>
+        </div>
     </div>
-</body>
+
+    <div class="description-box">
+        <h2>Über DESKDUNK</h2>
+        <p>
+            DESKDUNK ist die innovative Lösung für eine produktivere und kreativere Arbeitsumgebung. 
+            Mit seinem modernen Design und der praktischen Funktionalität bietet DESKDUNK die perfekte 
+            Kombination aus Stil und Nutzen für deinen Schreibtisch.
+        </p>
+        <p>
+            Entwickelt für professionelle Nutzer und kreative Köpfe, die Wert auf Qualität und Design legen. 
+            DESKDUNK passt sich perfekt in jeden Arbeitsbereich ein und unterstützt dich bei deinen täglichen Aufgaben.
+        </p>
+    </div>
+
+    <div class="features">
+        <div class="feature-card">
+            <h3>Modernes Design</h3>
+            <p>Stilvolle schwarze Oberfläche mit orangenen Akzenten für einen zeitgemäßen Look</p>
+        </div>
+        <div class="feature-card">
+            <h3>Kompakt & Platzsparend</h3>
+            <p>Perfekt dimensioniert für jeden Schreibtisch ohne Platz zu verschwenden</p>
+        </div>
+        <div class="feature-card">
+            <h3>Hochwertige Verarbeitung</h3>
+            <p>Langlebig und robust für den täglichen Einsatz</p>
+        </div>
+        <div class="feature-card">
+            <h3>Praktische Funktionalität</h3>
+            <p>Durchdacht designed für Effizienz und Produktivität</p>
+        </div>
+    </div>
+
+    <div class="material-section">
+        <div class="material-content">
+            <h2>📦 Materialien & Zusammensetzung</h2>
+            <p>
+                <strong>DESKDUNK</strong> wird aus hochwertigen, langlebigen Materialien gefertigt:
+            </p>
+            <p>
+                ✓ <strong>Holz</strong> – nachhaltiges Holz mit guter Qualität<br>
+                ✓ <strong>Metallverstärkungen</strong> – Zusätzliche Stabilität und Langlebigkeit<br>
+                ✓ <strong>Nachhaltige Mini - Baketbälle</strong> – Rutschfest und griffig<br>
+                ✓ <strong>Basketball Feld mit Acryl Farben gemalt</strong> – Fade-resistant schwarz und Orange (#F58800)
+            </p>
+            <p>
+                Die Kombination dieser Premium-Materialien gewährleistet eine lange Lebensdauer 
+                und bietet optimalen Schutz für deine wertvollen Gegenstände.
+            </p>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
