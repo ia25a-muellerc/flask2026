@@ -72,6 +72,10 @@ def shipping() -> str:
 def carddetails() -> str:
     return render_template("carddetails.html", languages=languages)
 
+@app.route("/signin")
+def signin() -> str:
+    return render_template("signin.html", languages=languages)
+
 @app.route("/submit", methods=["POST"])
 def submit():
     app.logger.info("Form submitted")
