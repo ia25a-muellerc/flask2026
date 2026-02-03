@@ -2,14 +2,26 @@ body {
     margin: 0;
     padding: 0;
     background-color: black; 
-    cursor: url('minimal-orange-pack.png'), auto;
+    cursor: url('pointer.png'), auto;
     display: flex;
     flex-direction: column;
     min-height: 100vh;
     font-family: 'Poppins', sans-serif;
 }
 
+a:hover {
+  cursor: url('mouseHover.png'),pointer;
+}
+
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+
+button:hover {
+  cursor: url('mouseHover.png'),pointer;
+}
+
+input {
+  cursor: url('mouseHover.png'),pointer;
+}
 
 .blockContent {
     flex-grow: 1;
@@ -49,6 +61,11 @@ a {
     object-fit: contain;
 }
 
+.logo:hover {
+    cursor: url('minimal-basketball-ball-pack.png'),pointer;
+    rotate: -4deg;
+}
+
 .logo-text {
     font-size: 1.8rem;
     font-weight: 700;
@@ -75,7 +92,6 @@ a {
     padding: 0.7rem 1rem;
     position: relative;
     transition: all 0.3s ease;
-    cursor: pointer;
     display: inline-flex;
     align-items: center;
     gap: 0.5rem;
