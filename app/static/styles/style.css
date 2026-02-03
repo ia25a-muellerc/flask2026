@@ -2,22 +2,22 @@ body {
     margin: 0;
     padding: 0;
     background-color: black; 
-    cursor: url('minimal-orange-pack.png'), auto;
+    cursor: url('pointer.png'), auto;
     display: flex;
     flex-direction: column;
     min-height: 100vh;
 }
 
 a:hover {
-  cursor: url('minimal-basketball-ball-pack.png'),pointer;
+  cursor: url('mouseHover.png'),pointer;
 }
 
 button:hover {
-  cursor: url('minimal-basketball-ball-pack.png'),pointer;
+  cursor: url('mouseHover.png'),pointer;
 }
 
 input {
-  cursor: url('minimal-basketball-ball-pack.png'),pointer;
+  cursor: url('mouseHover.png'),pointer;
 }
 
 .blockContent {
@@ -55,7 +55,7 @@ a {
     height: 20%;
     margin-left: 25px;
     margin-right:  min(1%,25px);
-    cursor: url('minimal-basketball-ball-pack.png'),pointer;
+    cursor: url('mouseHover.png'),pointer;
     rotate: -4deg;
 }
 
@@ -154,7 +154,7 @@ a {
 .card1:hover {
   scale: 1.1;
   background-color: white;
-  cursor: url('minimal-basketball-ball-pack.png'),pointer;
+  cursor: url('mouseHover.png'),pointer;
 }
 
 .card1:hover .instagram {
@@ -162,7 +162,7 @@ a {
 }
 
 .card2:hover {
-  cursor: url('minimal-basketball-ball-pack.png'),pointer;
+  cursor: url('mouseHover.png'),pointer;
   scale: 1.1;
   background-color: white;
 }
@@ -172,7 +172,7 @@ a {
 }
 
 .card3:hover {
-  cursor: url('minimal-basketball-ball-pack.png'),pointer;
+  cursor: url('mouseHover.png'),pointer;
   scale: 1.1;
   background-color: white;
 }
@@ -182,7 +182,7 @@ a {
 }
 
 .card4:hover {
-  cursor: url('minimal-basketball-ball-pack.png'),pointer;
+  cursor: url('mouseHover.png'),pointer;
   scale: 1.1;
   background-color: white;
 }
