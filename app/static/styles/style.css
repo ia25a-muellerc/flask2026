@@ -2,14 +2,26 @@ body {
     margin: 0;
     padding: 0;
     background-color: black; 
-    cursor: url('minimal-orange-pack.png'), auto;
+    cursor: url('pointer.png'), auto;
     display: flex;
     flex-direction: column;
     min-height: 100vh;
     font-family: 'Poppins', sans-serif;
 }
 
+a:hover {
+  cursor: url('minimal-basketball-ball-pack.png'),pointer;
+}
+
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+
+button:hover {
+  cursor: url('minimal-basketball-ball-pack.png'),pointer;
+}
+
+input {
+  cursor: url('minimal-basketball-ball-pack.png'),pointer;
+}
 
 .blockContent {
     flex-grow: 1;
@@ -47,6 +59,15 @@ a {
     width: 50px;
     height: 50px;
     object-fit: contain;
+}
+
+.logo:hover {
+    width: 20%;
+    height: 20%;
+    margin-left: 25px;
+    margin-right:  min(1%,25px);
+    cursor: url('minimal-basketball-ball-pack.png'),pointer;
+    rotate: -4deg;
 }
 
 .logo-text {
