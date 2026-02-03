@@ -27,20 +27,20 @@ body {
     box-sizing: border-box;
 }
 
-.profile-card .back {
+.back {
     color: #f58800;
     font-weight: 700;
     margin-bottom: 24px;
     cursor: pointer;
 }
 
-.profile-card .label {
+.label {
     color: #ccc;
     font-size: 14px;
     margin: 16px 0 6px;
 }
 
-.profile-card .inputButton {
+.inputButton {
     width: 100%;
     padding: 14px;
     border-radius: 14px;
@@ -51,12 +51,12 @@ body {
     outline: none;
 }
 
-.profile-card .inputButton:focus {
+.inputButton:focus {
     border-color: #ff9f1a;
     box-shadow: 0 0 8px rgba(255, 159, 26, 0.6);
 }
 
-.profile-card .saveButton {
+.saveButton {
     width: 100%;
     background-color: #f58800;
     color: #000;
