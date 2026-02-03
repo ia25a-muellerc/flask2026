@@ -7,6 +7,7 @@
     <style>
     @import url('https://fonts.googleapis.com/css2?family=Black+Han+Sans&display=swap');
     </style>
+    {% block head %}{% endblock %}
 </head>
 <body>
     <div class="header">
@@ -15,7 +16,7 @@
             <p>DESKDUNK</p>
         </div>
         <div>
-        <!-- From Uiverse.io by Praashoo7 --> 
+        <!-- From Uiverse.io by Praashoo7 -->
         <div class="main">
             <div class="up">
                 <button class="card1">
@@ -32,18 +33,20 @@
                         </button>
                         </a>
                         <button class="card4">
-                            <img src="../static/styles/account-icon.png" width="45%" height="45%" class="account-icon">  
+                            <img src="../static/styles/account-icon.png" width="45%" height="45%" class="account-icon">
                         </button>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    {% block content %}{% endblock %}
+    <div class="blockContent">
+        {% block content %}{% endblock %}
+    </div>
     <div class="footer">
         <p>@DeskDunk 2026</p>
         <a href="{{ url_for('about') }}">
-            <p>
+            <p class="aboutLinkText">
                 About
             </p>
         </a>

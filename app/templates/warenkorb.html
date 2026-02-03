@@ -4,13 +4,13 @@
 {% block title %}Home{% endblock %}
 
 {% block content %}
-<h1>Warenkorb</h1>
+ <h1 class="subtitle">Shopping cart</h1>
 
 <!DOCTYPE html>
 <html lang="de">
 <head>
     <meta charset="UTF-8">
-    <title>Desk Dunk – Warenkorb</title>
+    <title>Desk Dunk – Shopping cart</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='styles/Warenkorb.css') }}">
 </head>
 <body>
@@ -35,33 +35,9 @@
             <span id="total">30,00 €</span>
         </div>
 
-        <button class="checkout">Jetzt kaufen</button>
+        <button class="checkout">buy know</button>
     </div>
-
-    <script>
-        const pricePerItem = 30.00;
-        let quantity = 1;
-
-        function updateTotal() {
-            const total = (pricePerItem * quantity).toFixed(2);
-            document.getElementById('total').textContent = total + ' €';
-        }
-
-        function increaseQuantity() {
-            quantity++;
-            document.getElementById('quantity').textContent = quantity;
-            updateTotal();
-        }
-
-        function decreaseQuantity() {
-            if (quantity > 1) {
-                quantity--;
-                document.getElementById('quantity').textContent = quantity;
-                updateTotal();
-            }
-        }
-    </script>
-
+    <script src="{{ url_for('static', filename='warenkorb.js') }}"></script>
 </body>
 </html>
 

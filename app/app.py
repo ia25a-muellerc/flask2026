@@ -59,6 +59,31 @@ def about() -> str:
 def warenkorb() -> str:
     return render_template("warenkorb.html", languages=languages)
 
+@app.route("/data")
+def data() -> str:
+    return render_template("data.html", languages=languages)
+
+
+@app.route("/shipping")
+def shipping() -> str:
+    return render_template("shipping.html", languages=languages)
+
+@app.route("/carddetails")
+def carddetails() -> str:
+    return render_template("carddetails.html", languages=languages)
+
+@app.route("/signin")
+def signin() -> str:
+    return render_template("signin.html", languages=languages)
+
+@app.route("/popUpPayment")
+def popUpPayment() -> str:
+    return render_template("popUpPayment.html", languages=languages)
+
+@app.route("/popUpSaved")
+def popUpSaved() -> str:
+    return render_template("popUpSaved.html", languages=languages)
+
 @app.route("/submit", methods=["POST"])
 def submit():
     app.logger.info("Form submitted")

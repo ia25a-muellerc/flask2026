@@ -1,0 +1,74 @@
+body {
+    margin: 0;
+    min-height: 100vh;
+    background-color: #000;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.page {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;    
+    align-items: flex-start;    
+    padding-top: 50px;          
+}
+
+.payment-card {
+    position: relative;
+    width: 100%;
+    max-width: 420px;
+    background-color: #111;
+    padding: 28px;
+    border-radius: 20px;
+    border: 1px solid #f58800;
+    box-shadow: 0 0 20px rgba(245, 136, 0, 0.6);
+    text-align: left;
+    box-sizing: border-box;
+}
+
+.payment-card h2 {
+    color: #f58800;
+    margin: 0 0 14px;
+    font-size: 22px;
+}
+
+.payment-card p {
+    color: #ccc;
+    font-size: 14px;
+    line-height: 1.5;
+    margin-bottom: 26px;
+}
+
+.close-btn {
+    position: absolute; 
+    top: 16px;
+    right: 16px;
+    background: none;
+    border: none;
+    color: #f58800;
+    font-size: 20px;
+    cursor: pointer;
+    transition: color 0.2s ease;
+}
+
+.close-btn:hover {
+    color: #ff9f1a;
+}
+
+.rateButton {
+    width: 100%;
+    background-color: #f58800;
+    color: #000;
+    border: none;
+    padding: 14px;
+    border-radius: 16px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.rateButton:hover {
+    background-color: #ff9f1a;
+    box-shadow: 0 0 10px rgba(255, 159, 26, 0.7);
+}

@@ -1,0 +1,149 @@
+{% extends 'base.html' %}
+
+{% block title %}DESKDUNK - Zahlung{% endblock %}
+
+{% block content %}
+<link rel="stylesheet" href="{{ url_for('static', filename='styles/payment.css') }}">
+
+<body>
+    <div class="payment-container">
+        <h1>Zahlungsinformationen</h1>
+        
+        <div class="payment-methods">
+            <!-- PayPal -->
+            <div class="payment-option">
+                <div class="payment-logo">
+                    <img src="https://download.logo.wine/logo/PayPal/PayPal-Logo.wine.png" alt="PayPal Logo" class="logo-image">
+                </div>
+                <h3>PayPal</h3>
+                <p>Schnell und sicher mit PayPal bezahlen</p>
+                <button class="payment-btn">Mit PayPal zahlen</button>
+            </div>
+
+            <!-- Kreditkarte -->
+            <div class="payment-option">
+                <div class="payment-logo">
+                    <img src="https://www.visa.de/content/dam/VCOM/regional/ve/germany/in-page-images/Produkte/card-classic.png" alt="Kreditkarte Logo" class="logo-image">
+                </div>
+                <h3>Kreditkarte</h3>
+                <p>Visa, Mastercard oder andere Karten</p>
+                <button class="payment-btn">Mit Karte zahlen</button>
+            </div>
+
+            <!-- Apple Pay -->
+            <div class="payment-option">
+                <div class="payment-logo">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTWxYUQvdwKXZ9meVu4Jx6fr7nNNo99TLl-bA&s" alt="Apple Pay" class="logo-image">
+                </div>
+                <h3>Apple Pay</h3>
+                <p>Bezahlung mit Apple Pay</p>
+                <button class="payment-btn">Mit Apple Pay zahlen</button>
+            </div>
+
+            <!-- Google Pay -->
+            <div class="payment-option">
+                <div class="payment-logo">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f2/Google_Pay_Logo.svg/960px-Google_Pay_Logo.svg.png" alt="Google Pay Logo" class="logo-image">
+                </div>
+                <h3>Google Pay</h3>
+                <p>Schnelle Zahlung mit Google Pay</p>
+                <button class="payment-btn">Mit Google Pay zahlen</button>
+            </div>
+
+            <!-- Twint -->
+            <div class="payment-option">
+                <div class="payment-logo">
+                    <img src="https://play-lh.googleusercontent.com/pGZsOWcRRSQLNncRTfhGQKP_Oql9-ZmtdygrFd8myq7wONKa-INO-gFSy1xp5BL2yA" alt="Twint Logo" class="logo-image">
+                </div>
+                <h3>Twint</h3>
+                <p>Twint Zahlung</p>
+                <button class="payment-btn">Mit Twint zahlen</button>
+            </div>
+
+            <!-- Lastschrift -->
+            <div class="payment-option">
+                <div class="payment-logo">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTtiR10jbwxu0jyjy-x-cGgR8p_qWgy0D6GqQ&ss" alt="Lastschrift Logo" class="logo-image">
+                </div>
+                <h3>Rechnung</h3>
+                <p>Zahlung per Rechnung</p>
+                <button class="payment-btn">Rechnung auswählen</button>
+            </div>
+        </div>
+
+        <!-- Zahlungsformular -->
+        <div class="payment-form-section">
+            <h2>Zahlungsdetails</h2>
+            <form class="payment-form">
+                <!-- Kreditkartendaten -->
+                <div class="form-section">
+                    <h3>Kreditkarteninformationen</h3>
+                    <div class="form-group">
+                        <label for="cardName">Name auf der Karte</label>
+                        <input type="text" id="cardName" name="cardName" placeholder="Max Mustermann" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="cardNumber">Kartennummer</label>
+                        <input type="text" id="cardNumber" name="cardNumber" placeholder="1234 5678 9012 3456" maxlength="19" required>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="expiry">Ablaufdatum</label>
+                            <input type="text" id="expiry" name="expiry" placeholder="MM/JJ" maxlength="5" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="cvv">CVV</label>
+                            <input type="text" id="cvv" name="cvv" placeholder="123" maxlength="3" required>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Rechnungsadresse -->
+                <div class="form-section">
+                    <h3>Rechnungsadresse</h3>
+                    <div class="form-group">
+                        <label for="fullName">Vor- und Nachname</label>
+                        <input type="text" id="fullName" name="fullName" placeholder="Max Mustermann" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">E-Mail-Adresse</label>
+                        <input type="email" id="email" name="email" placeholder="max@beispiel.ch" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="address">Strasse und Hausnummer</label>
+                        <input type="text" id="address" name="address" placeholder="Musterstrasse 123" required>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="zip">PLZ</label>
+                            <input type="text" id="zip" name="zip" placeholder="8000" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="city">Ort</label>
+                            <input type="text" id="city" name="city" placeholder="Zürich" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="country">Land</label>
+                        <select id="country" name="country" required>
+                            <option value="">Land auswählen</option>
+                            <option value="CH" selected>Schweiz</option>
+                            <option value="DE">Deutschland</option>
+                            <option value="AT">Österreich</option>
+                            <option value="FR">Frankreich</option>
+                            <option value="IT">Italien</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Submit Button -->
+                <button type="submit" class="submit-payment-btn">Zahlungspflichtig bestellen</button>
+            </form>
+        </div>
+        
+    </div>
+</body>
+
+
+
+{% endblock %}

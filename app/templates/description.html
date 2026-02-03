@@ -1,0 +1,73 @@
+{% extends 'base.html' %}
+
+{% block title %}DESKDUNK - Product Description{% endblock %}
+
+{% block content %}
+
+<link rel="stylesheet" href="{{ url_for('static', filename='description.css') }}">
+
+<div class="product-container">
+    <div class="product-header">
+        <div class="product-image">
+            <img src="../static/styles/Image DeskDunk.jpg" alt="DESKDUNK Produkt">
+        </div>
+        <div class="product-title-section">
+            <h1 class="product-title">DESKDUNK</h1>
+            <p class="product-subtitle">Your perfect desk companion</p>
+        </div>
+    </div>
+
+    <div class="description-box">
+        <h2>About DESKDUNK</h2>
+        <p>
+            DESKDUNK is the innovative solution for a more productive and creative work environment. 
+            With its modern design and practical functionality, DESKDUNK offers the perfect 
+            combination of style and utility for your desk.
+        </p>
+        <p>
+            Designed for professional users and creative minds who value quality and design. 
+            DESKDUNK fits perfectly into any workspace and supports you with your daily tasks.
+        </p>
+    </div>
+
+    <div class="features">
+        <div class="feature-card">
+            <h3>Modern Design</h3>
+            <p>Stylish black surface with orange accents for a contemporary look</p>
+        </div>
+        <div class="feature-card">
+            <h3>Compact & Space-Saving</h3>
+            <p>Perfectly sized for every desk without wasting space</p>
+        </div>
+        <div class="feature-card">
+            <h3>High-Quality Craftsmanship</h3>
+            <p>Durable and robust for daily use</p>
+        </div>
+        <div class="feature-card">
+            <h3>Practical Functionality</h3>
+            <p>Thoughtfully designed for efficiency and productivity</p>
+        </div>
+    </div>
+
+    <div class="material-section">
+        
+        <div class="material-content">
+            <h2>📦 Materials & Composition</h2>
+            <p>
+                <strong>DESKDUNK</strong> is manufactured from high-quality, durable materials:
+            </p>
+            <p>
+                ✓ <strong>Wood</strong> – Sustainable wood with excellent quality<br>
+                ✓ <strong>Metal Reinforcements</strong> – Additional stability and durability<br>
+                ✓ <strong>Sustainable Mini Basketballs</strong> – Non-slip and grippy<br>
+                ✓ <strong>Basketball Court painted with acrylic paints</strong> – Fade-resistant black and orange (#F58800)
+            </p>
+            <p>
+                The combination of these premium materials ensures a long lifespan 
+                and provides optimal protection for your valuable items.
+            </p>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
