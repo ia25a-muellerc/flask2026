@@ -10,17 +10,17 @@ body {
 }
 
 a:hover {
-  cursor: url('minimal-basketball-ball-pack.png'),pointer;
+  cursor: url('mouseHover.png'),pointer;
 }
 
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
 
 button:hover {
-  cursor: url('minimal-basketball-ball-pack.png'),pointer;
+  cursor: url('mouseHover.png'),pointer;
 }
 
 input {
-  cursor: url('minimal-basketball-ball-pack.png'),pointer;
+  cursor: url('mouseHover.png'),pointer;
 }
 
 .blockContent {
@@ -62,10 +62,6 @@ a {
 }
 
 .logo:hover {
-    width: 20%;
-    height: 20%;
-    margin-left: 25px;
-    margin-right:  min(1%,25px);
     cursor: url('minimal-basketball-ball-pack.png'),pointer;
     rotate: -4deg;
 }
@@ -96,7 +92,6 @@ a {
     padding: 0.7rem 1rem;
     position: relative;
     transition: all 0.3s ease;
-    cursor: pointer;
     display: inline-flex;
     align-items: center;
     gap: 0.5rem;
