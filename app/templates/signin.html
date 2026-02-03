@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block title %}Result{% endblock %}
+
+{% block content %}
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/signin.css') }}">
+</head>
+<div class="profile-card">
+
+    <p class="back">← Back</p>
+
+    <p class="label">Email</p>
+    <input class="inputButton"></input>
+
+    <p class="label">Password</p>
+    <input class="inputButton"></input>
+
+    <button class="saveButton">Sign In</button>
+
+    <a href="/forgot-password" style="text-decoration: underline;">Forgot password?</a>
+
+</div>
+{% endblock %}

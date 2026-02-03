@@ -1,7 +1,35 @@
 body {
     margin: 0;
     padding: 0;
-    background-color: black;
+    background-color: black; 
+    cursor: url('minimal-orange-pack.png'), auto;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+a:hover {
+  cursor: url('minimal-basketball-ball-pack.png'),pointer;
+}
+
+button:hover {
+  cursor: url('minimal-basketball-ball-pack.png'),pointer;
+}
+
+input {
+  cursor: url('minimal-basketball-ball-pack.png'),pointer;
+}
+
+.blockContent {
+  flex-grow: 1;
+}
+
+p {
+    color: #F58800;
+}
+
+a {
+  text-decoration: none;
 }
 
 .header {
@@ -20,13 +48,20 @@ body {
     height: 20%;
     margin-left: 25px;
     margin-right:  min(1%,25px);
-    cursor: pointer;
+}
+
+.logo:hover {
+    width: 20%;
+    height: 20%;
+    margin-left: 25px;
+    margin-right:  min(1%,25px);
+    cursor: url('minimal-basketball-ball-pack.png'),pointer;
+    rotate: -4deg;
 }
 
 .header p {
     font-family: "Black Han Sans";
     font-size: min(7vw, 100px);
-    color: #F58800;
 }
 
 /* From Uiverse.io by Praashoo7 */ 
@@ -117,9 +152,9 @@ body {
 }
 
 .card1:hover {
-  cursor: pointer;
   scale: 1.1;
   background-color: white;
+  cursor: url('minimal-basketball-ball-pack.png'),pointer;
 }
 
 .card1:hover .instagram {
@@ -127,7 +162,7 @@ body {
 }
 
 .card2:hover {
-  cursor: pointer;
+  cursor: url('minimal-basketball-ball-pack.png'),pointer;
   scale: 1.1;
   background-color: white;
 }
@@ -137,7 +172,7 @@ body {
 }
 
 .card3:hover {
-  cursor: pointer;
+  cursor: url('minimal-basketball-ball-pack.png'),pointer;
   scale: 1.1;
   background-color: white;
 }
@@ -147,11 +182,34 @@ body {
 }
 
 .card4:hover {
-  cursor: pointer;
+  cursor: url('minimal-basketball-ball-pack.png'),pointer;
   scale: 1.1;
   background-color: white;
 }
 
 .card4:hover .discord {
   fill: white;
+}
+
+.footer {
+  box-shadow: 0 0 20px #F58800;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-grow: 0;
+  transform: translateY(100%);
+}
+
+.footer p {
+  font-size: x-large;
+  font-family: "Black Han Sans";
+}
+
+.footer .aboutLinkText {
+  text-decoration: underline;
+}
+
+.footer .aboutLinkText:hover {
+  text-decoration: underline;
+  color:#d17402;
 }
