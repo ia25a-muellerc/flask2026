@@ -7,37 +7,27 @@
     <style>
     @import url('https://fonts.googleapis.com/css2?family=Black+Han+Sans&display=swap');
     </style>
+    {% block head %}{% endblock %}
 </head>
 <body>
     <div class="header">
-        <div class="left">
+        <div class="header-left">
             <img src="../static/styles/logo.png" alt="logo" class="logo">
-            <p>DESKDUNK</p>
+            <h1 class="logo-text" style="font-family: 'Black Han Sans', sans-serif;">DESKDUNK</h1>
         </div>
-        <div>
-        <!-- From Uiverse.io by Praashoo7 -->
-        <div class="main">
-            <div class="up">
-                <button class="card1">
-                    <img src="../static/styles/instagram-logo.png" width="75%" height="75%" class="instagram">
-                </button>
-                <button class="card2">
-                    <img src="../static/styles/tiktok-logo.png" width="45%" height="45%" class="ticktock">
-                </button>
-                </div>
-                    <div class="down">
-                        <a href="{{ url_for('warenkorb') }}">
-                        <button class="card3" onclick="window.location.href=''">
-                            <img src="../static/styles/shopping-cart-icon.png" width="45%" height="45%" class="warenkorb">
-                        </button>
-                        </a>
-                        <button class="card4">
-                            <img src="../static/styles/account-icon.png" width="45%" height="45%" class="account-icon">
-                        </button>
-                    </div>
-                </div>
+        <nav class="header-nav">
+            <a href="{{ url_for('home') }}" class="nav-item">Home</a>
+            <a href="{{ url_for('about') }}" class="nav-item">About</a>
+            <a href="#contact" class="nav-item">Contact</a>
+            <div class="nav-buttons">
+                <a href="{{ url_for('warenkorb') }}" class="nav-item nav-shop">
+                    <img src="../static/styles/shopping-cart-icon.png" alt="Shop" class="nav-icon">
+                </a>
+                <a href="#profile" class="nav-item nav-profile">
+                    <img src="../static/styles/account-icon.png" alt="Profile" class="nav-icon">
+                </a>
             </div>
-        </div>
+        </nav>
     </div>
     <div class="blockContent">
         {% block content %}{% endblock %}
