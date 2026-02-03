@@ -5,6 +5,13 @@ body {
     color: white;
 }
 
+.subtitle {
+    text-align: center;
+    color: #f58800;
+    margin-bottom: 30px;
+    font-size: 50px;
+}
+
 .container {
     width: 50vw;
     margin: 100px auto;
