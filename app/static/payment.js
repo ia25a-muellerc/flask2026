@@ -7,7 +7,7 @@ const product = urlParams.get('product') || 'Desk Dunk';
 document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('summaryProduct').textContent = decodeURIComponent(product);
     document.getElementById('summaryQuantity').textContent = quantity;
-    document.getElementById('summaryTotal').textContent = '€' + parseFloat(total).toLocaleString('de-CH', {minimumFractionDigits: 2, maximumFractionDigits: 2});
+    document.getElementById('summaryTotal').textContent = ' CHF ' + parseFloat(total).toLocaleString('de-CH', {minimumFractionDigits: 2, maximumFractionDigits: 2});
     
     // Payment-Container Klicks (ganzer Container klickbar)
     document.querySelectorAll('.payment-option').forEach(option => {
