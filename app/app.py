@@ -63,6 +63,12 @@ def warenkorb() -> str:
 def description() -> str:
     return render_template("description.html", languages=languages)
 
+@app.route("/payment")
+def payment() -> str:
+    return render_template("payment.html", languages=languages)
+
+
+
 @app.route("/submit", methods=["POST"])
 def submit():
     app.logger.info("Form submitted")
