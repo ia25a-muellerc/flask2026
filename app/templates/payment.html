@@ -115,6 +115,15 @@
                     </div>
                 </div>
 
+                <!-- Twint Details -->
+                <div class="form-section" id="twintSection" style="display: none;">
+                    <h3>Twint Information</h3>
+                    <div class="form-group">
+                        <label for="twintPhone">Phone Number</label>
+                        <input type="tel" id="twintPhone" name="twintPhone" placeholder="+41 79 123 45 67">
+                    </div>
+                </div>
+
                 <!-- Billing Address -->
                 <div class="form-section">
                     <h3>Billing Address</h3>
@@ -159,8 +168,6 @@
         </div>
 </body>
 
-<script>
-   
-</script>
+<script src="{{ url_for('static', filename='payment.js') }}"></script>
 
 {% endblock %}

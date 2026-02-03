@@ -16,6 +16,7 @@ document.addEventListener('DOMContentLoaded', function() {
             const method = button.getAttribute('data-method');
             const formSection = document.getElementById('paymentFormSection');
             const cardSection = document.getElementById('cardSection');
+            const twintSection = document.getElementById('twintSection');
             const formTitle = document.getElementById('formTitle');
             
             const titles = {
@@ -28,7 +29,11 @@ document.addEventListener('DOMContentLoaded', function() {
             };
             
             formTitle.textContent = titles[method] || 'Zahlungsdetails';
+            
+            // Spezifische Formularteile anzeigen/verstecken
             cardSection.style.display = method === 'card' ? 'block' : 'none';
+            twintSection.style.display = method === 'twint' ? 'block' : 'none';
+            
             formSection.style.display = 'block';
             formSection.scrollIntoView({ behavior: 'smooth' });
         });
