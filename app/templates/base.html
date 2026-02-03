@@ -1,54 +1,21 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <title>{% block title %}{% endblock %}</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='styles/style.css') }}">
-    <script src="../static/styles/base.js" defer></script>
-    <style>
-    @import url('https://fonts.googleapis.com/css2?family=Black+Han+Sans&display=swap');
-    </style>
+<head><title>{% block title %}{% endblock %}</title>
+
+<link rel="stylesheet" href="{{ url_for('static', filename='styles/style.css', v=range(999999)|random) }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='styles/style2.css', v=range(999999)|random) }}">
+
 </head>
 <body>
-    <div class="header">
-        <div class="left">
-            <img src="../static/styles/logo.png" alt="logo" class="logo">
-            <p>DESKDUNK</p>
-        </div>
-        <div>
-        <!-- From Uiverse.io by Praashoo7 --> 
-        <div class="main">
-            <div class="up">
-                <button class="card1">
-                    <img src="../static/styles/instagram-logo.png" width="75%" height="75%" class="instagram">
-                </button>
-                <button class="card2">
-                    <img src="../static/styles/tiktok-logo.png" width="45%" height="45%" class="ticktock">
-                </button>
-                </div>
-                    <div class="down">
-                        <a href="{{ url_for('warenkorb') }}">
-                        <button class="card3" onclick="window.location.href=''">
-                            <img src="../static/styles/shopping-cart-icon.png" width="45%" height="45%" class="warenkorb">
-                        </button>
-                        </a>
-                        <button class="card4">
-                            <img src="../static/styles/account-icon.png" width="45%" height="45%" class="account-icon">  
-                        </button>
-                    </div>
-                </div>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-links">
+                <a href="{{ url_for('home') }}" class="nav-link">Home</a>
+                <a href="{{ url_for('about') }}" class="nav-link">About</a>
+                <a href="{{ url_for('result') }}" class="nav-link">Result</a>
             </div>
         </div>
-    </div>
-    <div class="blockContent">
-        {% block content %}{% endblock %}
-    </div>
-    <div class="footer">
-        <p>@DeskDunk 2026</p>
-        <a href="{{ url_for('about') }}">
-            <p class="aboutLinkText">
-                About
-            </p>
-        </a>
-    </div>
+    </nav>
+    {% block content %}{% endblock %}
 </body>
 </html>
