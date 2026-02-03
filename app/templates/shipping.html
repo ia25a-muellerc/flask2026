@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block title %}Result{% endblock %}
+
+{% block content %}
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/signin.css') }}">
+</head>
+<div class="profile-card">
+
+    <p class="back">← Shipping</p>
+
+    <p class="label">Name</p>
+    <input class="inputButton"></input>
+
+    <p class="label">Surname</p>
+    <input class="inputButton"></input>
+
+    <p class="label">Email</p>
+    <input class="inputButton"></input>
+
+    <p class="label">Adress</p>
+    <input class="inputButton"></input>
+
+    <button class="saveButton">Submit</button>
+
+</div>
+{% endblock %}

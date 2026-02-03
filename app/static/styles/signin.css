@@ -1,0 +1,89 @@
+body {
+    margin: 0;
+    min-height: 100vh;
+    background-color: #000;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.page {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.profile-card {
+    box-sizing: border-box;
+    width: 100%;
+    max-width: 420px;
+    background-color: #111;
+    padding: 26px;
+    border-radius: 20px;
+    box-shadow: 0 0 20px rgba(245, 136, 0, 0.6);
+    border: 1px solid #f58800;
+    margin: auto; 
+}
+
+.profile-card * {
+    box-sizing: border-box;
+}
+
+.back {
+    color: #f58800;
+    font-weight: 700;
+    margin-bottom: 24px;
+    cursor: pointer;
+}
+
+.label {
+    color: #ccc;
+    font-size: 14px;
+    margin: 16px 0 6px;
+}
+
+.inputButton {
+    width: 100%;
+    padding: 14px;
+    border-radius: 14px;
+    border: 1px solid #f58800;
+    background-color: #000;
+    color: #f58800;
+    font-size: 15px;
+    outline: none;
+}
+
+.inputButton:focus {
+    border-color: #ff9f1a;
+    box-shadow: 0 0 8px rgba(255, 159, 26, 0.6);
+}
+
+.saveButton {
+    width: 100%;
+    background-color: #f58800;
+    color: #000;
+    border: none;
+    padding: 14px;
+    border-radius: 16px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: 30px;
+}
+
+.profile-card a {
+    display: block;
+    margin-top: 12px;
+    text-align: center;
+    color: #f58800;
+    font-size: 14px;
+}
+
+.profile-card a:hover {
+    color: #ff9f1a;
+}
+
+footer {
+    text-align: center;
+    color: #777;
+    padding: 20px;
+    font-size: 14px;
+}
