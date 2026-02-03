@@ -9,19 +9,19 @@
     <div class="payment-container">
         <!-- Bestellzusammenfassung -->
         <div class="order-summary">
-            <h2>Bestellzusammenfassung</h2>
+            <h2>Order Summary</h2>
             <div class="summary-details">
                 <div class="summary-item">
-                    <span>Artikel:</span>
+                    <span>Product:</span>
                     <span id="summaryProduct">Desk Dunk</span>
                 </div>
                 <div class="summary-item">
-                    <span>Menge:</span>
+                    <span>Items:</span>
                     <span id="summaryQuantity">1</span>
                 </div>
                 <div class="summary-item total">
-                    <span>Gesamtbetrag:</span>
-                    <span id="summaryTotal">€30,00</span>
+                    <span>Total:</span>
+                    <span id="summaryTotal">CHF 30,00</span>
                 </div>
             </div>
         </div>
@@ -33,8 +33,8 @@
                     <img src="https://download.logo.wine/logo/PayPal/PayPal-Logo.wine.png" alt="PayPal Logo" class="logo-image">
                 </div>
                 <h3>PayPal</h3>
-                <p>Schnell und sicher mit PayPal bezahlen</p>
-                <button class="payment-btn" data-method="paypal">Mit PayPal zahlen</button>
+                <p>Fast and secure payment with PayPal</p>
+                <button class="payment-btn" data-method="paypal">Pay with PayPal</button>
             </div>
 
             <!-- Kreditkarte -->
@@ -42,9 +42,9 @@
                 <div class="payment-logo">
                     <img src="https://www.visa.de/content/dam/VCOM/regional/ve/germany/in-page-images/Produkte/card-classic.png" alt="Kreditkarte Logo" class="logo-image">
                 </div>
-                <h3>Kreditkarte</h3>
-                <p>Visa, Mastercard oder andere Karten</p>
-                <button class="payment-btn" data-method="card">Mit Karte zahlen</button>
+                <h3>Credit Card</h3>
+                <p>Visa, Mastercard or other cards</p>
+                <button class="payment-btn" data-method="card">Pay with Card</button>
             </div>
 
             <!-- Apple Pay -->
@@ -53,8 +53,8 @@
                     <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTWxYUQvdwKXZ9meVu4Jx6fr7nNNo99TLl-bA&s" alt="Apple Pay" class="logo-image">
                 </div>
                 <h3>Apple Pay</h3>
-                <p>Bezahlung mit Apple Pay</p>
-                <button class="payment-btn" data-method="applepay">Mit Apple Pay zahlen</button>
+                <p>Payment with Apple Pay</p>
+                <button class="payment-btn" data-method="applepay">Pay with Apple Pay</button>
             </div>
 
             <!-- Google Pay -->
@@ -63,8 +63,8 @@
                     <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f2/Google_Pay_Logo.svg/960px-Google_Pay_Logo.svg.png" alt="Google Pay Logo" class="logo-image">
                 </div>
                 <h3>Google Pay</h3>
-                <p>Schnelle Zahlung mit Google Pay</p>
-                <button class="payment-btn" data-method="googlepay">Mit Google Pay zahlen</button>
+                <p>Fast payment with Google Pay</p>
+                <button class="payment-btn" data-method="googlepay">Pay with Google Pay</button>
             </div>
 
             <!-- Twint -->
@@ -73,8 +73,8 @@
                     <img src="https://play-lh.googleusercontent.com/pGZsOWcRRSQLNncRTfhGQKP_Oql9-ZmtdygrFd8myq7wONKa-INO-gFSy1xp5BL2yA" alt="Twint Logo" class="logo-image">
                 </div>
                 <h3>Twint</h3>
-                <p>Twint Zahlung</p>
-                <button class="payment-btn" data-method="twint">Mit Twint zahlen</button>
+                <p>Twint payment</p>
+                <button class="payment-btn" data-method="twint">Pay with Twint</button>
             </div>
 
             <!-- Lastschrift -->
@@ -82,31 +82,31 @@
                 <div class="payment-logo">
                     <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTtiR10jbwxu0jyjy-x-cGgR8p_qWgy0D6GqQ&ss" alt="Lastschrift Logo" class="logo-image">
                 </div>
-                <h3>Rechnung</h3>
-                <p>Zahlung per Rechnung</p>
-                <button class="payment-btn" data-method="invoice">Rechnung auswählen</button>
+                <h3>Invoice</h3>
+                <p>Payment by invoice</p>
+                <button class="payment-btn" data-method="invoice">Select Invoice</button>
             </div>
         </div>
 
-        <!-- Zahlungsformular (anfangs versteckt) -->
+        <!-- Payment Form (initially hidden) -->
         <div id="paymentFormSection" class="payment-form-section" style="display: none; margin-top: 40px;">
-            <h2 id="formTitle">Zahlungsdetails</h2>
+            <h2 id="formTitle">Payment Details</h2>
             <form class="payment-form" id="selectedPaymentForm">
-                <!-- Kreditkartendaten -->
+                <!-- Credit Card Details -->
                 <div class="form-section" id="cardSection" style="display: none;">
-                    <h3>Kreditkarteninformationen</h3>
+                    <h3>Credit Card Information</h3>
                     <div class="form-group">
-                        <label for="cardName">Name auf der Karte</label>
+                        <label for="cardName">Name on Card</label>
                         <input type="text" id="cardName" name="cardName" placeholder="Max Mustermann">
                     </div>
                     <div class="form-group">
-                        <label for="cardNumber">Kartennummer</label>
+                        <label for="cardNumber">Card Number</label>
                         <input type="text" id="cardNumber" name="cardNumber" placeholder="1234 5678 9012 3456" maxlength="19">
                     </div>
                     <div class="form-row">
                         <div class="form-group">
-                            <label for="expiry">Ablaufdatum</label>
-                            <input type="text" id="expiry" name="expiry" placeholder="MM/JJ" maxlength="5">
+                            <label for="expiry">Expiration Date</label>
+                            <input type="text" id="expiry" name="expiry" placeholder="MM/YY" maxlength="5">
                         </div>
                         <div class="form-group">
                             <label for="cvv">CVV</label>
@@ -115,40 +115,40 @@
                     </div>
                 </div>
 
-                <!-- Rechnungsadresse -->
+                <!-- Billing Address -->
                 <div class="form-section">
-                    <h3>Rechnungsadresse</h3>
+                    <h3>Billing Address</h3>
                     <div class="form-group">
-                        <label for="fullName">Vor- und Nachname</label>
+                        <label for="fullName">Full Name</label>
                         <input type="text" id="fullName" name="fullName" placeholder="Max Mustermann">
                     </div>
                     <div class="form-group">
-                        <label for="email">E-Mail-Adresse</label>
-                        <input type="email" id="email" name="email" placeholder="max@beispiel.ch">
+                        <label for="email">EEmail Address</label>
+                        <input type="email" id="email" name="email" placeholder="max@example.com">
                     </div>
                     <div class="form-group">
-                        <label for="address">Strasse und Hausnummer</label>
-                        <input type="text" id="address" name="address" placeholder="Musterstrasse 123">
+                        <label for="address">Street and House Number</label>
+                        <input type="text" id="address" name="address" placeholder="Sample Street 123">
                     </div>
                     <div class="form-row">
                         <div class="form-group">
-                            <label for="zip">PLZ</label>
+                            <label for="zip">ZIP Code</label>
                             <input type="text" id="zip" name="zip" placeholder="8000">
                         </div>
                         <div class="form-group">
-                            <label for="city">Ort</label>
-                            <input type="text" id="city" name="city" placeholder="Zürich">
+                            <label for="city">City</label>
+                            <input type="text" id="city" name="city" placeholder="Zurich">
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="country">Land</label>
+                        <label for="country">Country</label>
                         <select id="country" name="country">
-                            <option value="">Land auswählen</option>
-                            <option value="CH" selected>Schweiz</option>
-                            <option value="DE">Deutschland</option>
-                            <option value="AT">Österreich</option>
-                            <option value="FR">Frankreich</option>
-                            <option value="IT">Italien</option>
+                            <option value="">Select Country</option>
+                            <option value="CH" selected>Switzerland</option>
+                            <option value="DE">Germany</option>
+                            <option value="AT">Austria</option>
+                            <option value="FR">France</option>
+                            <option value="IT">Italy</option>
                         </select>
                     </div>
                 </div>
