@@ -1,4 +1,3 @@
-
 {% extends 'base.html' %}
 
 {% block title %}Home{% endblock %}
@@ -44,7 +43,7 @@
         </div>
 
         <!-- Button -->
-        <button class="purchaser">Purchase</button>
+        <a href="{{ url_for('warenkorb') }}" class="purchaser">Purchase</a>
 
         <!-- Karten mit Bildern -->
         <div class="imageHolder">
@@ -76,8 +75,7 @@
                 <div class="card__content">
                     <p class="card__title">PLAY!</p>
                     <p class="card__description">After constructing the entire project, the basketball game is ready to
-                        be played in your office. Everything is firmly attached and stable, allowing the game to be used
-                        safely and comfortably. Now you can enjoy playing basketball during breaks or in your free time
+                        be played in your office. Everything is firmly attached and stable. Now you can enjoy playing basketball during breaks or in your free time
                         and have fun with friends or colleagues. HAVE FUN!</p>
                 </div>
             </div>

@@ -72,6 +72,10 @@ def shipping() -> str:
 def carddetails() -> str:
     return render_template("carddetails.html", languages=languages)
 
+@app.route("/payment")
+def payment() -> str:
+    return render_template("payment.html", languages=languages)
+
 @app.route("/signin")
 def signin() -> str:
     return render_template("signin.html", languages=languages)

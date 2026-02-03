@@ -134,6 +134,8 @@ body {
     cursor: pointer;
     position: relative;
     overflow: hidden;
+    display: inline-block;
+    text-align: center;
 }
 
 .purchaser:hover {
