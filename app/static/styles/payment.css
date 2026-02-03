@@ -27,17 +27,17 @@ body {
 .order-summary {
     max-width: 1100px;
     margin: 0 auto 40px auto;
-    background: linear-gradient(135deg, #ff8c00 0%, #1a1a1a 100%);
-    padding: 30px;
+    background-color: #000000;
+    padding: 35px;
     border-radius: 12px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0 20px #f58800;
 }
 
 .order-summary h2 {
-    color: white;
+    color: #f58800;
+    text-align: center;
+    margin-bottom: 30px;
     font-size: 1.5rem;
-    margin-bottom: 20px;
-    font-weight: 500;
 }
 
 .summary-details {
@@ -49,26 +49,26 @@ body {
 .summary-item {
     display: flex;
     justify-content: space-between;
-    color: #e0e0e0;
+    color: white;
     padding: 10px 0;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    border-bottom: 1px solid #333;
     font-size: 1rem;
 }
 
 .summary-item.total {
     border-bottom: none;
-    border-top: 2px solid rgba(255, 255, 255, 0.2);
+    border-top: 2px solid #f58800;
     padding-top: 15px;
     margin-top: 10px;
-    color: #ff8c00;
+    color: #f58800;
     font-weight: 600;
     font-size: 1.2rem;
 }
 
-/* Payment Container */
+/* Payment Methods Grid */
 .payment-methods {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 25px;
     margin-top: 40px;
 }
@@ -82,7 +82,6 @@ body {
     transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
     text-align: center;
     border: 1px solid #f0f0f0;
-    cursor: pointer;
 }
 
 .payment-option:hover {
@@ -354,10 +353,5 @@ body {
 
     .form-row {
         grid-template-columns: 1fr;
-    }
-
-    .order-summary {
-        padding: 20px 15px;
-        margin: 0 15px 30px 15px;
     }
 }
