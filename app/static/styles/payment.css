@@ -305,7 +305,7 @@ body {
 
 .form-group .error-message {
     display: block;
-    color: #ff4444;
+    color: #cc0000;
     font-size: 0.85rem;
     margin-top: 5px;
     min-height: 20px;
