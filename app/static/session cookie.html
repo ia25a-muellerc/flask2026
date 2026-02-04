@@ -1,0 +1,41 @@
+<div>
+    <form action="{{ url_for( 'add_tp_cart', item='item1') }}" method="post">
+        <button type="submit">Click Me!</button> 
+    </form>
+
+    <form action="{{ url_for( 'add_tp_cart', item='item2') }}" method="post">
+        <button type="submit">Click Me!</button> 
+    </form>
+</div>
+
+
+
+@app.route('/cart/add/<item>' , methods=['POST'])
+def add_to_cart(item):
+    allowed_item = {'item1', 'item2'}
+    if item in allowed_item:
+        cart = session.get('cart', [])
+        cart.append(item)
+        session['cart'] = cart
+    return redirect(url_for("warenkorb"))
+        
+    
+
+@app.route('/result/', defaults={'name': 'Guest'})
+@app.route('/result/<name>')
+def result(name) -> str:
+    app.logger.info(session.get("testable", ""))
+    app.logger.info(f"Showing result for {name}")
+    return render_template("result.html", name=name)
+
+
+<h2>Warenkorb</h2>
+{% if session.get('cart') %}
+    <ul>
+    {% for item in session.get('cart') %}
+        <li>{{ item }}</li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>Your cart is empty.</p>
+{% endif %}

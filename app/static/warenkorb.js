@@ -29,12 +29,16 @@ function updateTotal() {
 
 // Checkout-Button
 document.addEventListener('DOMContentLoaded', function() {
+    // Gesamtpreis beim Laden initialisieren
+    updateTotal();
+    
     const checkoutBtn = document.querySelector('.checkout');
     if (checkoutBtn) {
-        checkoutBtn.addEventListener('click', function() {
+        checkoutBtn.addEventListener('click', function(event) {
+            event.preventDefault();
             const quantity = parseInt(document.getElementById('quantity').textContent);
             const totalText = document.getElementById('total').textContent;
-            const total = totalText.replace(' CHF', '').replace(',', '.');
+            const total = totalText.replace(' CHF', '').replace(',', '.').trim();
             
             // Zur Zahlungsseite mit Betrag und Menge umleiten
             window.location.href = `/payment?total=${total}&quantity=${quantity}&product=Desk%20Dunk`;

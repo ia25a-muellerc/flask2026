@@ -44,6 +44,7 @@ def home():
     print(math_service.add(1.0, 2.0))
     app.logger.info("Rendering home page")
     return render_template("home.html")
+    
 
 @app.route('/result/', defaults={'name': 'Guest'})
 @app.route('/result/<name>')

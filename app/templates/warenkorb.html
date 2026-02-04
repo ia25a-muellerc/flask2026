@@ -1,44 +1,32 @@
 
 {% extends 'base.html' %}
 
-{% block title %}Home{% endblock %}
+{% block title %}Shopping Cart{% endblock %}
 
 {% block content %}
- <h1 class="subtitle">Shopping cart</h1>
+<link rel="stylesheet" href="{{ url_for('static', filename='styles/warenkorb.css') }}">
+<h1>Desk Dunk</h1>
+<div class="container">
+    <h1>Desk Dunk</h1>
 
-<!DOCTYPE html>
-<html lang="de">
-<head>
-    <meta charset="UTF-8">
-    <title>Desk Dunk – Shopping cart</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='styles/Warenkorb.css') }}">
-</head>
-<body>
-
-    <div class="container">
-        <h1>Desk Dunk</h1>
-
-        <div class="item">
-            <div class="item-info">
-                <span class="item-name">Desk Dunk </span>
-                <span class="item-price">CHF 30,00</span>
-            </div>
-            <div class="quantity-control">
-                <button class="qty-btn" onclick="decreaseQuantity()">-</button>
-                <span class="quantity" id="quantity">1</span>
-                <button class="qty-btn" onclick="increaseQuantity()">+</button>
-            </div>
+    <div class="item">
+        <div class="item-info">
+            <span class="item-name">Desk Dunk </span>
+            <span class="item-price">CHF 30,00</span>
         </div>
-
-        <div class="total">
-            <span>Total:</span>
-            <span id="total">CHF 30,00</span>
+        <div class="quantity-control">
+            <button class="qty-btn" onclick="decreaseQuantity()">-</button>
+            <span class="quantity" id="quantity">1</span>
+            <button class="qty-btn" onclick="increaseQuantity()">+</button>
         </div>
-
-        <button class="checkout">buy now</button>
     </div>
-    <script src="{{ url_for('static', filename='warenkorb.js') }}"></script>
-</body>
-</html>
 
+    <div class="total">
+        <span>Total:</span>
+        <span id="total">CHF 30,00</span>
+    </div>
+
+    <a href="{{ url_for('payment') }}" class="checkout">buy now</a>
+</div>
+<script src="{{ url_for('static', filename='warenkorb.js') }}"></script>
 {% endblock %}
