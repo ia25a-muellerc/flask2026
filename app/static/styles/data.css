@@ -22,7 +22,7 @@ body {
     color: #f58800;
     font-weight: 700;
     margin-bottom: 22px;
-    cursor: pointer;
+    cursor: url('mouseHover.png'),pointer;
 }
 
 .label {
@@ -54,7 +54,7 @@ body {
     border: none;
     color: #888;
     font-size: 15px;
-    cursor: pointer;
+    cursor: url('mouseHover.png'),pointer;
 }
 
 .saveButton {
