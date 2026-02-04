@@ -72,9 +72,9 @@ def data() -> str:
 def shipping() -> str:
     return render_template("shipping.html", languages=languages)
 
-@app.route("/carddetails")
-def carddetails() -> str:
-    return render_template("carddetails.html", languages=languages)
+@app.route("/contact")
+def contact() -> str:
+    return render_template("contact.html", languages=languages)
 
 @app.route("/signin")
 def signin() -> str:
