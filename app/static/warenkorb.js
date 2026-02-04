@@ -34,7 +34,7 @@ document.addEventListener('DOMContentLoaded', function() {
         checkoutBtn.addEventListener('click', function() {
             const quantity = parseInt(document.getElementById('quantity').textContent);
             const totalText = document.getElementById('total').textContent;
-            const total = totalText.replace(' CHF', '').replace(',', '.');
+            const total = totalText.replace(' CHF', '').replace('.', '.');
             
             // Zur Zahlungsseite mit Betrag und Menge umleiten
             window.location.href = `/payment?total=${total}&quantity=${quantity}&product=Desk%20Dunk`;
