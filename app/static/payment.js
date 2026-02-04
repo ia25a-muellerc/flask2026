@@ -8,7 +8,9 @@ document.addEventListener('DOMContentLoaded', function() {
     // Bestellzusammenfassung anzeigen
     document.getElementById('summaryProduct').textContent = decodeURIComponent(product);
     document.getElementById('summaryQuantity').textContent = quantity;
-    document.getElementById('summaryTotal').textContent = ' CHF ' + parseFloat(total).toLocaleString('de-CH', {minimumFractionDigits: 2, maximumFractionDigits: 2});
+    
+    const totalValue = parseFloat(total) || 30.00;
+    document.getElementById('summaryTotal').textContent = ' CHF ' + totalValue.toLocaleString('de-CH', {minimumFractionDigits: 2, maximumFractionDigits: 2});
     
     // Zahlungsmethode auswählen
     document.querySelectorAll('.payment-option').forEach(option => {
