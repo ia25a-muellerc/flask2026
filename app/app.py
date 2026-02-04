@@ -59,6 +59,7 @@ def about() -> str:
 def warenkorb() -> str:
     return render_template("warenkorb.html", languages=languages)
 
+
 @app.route("/payment")
 def payment() -> str:
     return render_template("payment.html")
@@ -67,6 +68,9 @@ def payment() -> str:
 def data() -> str:
     return render_template("data.html", languages=languages)
 
+@app.route("/profile")
+def profile():
+    return render_template("data.html")
 
 @app.route("/shipping")
 def shipping() -> str:
