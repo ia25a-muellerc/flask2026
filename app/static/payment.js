@@ -5,139 +5,102 @@ const quantity = urlParams.get('quantity') || '1';
 const product = urlParams.get('product') || 'Desk Dunk';
 
 document.addEventListener('DOMContentLoaded', function() {
+    // Bestellzusammenfassung anzeigen
     document.getElementById('summaryProduct').textContent = decodeURIComponent(product);
     document.getElementById('summaryQuantity').textContent = quantity;
     document.getElementById('summaryTotal').textContent = ' CHF ' + parseFloat(total).toLocaleString('de-CH', {minimumFractionDigits: 2, maximumFractionDigits: 2});
     
-    // Payment-Container Klicks (ganzer Container klickbar)
+    // Zahlungsmethode auswählen
     document.querySelectorAll('.payment-option').forEach(option => {
         option.addEventListener('click', function() {
-            const button = this.querySelector('.payment-btn');
-            const method = button.getAttribute('data-method');
-            const formSection = document.getElementById('paymentFormSection');
-            const cardSection = document.getElementById('cardSection');
-            const twintSection = document.getElementById('twintSection');
-            const formTitle = document.getElementById('formTitle');
-            
-            const titles = {
-                paypal: 'PayPal Zahlung',
-                card: 'Kreditkarte Zahlung',
-                applepay: 'Apple Pay Zahlung',
-                googlepay: 'Google Pay Zahlung',
-                twint: 'Twint Zahlung',
-                invoice: 'Rechnung ausstellen'
-            };
-            
-            formTitle.textContent = titles[method] || 'Zahlungsdetails';
-            
-            // Spezifische Formularteile anzeigen/verstecken
-            cardSection.style.display = method === 'card' ? 'block' : 'none';
-            twintSection.style.display = method === 'twint' ? 'block' : 'none';
-            
-            formSection.style.display = 'block';
-            formSection.scrollIntoView({ behavior: 'smooth' });
-            
-            // Update required fields based on payment method
-            updateRequiredFields(method);
+            const method = this.querySelector('.payment-btn').getAttribute('data-method');
+            showPaymentForm(method);
         });
     });
 
-    // Update required fields based on payment method
-    function updateRequiredFields(method) {
-        const cardFields = ['cardName', 'cardNumber', 'expiry', 'cvv'];
-        const twintFields = ['twintPhone'];
+    // Zahlungsformular anzeigen
+    function showPaymentForm(method) {
+        const titles = {
+            paypal: 'PayPal Zahlung', card: 'Kreditkarte Zahlung', applepay: 'Apple Pay Zahlung',
+            googlepay: 'Google Pay Zahlung', twint: 'Twint Zahlung', invoice: 'Rechnung ausstellen'
+        };
         
-        // Remove required from all conditional fields
-        cardFields.forEach(id => {
-            const field = document.getElementById(id);
-            field.removeAttribute('required');
-        });
-        twintFields.forEach(id => {
-            const field = document.getElementById(id);
-            field.removeAttribute('required');
-        });
+        document.getElementById('formTitle').textContent = titles[method] || 'Zahlungsdetails';
+        document.getElementById('cardSection').style.display = method === 'card' ? 'block' : 'none';
+        document.getElementById('twintSection').style.display = method === 'twint' ? 'block' : 'none';
+        document.getElementById('paymentFormSection').style.display = 'block';
+        document.getElementById('paymentFormSection').scrollIntoView({ behavior: 'smooth' });
         
-        // Add required based on method
-        if (method === 'card') {
-            cardFields.forEach(id => {
-                document.getElementById(id).setAttribute('required', 'required');
-            });
-        } else if (method === 'twint') {
-            twintFields.forEach(id => {
-                document.getElementById(id).setAttribute('required', 'required');
-            });
-        }
+        // Required-Attribute setzen
+        ['cardName', 'cardNumber', 'expiry', 'cvv'].forEach(id => {
+            document.getElementById(id).required = (method === 'card');
+        });
+        document.getElementById('twintPhone').required = (method === 'twint');
     }
 
-    // Real-time validation
-    const inputs = document.querySelectorAll('.payment-form input, .payment-form select');
-    inputs.forEach(input => {
-        input.addEventListener('blur', function() {
-            validateField(this);
-        });
-        
-        input.addEventListener('input', function() {
-            if (this.classList.contains('invalid')) {
-                validateField(this);
-            }
-        });
+    // Echtzeit-Validierung bei Eingabe
+    document.querySelectorAll('.payment-form input, .payment-form select').forEach(input => {
+        input.addEventListener('blur', () => validateField(input));
+        input.addEventListener('input', () => input.classList.contains('invalid') && validateField(input));
     });
 
+    // Einzelnes Feld validieren
     function validateField(field) {
         const errorSpan = document.getElementById(field.id + 'Error');
-        if (!errorSpan) return;
+        if (!errorSpan) return true;
         
         field.classList.remove('invalid');
         errorSpan.textContent = '';
         
-        if (field.hasAttribute('required') && !field.value.trim()) {
+        if (field.required && !field.value.trim()) {
             field.classList.add('invalid');
             errorSpan.textContent = 'Dieses Feld ist erforderlich';
             return false;
         }
         
-        // Email validation
-        if (field.type === 'email' && field.value.trim()) {
-            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            if (!emailRegex.test(field.value)) {
+        const value = field.value.trim();
+        if (!value) return true;
+        
+        // Email prüfen
+        if (field.type === 'email') {
+            if (!value.includes('@') || !value.includes('.')) {
                 field.classList.add('invalid');
                 errorSpan.textContent = 'Bitte geben Sie eine gültige E-Mail-Adresse ein';
                 return false;
             }
         }
         
-        // Card number validation
-        if (field.id === 'cardNumber' && field.value.trim()) {
-            const cleaned = field.value.replace(/\s/g, '');
-            if (cleaned.length < 13 || cleaned.length > 19) {
+        // Kartennummer prüfen
+        if (field.id === 'cardNumber') {
+            let numbers = value.replace(/\s/g, '');
+            if (numbers.length < 13 || numbers.length > 19) {
                 field.classList.add('invalid');
                 errorSpan.textContent = 'Ungültige Kartennummer';
                 return false;
             }
         }
         
-        // Expiry date validation
-        if (field.id === 'expiry' && field.value.trim()) {
-            const expiryRegex = /^(0[1-9]|1[0-2])\/([0-9]{2})$/;
-            if (!expiryRegex.test(field.value)) {
+        // Ablaufdatum prüfen
+        if (field.id === 'expiry') {
+            if (!/^\d{2}\/\d{2}$/.test(value)) {
                 field.classList.add('invalid');
                 errorSpan.textContent = 'Format: MM/YY';
                 return false;
             }
         }
         
-        // CVV validation
-        if (field.id === 'cvv' && field.value.trim()) {
-            if (field.value.length < 3) {
+        // CVV prüfen
+        if (field.id === 'cvv') {
+            if (value.length < 3) {
                 field.classList.add('invalid');
                 errorSpan.textContent = 'CVV muss 3 Ziffern haben';
                 return false;
             }
         }
         
-        // ZIP code validation
-        if (field.id === 'zip' && field.value.trim()) {
-            if (field.value.length < 4) {
+        // PLZ prüfen
+        if (field.id === 'zip') {
+            if (value.length < 4) {
                 field.classList.add('invalid');
                 errorSpan.textContent = 'Ungültige PLZ';
                 return false;
@@ -147,32 +110,19 @@ document.addEventListener('DOMContentLoaded', function() {
         return true;
     }
 
-    // Form submission
-    const paymentForm = document.getElementById('selectedPaymentForm');
-    paymentForm.addEventListener('submit', function(e) {
+    // Formular absenden
+    document.getElementById('selectedPaymentForm').addEventListener('submit', function(e) {
         e.preventDefault();
         
-        let isValid = true;
-        let firstInvalidField = null;
+        const requiredFields = [...this.querySelectorAll('[required]')];
+        const invalidFields = requiredFields.filter(field => !validateField(field));
         
-        // Validate all required fields
-        const requiredFields = this.querySelectorAll('[required]');
-        requiredFields.forEach(field => {
-            if (!validateField(field)) {
-                isValid = false;
-                if (!firstInvalidField) {
-                    firstInvalidField = field;
-                }
-            }
-        });
-        
-        if (!isValid && firstInvalidField) {
-            firstInvalidField.scrollIntoView({ behavior: 'smooth', block: 'center' });
-            firstInvalidField.focus();
-            return false;
+        if (invalidFields.length > 0) {
+            invalidFields[0].scrollIntoView({ behavior: 'smooth', block: 'center' });
+            invalidFields[0].focus();
+            return;
         }
         
-        // If validation passes, submit the form
         alert('Zahlung erfolgreich! Vielen Dank für Ihre Bestellung.');
         window.location.href = '/';
     });
