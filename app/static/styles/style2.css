@@ -246,9 +246,13 @@ body {
     border-radius: 12px;
     display: flex;
     font-size: 30px;
-    font-family: Arial, sans-serif
-;
+    font-family: Arial, sans-serif;
     align-items: center;
     justify-content: center;
     color: #F58800;
+}
+
+iframe {
+    overflow: hidden !important;
+    overflow-clip-margin: unset !important;
 }
