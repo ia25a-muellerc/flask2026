@@ -10,7 +10,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <title>Unity Web Player | DeskDunk</title>
     <link rel="shortcut icon" href="TemplateData/favicon.ico">
-    <link rel="stylesheet" href="{{ url_for('static', filename='TestBuild/TemplateData/unityStyle.css') }}">
+    <link rel="stylesheet" href="TestBuild/TemplateData/unityStyle.css">
   </head>
   <body>
     <div id="unity-container" class="unity-desktop">
@@ -22,11 +22,6 @@
         </div>
       </div>
       <div id="unity-warning"> </div>
-      <div id="unity-footer">
-        <div id="unity-logo-title-footer"></div>
-        <div id="unity-fullscreen-button"></div>
-        <div id="unity-build-title">DeskDunk</div>
-      </div>
     </div>
     <script>
       var canvas = document.querySelector("#unity-canvas");
@@ -56,7 +51,7 @@
         updateBannerVisibility();
       }
 
-      var buildUrl = "{{ url_for('static', filename='TestBuild/Build') }}";
+      var buildUrl = "TestBuild/Build";
       var loaderUrl = buildUrl + "/TestBuild.loader.js";
       var config = {
         arguments: [],
@@ -122,9 +117,9 @@
           document.querySelector("#unity-progress-bar-full").style.width = 100 * progress + "%";
               }).then((unityInstance) => {
                 document.querySelector("#unity-loading-bar").style.display = "none";
-                document.querySelector("#unity-fullscreen-button").onclick = () => {
+                /*document.querySelector("#unity-fullscreen-button").onclick = () => {
                   unityInstance.SetFullscreen(1);
-                };
+                };*/
 
               }).catch((message) => {
                 alert(message);
