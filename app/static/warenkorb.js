@@ -1,6 +1,6 @@
 // Warenkorb Funktionen
 
-const pricePerItem = 30.00;
+const  pricePerItem = 30.00;
 
 function increaseQuantity() {
     const quantityElement = document.getElementById('quantity');

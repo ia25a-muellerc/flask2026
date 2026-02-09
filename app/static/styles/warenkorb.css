@@ -112,3 +112,31 @@ h1 {
 .checkout:hover {
     background-color: #f58800;
 }
+
+.back-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 16px;
+    margin-bottom: 20px;
+    background: rgba(245, 136, 0, 0.1);
+    border: 1px solid rgba(245, 136, 0, 0.4);
+    border-radius: 8px;
+    color: #F58800;
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    cursor: pointer;
+}
+
+.back-button:hover {
+    background: rgba(245, 136, 0, 0.2);
+    border-color: rgba(245, 136, 0, 0.6);
+    transform: translateX(-3px);
+}
+
+.back-arrow {
+    font-size: 18px;
+    font-weight: bold;
+}
