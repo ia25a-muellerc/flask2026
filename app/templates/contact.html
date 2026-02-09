@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 
-{% block title %}Result{% endblock %}
+{% block title %}Contact{% endblock %}
 
 {% block content %}
 <head>
@@ -9,7 +9,7 @@
 </head>
 <div class="profile-card">
 
-    <p class="back">← Back</p>
+    <a href="{{ url_for('home') }}" class="back">← Back</a>
 
     <p class="label">Name</p>
     <input class="inputButton"></input>

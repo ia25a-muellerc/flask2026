@@ -1,4 +1,3 @@
-
 {% extends 'base.html' %}
 
 {% block title %}Home{% endblock %}
@@ -9,87 +8,156 @@
 
 {% block content %}
 
-
     <div class="homeScreen">
-        <!-- Video -->
-        <video id="hoverVideo" class="videoHome"
-               src="{{ url_for('static', filename='0202.mp4') }}"
-               height=auto
-               width="650"
-               playsinline
-               muted
-               preload="metadata">
-        </video>
-
-        <!-- Karussell -->
-        <div class="wrapper">
-            <div class="inner" style="--quantity: 5;">
-                <div class="carousel-card" style="--index: 0;--color-card: 142, 249, 252;">
-                    <img class="img" src="{{ url_for('static', filename='Image (1).jpg') }}"/>
-                </div>
-                <div class="carousel-card" style="--index: 1;--color-card: 142, 252, 204;">
-                    <img class="img" src="{{ url_for('static', filename='Image (2).jpg') }}"/>
-                </div>
-                <div class="carousel-card" style="--index: 2;--color-card: 142, 252, 157;">
-                    <img class="img" src="{{ url_for('static', filename='Image (3).jpg') }}"/>
-                </div>
-                <div class="carousel-card" style="--index: 3;--color-card: 215, 252, 142;">
-                    <img class="img" src="{{ url_for('static', filename='Image (4).jpg') }}"/>
-                </div>
-                <div class="carousel-card" style="--index: 4;--color-card: 252, 252, 142;">
-                    <img class="img" src="{{ url_for('static', filename='Image (5).jpg') }}"/>
+        <!-- Hero Section -->
+        <section class="hero section-block">
+            <div class="hero-text reveal reveal--up">
+                <p class="eyebrow">DeskDunk</p>
+                <h1 class="hero-title">Make your desk a playground</h1>
+                <p class="hero-lead">
+                    A premium desk accessory that blends design and play. Clean materials, solid build, and a
+                    satisfying mini-game feel for focused breaks.
+                </p>
+                <div class="cta-row">
+                    <form action="{{ url_for('warenkorb') }}" method="get" class="reveal reveal--up" style="--reveal-delay: 0.05s;">
+                        <button type="submit" class="purchaser">Purchase</button>
+                    </form>
                 </div>
             </div>
-        </div>
 
-        <!-- Button -->
-        <form action="{{ url_for('warenkorb') }}" method="get">
-    <button type="submit" class="purchaser">Purchase</button>
-</form>
+            <div class="hero-media reveal reveal--up" style="--reveal-delay: 0.05s;">
+                <video id="hoverVideo" class="videoHome"
+                       src="{{ url_for('static', filename='0202.mp4') }}"
+                       height=auto
+                       width="650"
+                       playsinline
+                       muted
+                       preload="metadata">
+                </video>
+            </div>
+        </section>
 
-
-        <!-- Karten mit Bildern -->
-        <div class="imageHolder">
-            <div class="card">
-                <img class="descriptionImage" src="{{ url_for('static', filename='Image (6).jpg') }}"
-                     alt="Description Image">
-                <div class="card__content">
-                    <p class="card__title">Coloring</p>
-                    <p class="card__description">The first step in creating our product was to draw the basketball court
-                        and design the balls. We used acrylic paints from Jumbo and painted the entire box white. After
-                        that, we outlined the basketball court.
-                        Once this was finished, we added the final details and glued our logo to the top of the box.</p>
+        <!-- Features Section -->
+        <section class="section-block">
+            <div class="section-header reveal reveal--up">
+                <h2 class="section-title">Why DeskDunk?</h2>
+                <p class="section-subtitle">Everything you need for the perfect desk break.</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card reveal reveal--up" style="--reveal-delay: 0.05s;">
+                    <div class="feature-icon-box">🎯</div>
+                    <h3>High Quality</h3>
+                    <p>Premium materials and solid construction for long-lasting fun.</p>
+                </div>
+                <div class="feature-card reveal reveal--up" style="--reveal-delay: 0.1s;">
+                    <div class="feature-icon-box">⚡</div>
+                    <h3>Quick Breaks</h3>
+                    <p>Perfect for 2-5 minute desk breaks to boost productivity.</p>
+                </div>
+                <div class="feature-card reveal reveal--up" style="--reveal-delay: 0.15s;">
+                    <div class="feature-icon-box">🏢</div>
+                    <h3>Office Ready</h3>
+                    <p>Space-saving design fits any desk without clutter.</p>
+                </div>
+                <div class="feature-card reveal reveal--up" style="--reveal-delay: 0.2s;">
+                    <div class="feature-icon-box">👥</div>
+                    <h3>Social Fun</h3>
+                    <p>Challenge colleagues and boost team spirit.</p>
                 </div>
             </div>
-            <div class="card">
-                <img class="descriptionImage" src="{{ url_for('static', filename='Image (7).jpg') }}"
-                     alt="Description Image">
-                <div class="card__content">
-                    <p class="card__title">Construct</p>
-                    <p class="card__description">When we finished drawing the entire box, we started constructing our
-                        idea. First, we screwed both basketball buckets onto the box. Then, we built the net between the
-                        two buckets. After completing this step, we taped everything and glued it in place to ensure a
-                        better hold.</p>
+        </section>
+
+        <!-- Product Views Section -->
+        <section class="section-block">
+            <div class="section-header reveal reveal--up">
+                <h2 class="section-title">Product views</h2>
+                <p class="section-subtitle">A quick look at the craftsmanship and details.</p>
+            </div>
+            <div class="wrapper reveal reveal--fade" style="--reveal-delay: 0.05s;">
+                <div class="inner" style="--quantity: 5;">
+                    <div class="carousel-card" style="--index: 0;--color-card: 142, 249, 252;">
+                        <img class="img" src="{{ url_for('static', filename='Image (1).jpg') }}"/>
+                    </div>
+                    <div class="carousel-card" style="--index: 1;--color-card: 142, 252, 204;">
+                        <img class="img" src="{{ url_for('static', filename='Image (2).jpg') }}"/>
+                    </div>
+                    <div class="carousel-card" style="--index: 2;--color-card: 142, 252, 157;">
+                        <img class="img" src="{{ url_for('static', filename='Image (3).jpg') }}"/>
+                    </div>
+                    <div class="carousel-card" style="--index: 3;--color-card: 215, 252, 142;">
+                        <img class="img" src="{{ url_for('static', filename='Image (4).jpg') }}"/>
+                    </div>
+                    <div class="carousel-card" style="--index: 4;--color-card: 252, 252, 142;">
+                        <img class="img" src="{{ url_for('static', filename='Image (5).jpg') }}"/>
+                    </div>
                 </div>
             </div>
-            <div class="card">
-                <img class="descriptionImage" src="{{ url_for('static', filename='Image (8).jpg') }}"
-                     alt="Description Image">
-                <div class="card__content">
-                    <p class="card__title">PLAY!</p>
-                    <p class="card__description">After constructing the entire project, the basketball game is ready to
-                        be played in your office. Everything is firmly attached and stable, allowing the game to be used
-                        safely and comfortably. Now you can enjoy playing basketball during breaks or in your free time
-                        and have fun with friends or colleagues. HAVE FUN!</p>
+        </section>
+
+        <!-- Behind the Build Section -->
+        <section class="section-block">
+            <div class="section-header reveal reveal--up">
+                <h2 class="section-title">Behind the build</h2>
+                <p class="section-subtitle">How DeskDunk goes from idea to finished piece.</p>
+            </div>
+            <div class="imageHolder">
+                <div class="card reveal reveal--up" style="--reveal-delay: 0.05s;">
+                    <img class="descriptionImage" src="{{ url_for('static', filename='Image (6).jpg') }}"
+                         alt="Description Image">
+                    <div class="card__content">
+                        <p class="card__title">Coloring</p>
+                        <p class="card__description">The first step in creating our product was to draw the basketball court
+                            and design the balls. We used acrylic paints from Jumbo and painted the entire box white. After
+                            that, we outlined the basketball court.
+                            Once this was finished, we added the final details and glued our logo to the top of the box.</p>
+                    </div>
+                </div>
+                <div class="card reveal reveal--up" style="--reveal-delay: 0.1s;">
+                    <img class="descriptionImage" src="{{ url_for('static', filename='Image (7).jpg') }}"
+                         alt="Description Image">
+                    <div class="card__content">
+                        <p class="card__title">Construct</p>
+                        <p class="card__description">When we finished drawing the entire box, we started constructing our
+                            idea. First, we screwed both basketball buckets onto the box. Then, we built the net between the
+                            two buckets. After completing this step, we taped everything and glued it in place to ensure a
+                            better hold.</p>
+                    </div>
+                </div>
+                <div class="card reveal reveal--up" style="--reveal-delay: 0.15s;">
+                    <img class="descriptionImage" src="{{ url_for('static', filename='Image (8).jpg') }}"
+                         alt="Description Image">
+                    <div class="card__content">
+                        <p class="card__title">Play</p>
+                        <p class="card__description">After constructing the entire project, the basketball game is ready to
+                            be played in your office. Everything is firmly attached and stable, allowing the game to be used
+                            safely and comfortably. Now you can enjoy playing basketball during breaks or in your free time
+                            and have fun with friends or colleagues. HAVE FUN!</p>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="miniGameHolder">Coming soon!</div>
+        </section>
+
+        <!-- Mini Game Section -->
+        <section class="section-block">
+            <div class="section-header reveal reveal--up">
+                <h2 class="section-title">Mini game</h2>
+                <p class="section-subtitle">A playful add-on is on the way.</p>
+            </div>
+            <div class="miniGameHolder reveal reveal--fade" style="--reveal-delay: 0.05s;">Coming soon!</div>
+        </section>
+
+        <!-- CTA Section -->
+        <section class="section-block cta-section reveal reveal--up">
+            <div class="cta-content">
+                <h2>Ready to transform your desk?</h2>
+                <p>Join thousands of happy DeskDunk users and bring fun back to your workspace.</p>
+                <form action="{{ url_for('warenkorb') }}" method="get">
+                    <button type="submit" class="purchaser-large">Get Your DeskDunk Now</button>
+                </form>
+            </div>
+        </section>
 
     </div>
-
-
-
 
     <script>
         document.addEventListener('DOMContentLoaded', function () {
@@ -108,6 +176,20 @@
                 }); else v.pause();
                 e.preventDefault();
             }, {passive: false});
+
+            const revealElements = document.querySelectorAll('.reveal');
+            if (!revealElements.length) return;
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('reveal--visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, {threshold: 0.18});
+
+            revealElements.forEach((el) => observer.observe(el));
         });
     </script>
 

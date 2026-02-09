@@ -26,3 +26,25 @@ h1 {
   margin: 20px;
 }
 
+.back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 16px;
+    margin: 20px 0 20px 40px;
+    background: rgba(245, 136, 0, 0.1);
+    border: 1px solid rgba(245, 136, 0, 0.4);
+    border-radius: 8px;
+    color: #F58800;
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    cursor: pointer;
+}
+
+.back-link:hover {
+    background: rgba(245, 136, 0, 0.2);
+    border-color: rgba(245, 136, 0, 0.6);
+    transform: translateX(-3px);
+}

@@ -7,8 +7,22 @@
 {% endblock %}
 
 {% block content %}
-<div class="container">
-    <h1>Desk Dunk</h1>
+ <h1 class="subtitle">Shopping cart</h1>
+
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <title>Desk Dunk – Shopping cart</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/Warenkorb.css') }}">
+</head>
+<body>
+
+    <div class="container">
+        <a href="{{ url_for('home') }}" class="back-button">
+            <span class="back-arrow">←</span> Back
+        </a>
+        <h1>Desk Dunk</h1>
 
     <div class="item">
         <div class="item-info">

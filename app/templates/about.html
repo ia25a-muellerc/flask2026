@@ -3,15 +3,13 @@
 {% block title %}About{% endblock %}
 
 {% block content %}
-<h1>About</h1>
-
-<!DOCTYPE html>
-<html lang="de">
 <head>
     <meta charset="UTF-8">
-    <title>Desk Dunk – Warenkorb</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='styles/about.css') }}">
 </head>
+
+<a href="{{ url_for('home') }}" class="back-link">← Back</a>
+
 <div class="aboutContainer">
     <p class="aboutText">
     We are a young and motivated team creating mini office basketball games that bring fun, movement, and a bit of competition into everyday work life. Our website is all about designing and sharing small basketball games that can be played directly at your desk, perfect for short breaks, stress relief, or just having fun with friends and colleagues.
