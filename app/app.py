@@ -1,5 +1,5 @@
 import os
-from flask import Flask, render_template, request, redirect, url_for
+from flask import Flask, render_template, request, redirect, url_for, session, jsonify
 from dotenv import load_dotenv # Lädt .env Datei
 from services import math_service
 from config import DevelopmentConfig, ProductionConfig
@@ -57,7 +57,40 @@ def about() -> str:
 
 @app.route("/warenkorb")
 def warenkorb() -> str:
-    return render_template("warenkorb.html", languages=languages)
+    # Warenkorb aus Session holen oder initialisieren
+    if 'cart_quantity' not in session:
+        session['cart_quantity'] = 1
+    quantity = session['cart_quantity']
+    total = quantity * 30.00
+    return render_template("warenkorb.html", quantity=quantity, total=f"{total:.2f}")
+
+
+@app.route("/api/cart/update", methods=["POST"])
+def update_cart():
+    """Aktualisiert die Warenkorb-Menge"""
+    data = request.get_json()
+    quantity = int(data.get('quantity', 1))
+    
+    if quantity > 0:
+        session['cart_quantity'] = quantity
+        session.modified = True
+    
+    total = quantity * 30.00
+    return jsonify({
+        'quantity': quantity,
+        'total': f"{total:.2f}"
+    })
+
+
+@app.route("/api/cart", methods=["GET"])
+def get_cart():
+    """Gibt die aktuelle Warenkorb-Menge zurück"""
+    quantity = int(session.get('cart_quantity', 1))
+    total = quantity * 30.00
+    return jsonify({
+        'quantity': quantity,
+        'total': f"{total:.2f}"
+    })
 
 
 @app.route("/payment")
