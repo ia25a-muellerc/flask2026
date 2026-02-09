@@ -11,7 +11,7 @@ app = Flask(__name__)
 """
 Festlegen einer Route für die Homepage. Der String in den Klammern
 bildet das URL-Muster ab, unter dem der folgende Code ausgeführt
-werden soll.
+werden soll.                                                                                                                                                                                                                                                                        
 z.B.
 * @app.route('/')    -> http://127.0.0.1:5000/
 * @app.route('/home') -> http://127.0.0.1:5000/home
