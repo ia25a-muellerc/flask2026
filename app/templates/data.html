@@ -11,19 +11,98 @@
 
     <a href="{{ url_for('home') }}" class="back">← Back</a>
 
-    <p class="label">Name</p>
-    <input class="inputButton"></input>
+    {% if session.get('user_email') %}
+        <!-- Profildaten Formular - nur für eingeloggte Benutzer -->
+        <h2 style="color: #f58800; text-align: center; margin: 0 0 24px 0; font-size: 1.5rem;">Profile Info</h2>
 
-    <p class="label">Surname</p>
-    <input class="inputButton"></input>
+        <form method="POST" action="{{ url_for('profile') }}">
+            <p class="label">Name</p>
+            <input type="text" name="name" class="inputButton" value="{{ session.get('user_name', '') }}" readonly id="nameInput"></input>
 
-    <p class="label">Email</p>
-    <input class="inputButton"></input>
+            <p class="label">Surname</p>
+            <input type="text" name="surname" class="inputButton" value="{{ session.get('user_surname', '') }}" readonly id="surnameInput"></input>
 
-    <div class="actions">
-        <button class="cancleButton">Cancel</button>
-        <button class="saveButton">Submit</button>
-    </div>
+            <p class="label">Email</p>
+            <input type="email" name="email" class="inputButton" value="{{ session.get('user_email', '') }}" readonly id="emailInput"></input>
+
+            <div class="actions" id="formActions" style="display: none;">
+                <a href="{{ url_for('home') }}" class="cancleButton" onclick="cancelEdit(); return false;">Cancel</a>
+                <button type="submit" class="saveButton">Submit</button>
+            </div>
+        </form>
+
+        <!-- Abmelden, Delete Profile und Change Info Links -->
+        <div style="margin-top: 20px; text-align: center; display: flex; gap: 15px; justify-content: center; align-items: center; flex-wrap: wrap;">
+            <a href="#" onclick="enableEdit(); return false;" style="color: #f58800; text-decoration: underline; font-weight: bold;">Change Info</a>
+            <span style="color: #555;">|</span>
+            <a href="{{ url_for('logout') }}" style="color: #d32f2f; text-decoration: underline; font-weight: bold;">Logout</a>
+            <span style="color: #555;">|</span>
+            <a href="#" onclick="showDeleteModal(); return false;" style="color: #d32f2f; text-decoration: underline; font-weight: bold;">Delete Profile</a>
+        </div>
+    {% else %}
+        <!-- Nachricht wenn nicht eingeloggt -->
+        <div style="text-align: center; padding: 40px 20px; color: #ccc;">
+            <p>Bitte melden Sie sich an, um Ihr Profil zu bearbeiten.</p>
+            <a href="{{ url_for('signin') }}" style="color: #f58800; text-decoration: underline; font-weight: bold;">Jetzt anmelden</a>
+        </div>
+    {% endif %}
 
 </div>
+
+<!-- Delete Profile Modal -->
+<div id="deleteModal" class="modal">
+    <div class="modal-content">
+        <h2>Delete Profile?</h2>
+        <p>Are you sure you want to delete your profile? This action cannot be undone.</p>
+        <div class="modal-buttons">
+            <button onclick="closeDeleteModal()" class="modal-btn cancel-btn">Cancel</button>
+            <button onclick="confirmDeleteProfile()" class="modal-btn delete-btn">Delete</button>
+        </div>
+    </div>
+</div>
+
+<script>
+    function enableEdit() {
+        // Felder bearbeitbar machen
+        document.getElementById('nameInput').removeAttribute('readonly');
+        document.getElementById('surnameInput').removeAttribute('readonly');
+        document.getElementById('emailInput').removeAttribute('readonly');
+
+        // Actions anzeigen (Cancel & Submit)
+        document.getElementById('formActions').style.display = 'flex';
+    }
+
+    function cancelEdit() {
+        // Felder wieder readonly machen
+        document.getElementById('nameInput').setAttribute('readonly', 'readonly');
+        document.getElementById('surnameInput').setAttribute('readonly', 'readonly');
+        document.getElementById('emailInput').setAttribute('readonly', 'readonly');
+
+        // Actions verstecken
+        document.getElementById('formActions').style.display = 'none';
+
+        // Formular zurücksetzen (ursprüngliche Werte wiederherstellen)
+        location.reload();
+    }
+
+    function showDeleteModal() {
+        document.getElementById('deleteModal').style.display = 'flex';
+    }
+
+    function closeDeleteModal() {
+        document.getElementById('deleteModal').style.display = 'none';
+    }
+
+    function confirmDeleteProfile() {
+        // Zur Delete-Route umleiten
+        window.location.href = '{{ url_for("delete_profile") }}';
+    }
+
+    // Modal schließen wenn man außerhalb klickt
+    document.getElementById('deleteModal').addEventListener('click', function(e) {
+        if (e.target === this) {
+            closeDeleteModal();
+        }
+    });
+</script>
 {% endblock %}

@@ -11,13 +11,24 @@
 
     <a href="{{ url_for('home') }}" class="back">← Back</a>
 
-    <p class="label">Email</p>
-    <input class="inputButton"></input>
+    {% if error %}
+    <p style="color: #f58800; text-align: center; margin-bottom: 10px;">{{ error }}</p>
+    {% endif %}
 
-    <p class="label">Password</p>
-    <input class="inputButton"></input>
+    <form method="POST" action="{{ url_for('signin') }}" style="all: unset;">
+        <p class="label">Email</p>
+        <input type="email" name="email" class="inputButton" required></input>
 
-    <button class="saveButton">Sign In</button>
+        <p class="label">Password</p>
+        <div class="password-wrapper">
+            <input type="password" name="password" class="inputButton" required></input>
+            <button type="button" class="toggle-password" data-target="password" aria-label="Passwort anzeigen">👁</button>
+        </div>
+
+        <button type="submit" class="saveButton">Sign In</button>
+    </form>
+
+    <a href="{{ url_for('register') }}">Noch kein Konto? Registrieren</a>
 
     <a href="/forgot-password" style="text-decoration: underline;">Forgot password?</a>
 

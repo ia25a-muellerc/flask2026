@@ -2,9 +2,17 @@
 
 {% block title %}Shopping Cart{% endblock %}
 
-{% block head %}
-<link rel="stylesheet" href="{{ url_for('static', filename='styles/warenkorb.css') }}">
-{% endblock %}
+{% block content %}
+ <h1 class="subtitle">Shopping cart</h1>
+
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <title>Desk Dunk – Shopping cart</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/warenkorb.css') }}">
+</head>
+<body>
 
 {% block content %}
 <div class="container">
@@ -13,26 +21,23 @@
     </a>
     <h1>Desk Dunk</h1>
 
-    <div id="cart-items">
-        <div class="item">
-            <div class="item-info">
-                <span class="item-name">Desk Dunk </span>
-                <span class="item-price">CHF 30.00</span>
-            </div>
-            <div class="carousel-card" style="--index: 0;--color-card: 142, 249, 252;">
-                        <img class="img" src="{{ url_for('static', filename='Image (1).jpg') }}"/>
-                    </div>
-            <div class="quantity-control">
-                <button class="qty-btn" onclick="decreaseQuantity()">-</button>
-                <span class="quantity" id="quantity">{{ quantity }}</span>
-                <button class="qty-btn" onclick="increaseQuantity()">+</button>
-            </div>
+        <div id="cart-notice" class="cart-notice" role="status" aria-live="polite"></div>
+
+        <div id="cart-items">
+            <!-- Items werden hier dynamisch eingefügt -->
+        </div>
+
+        <div id="empty-message" class="empty-message">
+            Der Warenkorb ist leer
         </div>
     </div>
 
-    <div class="total">
-        <span>Total:</span>
-        <span id="total">CHF {{ total }}</span>
+        <div class="total" id="total-section" style="display: none;">
+            <span>Total:</span>
+            <span id="total">CHF 0.00</span>
+        </div>
+
+        <button class="checkout" id="checkout-btn" style="display: none;">buy now</button>
     </div>
 
     <button class="checkout">buy now</button>

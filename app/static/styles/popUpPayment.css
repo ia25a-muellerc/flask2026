@@ -55,8 +55,15 @@ body {
     color: #ff9f1a;
 }
 
+.button-container {
+    display: flex;
+    gap: 12px;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
 .rateButton {
-    width: 100%;
+    flex: 1;
     background-color: #f58800;
     color: #000;
     border: none;
@@ -69,6 +76,106 @@ body {
 }
 
 .rateButton:hover {
+    background-color: #ff9f1a;
+    box-shadow: 0 0 10px rgba(255, 159, 26, 0.7);
+}
+
+.cancelButton {
+    flex: 1;
+    background-color: #333;
+    color: #ccc;
+    border: 1px solid #555;
+    padding: 14px;
+    border-radius: 16px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    text-decoration: none;
+    text-align: center;
+    transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+    display: inline-block;
+}
+
+.cancelButton:hover {
+    background-color: #444;
+    border-color: #666;
+    color: #fff;
+}
+
+/* Rating Section */
+.rating-section {
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 1px solid #333;
+    text-align: center;
+    animation: slideDown 0.3s ease-out;
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.rating-section h3 {
+    color: #f58800;
+    margin: 0 0 20px;
+    font-size: 18px;
+}
+
+.stars-container {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 15px;
+}
+
+.star {
+    font-size: 48px;
+    color: #444;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    user-select: none;
+}
+
+.star:hover,
+.star.hovered {
+    color: #f58800;
+    transform: scale(1.2);
+    text-shadow: 0 0 10px rgba(245, 136, 0, 0.6);
+}
+
+.star.active {
+    color: #f58800;
+    text-shadow: 0 0 10px rgba(245, 136, 0, 0.6);
+}
+
+.rating-text {
+    color: #999;
+    font-size: 13px;
+    margin: 10px 0 15px;
+    min-height: 20px;
+}
+
+.submit-rating-btn {
+    width: 100%;
+    background-color: #f58800;
+    color: #000;
+    border: none;
+    padding: 12px;
+    border-radius: 16px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.submit-rating-btn:hover {
     background-color: #ff9f1a;
     box-shadow: 0 0 10px rgba(255, 159, 26, 0.7);
 }
