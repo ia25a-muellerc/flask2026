@@ -1,5 +1,5 @@
 import os
-from flask import Flask, render_template, request, redirect, url_for
+from flask import Flask, render_template, request, redirect, url_for, session, jsonify
 from dotenv import load_dotenv # Lädt .env Datei
 from services import math_service
 from config import DevelopmentConfig, ProductionConfig
@@ -11,7 +11,7 @@ app = Flask(__name__)
 """
 Festlegen einer Route für die Homepage. Der String in den Klammern
 bildet das URL-Muster ab, unter dem der folgende Code ausgeführt
-werden soll.
+werden soll.                                                                                                                                                                                                                                                                        
 z.B.
 * @app.route('/')    -> http://127.0.0.1:5000/
 * @app.route('/home') -> http://127.0.0.1:5000/home
@@ -57,7 +57,41 @@ def about() -> str:
 
 @app.route("/warenkorb")
 def warenkorb() -> str:
-    return render_template("warenkorb.html", languages=languages)
+    # Warenkorb aus Session holen oder initialisieren
+    if 'cart_quantity' not in session:
+        session['cart_quantity'] = 1
+    quantity = session['cart_quantity']
+    total = quantity * 30.00
+    return render_template("warenkorb.html", quantity=quantity, total=f"{total:.2f}")
+
+
+@app.route("/api/cart/update", methods=["POST"])
+def update_cart():
+    """Aktualisiert die Warenkorb-Menge"""
+    data = request.get_json()
+    quantity = int(data.get('quantity', 1))
+    
+    if quantity > 0:
+        session['cart_quantity'] = quantity
+        session.modified = True
+    
+    total = quantity * 30.00
+    return jsonify({
+        'quantity': quantity,
+        'total': f"{total:.2f}"
+    })
+
+
+@app.route("/api/cart", methods=["GET"])
+def get_cart():
+    """Gibt die aktuelle Warenkorb-Menge zurück"""
+    quantity = int(session.get('cart_quantity', 1))
+    total = quantity * 30.00
+    return jsonify({
+        'quantity': quantity,
+        'total': f"{total:.2f}"
+    })
+
 
 @app.route("/payment")
 def payment() -> str:
@@ -67,14 +101,17 @@ def payment() -> str:
 def data() -> str:
     return render_template("data.html", languages=languages)
 
+@app.route("/profile")
+def profile():
+    return render_template("data.html")
 
 @app.route("/shipping")
 def shipping() -> str:
     return render_template("shipping.html", languages=languages)
 
-@app.route("/carddetails")
-def carddetails() -> str:
-    return render_template("carddetails.html", languages=languages)
+@app.route("/contact")
+def contact() -> str:
+    return render_template("contact.html", languages=languages)
 
 @app.route("/signin")
 def signin() -> str:

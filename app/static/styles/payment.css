@@ -188,6 +188,35 @@ body {
     transform: scale(0.98);
 }
 
+/* Back Button */
+.back-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 16px;
+    margin-bottom: 20px;
+    background: rgba(245, 136, 0, 0.1);
+    border: 1px solid rgba(245, 136, 0, 0.4);
+    border-radius: 8px;
+    color: #F58800;
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    cursor: pointer;
+}
+
+.back-button:hover {
+    background: rgba(245, 136, 0, 0.2);
+    border-color: rgba(245, 136, 0, 0.6);
+    transform: translateX(-3px);
+}
+
+.back-arrow {
+    font-size: 18px;
+    font-weight: bold;
+}
+
 /* Responsive Design */
 @media (max-width: 768px) {
     .payment-container {
@@ -213,6 +242,11 @@ body {
         padding: 12px 20px;
         font-size: 0.9rem;
     }
+
+    .back-button {
+        padding: 8px 12px;
+        font-size: 12px;
+    }
 }
 
 @media (max-width: 480px) {
@@ -226,6 +260,12 @@ body {
 
     .payment-option {
         padding: 25px 20px;
+    }
+
+    .back-button {
+        width: 100%;
+        padding: 10px;
+        font-size: 14px;
     }
 }
 
@@ -279,6 +319,11 @@ body {
     font-weight: 500;
 }
 
+.form-group label .required {
+    color: #ff8c00;
+    margin-left: 2px;
+}
+
 .form-group input,
 .form-group select {
     width: 100%;
@@ -290,6 +335,20 @@ body {
     color: white;
     transition: all 0.3s ease;
     box-sizing: border-box;
+}
+
+.form-group input.invalid,
+.form-group select.invalid {
+    border-color: #ff4444;
+    background: rgba(255, 68, 68, 0.1);
+}
+
+.form-group .error-message {
+    display: block;
+    color: #cc0000;
+    font-size: 0.85rem;
+    margin-top: 5px;
+    min-height: 20px;
 }
 
 .form-group input::placeholder {

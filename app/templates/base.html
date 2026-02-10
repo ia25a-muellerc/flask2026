@@ -28,7 +28,7 @@
                 </svg>
                 <span>About</span>
             </a>
-            <a href="#contact" class="nav-item">
+            <a href="{{ url_for('contact') }}" class="nav-item">
                 <svg class="nav-item-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
                     <path d="M4 6h16a2 2 0 012 2v8a2 2 0 01-2 2H4a2 2 0 01-2-2V8a2 2 0 012-2zm0 2l8 5 8-5"></path>
                 </svg>
@@ -38,7 +38,7 @@
                 <a href="{{ url_for('warenkorb') }}" class="nav-item nav-shop">
                     <img src="../static/styles/shopping-cart-icon.png" alt="Shop" class="nav-icon">
                 </a>
-                <a href="#profile" class="nav-item nav-profile">
+                <a href="{{ url_for('profile') }}" class="nav-item nav-profile">
                     <img src="../static/styles/account-icon.png" alt="Profile" class="nav-icon">
                 </a>
             </div>
@@ -48,19 +48,21 @@
         {% block content %}{% endblock %}
     </div>
     <div class="footer">
-        <p>@DeskDunk 2026</p>
-        <a href="{{ url_for('about') }}">
-            <p class="aboutLinkText">
-                About
-            </p>
-        </a>
-        <div class="social-links">
-            <a href="https://www.instagram.com" target="_blank" class="social-icon">
-                <img src="https://logos-world.net/wp-content/uploads/2020/06/Instagram-Logo.png" alt="Instagram" class="social-logo">
-            </a>
-            <a href="https://www.tiktok.com" target="_blank" class="social-icon">
-                <img src="https://static.vecteezy.com/system/resources/previews/023/986/561/large_2x/tiktok-logo-tiktok-logo-transparent-tiktok-icon-transparent-free-free-png.png" alt="TikTok" class="social-logo" >
-            </a>
+        <div class="footer-content">
+            <div class="footer-left">
+                <p class="footer-brand">DESKDUNK</p>
+            </div>
+            <p class="footer-copyright">© 2026 DeskDunk. All rights reserved.</p>
+            <div class="footer-right">
+                <div class="social-links">
+                    <a href="https://www.instagram.com/deskdunk" target="_blank" class="social-icon">
+                        <img src="https://logos-world.net/wp-content/uploads/2020/06/Instagram-Logo.png" alt="Instagram" class="social-logo">
+                    </a>
+                    <a href="https://www.tiktok.com/@desk.dunk" target="_blank" class="social-icon">
+                        <img src="https://static.vecteezy.com/system/resources/previews/023/986/561/large_2x/tiktok-logo-tiktok-logo-transparent-tiktok-icon-transparent-free-free-png.png" alt="TikTok" class="social-logo">
+                    </a>
+                </div>
+            </div>
         </div>
     </div>
 </body>

@@ -7,6 +7,10 @@
 
 <body>
     <div class="payment-container">
+        <a href="{{ url_for('warenkorb') }}" class="back-button">
+            <span class="back-arrow">←</span> Back
+        </a>
+
         <!-- Bestellzusammenfassung -->
         <div class="order-summary">
             <h2>Order Summary</h2>
@@ -96,21 +100,25 @@
                 <div class="form-section" id="cardSection" style="display: none;">
                     <h3>Credit Card Information</h3>
                     <div class="form-group">
-                        <label for="cardName">Name on Card</label>
+                        <label for="cardName">Name on Card <span class="required">*</span></label>
                         <input type="text" id="cardName" name="cardName" placeholder="Max Mustermann">
+                        <span class="error-message" id="cardNameError"></span>
                     </div>
                     <div class="form-group">
-                        <label for="cardNumber">Card Number</label>
+                        <label for="cardNumber">Card Number <span class="required">*</span></label>
                         <input type="text" id="cardNumber" name="cardNumber" placeholder="1234 5678 9012 3456" maxlength="19">
+                        <span class="error-message" id="cardNumberError"></span>
                     </div>
                     <div class="form-row">
                         <div class="form-group">
-                            <label for="expiry">Expiration Date</label>
+                            <label for="expiry">Expiration Date <span class="required">*</span></label>
                             <input type="text" id="expiry" name="expiry" placeholder="MM/YY" maxlength="5">
+                            <span class="error-message" id="expiryError"></span>
                         </div>
                         <div class="form-group">
-                            <label for="cvv">CVV</label>
+                            <label for="cvv">CVV <span class="required">*</span></label>
                             <input type="text" id="cvv" name="cvv" placeholder="123" maxlength="3">
+                            <span class="error-message" id="cvvError"></span>
                         </div>
                     </div>
                 </div>
@@ -119,8 +127,9 @@
                 <div class="form-section" id="twintSection" style="display: none;">
                     <h3>Twint Information</h3>
                     <div class="form-group">
-                        <label for="twintPhone">Phone Number</label>
+                        <label for="twintPhone">Phone Number <span class="required">*</span></label>
                         <input type="tel" id="twintPhone" name="twintPhone" placeholder="+41 79 123 45 67">
+                        <span class="error-message" id="twintPhoneError"></span>
                     </div>
                 </div>
 
@@ -128,42 +137,72 @@
                 <div class="form-section">
                     <h3>Billing Address</h3>
                     <div class="form-group">
-                        <label for="fullName">Full Name</label>
-                        <input type="text" id="fullName" name="fullName" placeholder="Max Mustermann">
+                        <label for="fullName">Full Name <span class="required">*</span></label>
+                        <input type="text" id="fullName" name="fullName" placeholder="Max Mustermann" required>
+                        <span class="error-message" id="fullNameError"></span>
                     </div>
                     <div class="form-group">
-                        <label for="email">Email Address</label>
-                        <input type="email" id="email" name="email" placeholder="max@example.com">
+                        <label for="email">Email Address <span class="required">*</span></label>
+                        <input type="email" id="email" name="email" placeholder="max@example.com" required>
+                        <span class="error-message" id="emailError"></span>
                     </div>
                     <div class="form-group">
-                        <label for="address">Street and House Number</label>
-                        <input type="text" id="address" name="address" placeholder="Sample Street 123">
+                        <label for="address">Street and House Number <span class="required">*</span></label>
+                        <input type="text" id="address" name="address" placeholder="Sample Street 123" required>
+                        <span class="error-message" id="addressError"></span>
                     </div>
                     <div class="form-row">
                         <div class="form-group">
-                            <label for="zip">ZIP Code</label>
-                            <input type="text" id="zip" name="zip" placeholder="8000">
+                            <label for="zip">ZIP Code <span class="required">*</span></label>
+                            <input type="text" id="zip" name="zip" placeholder="8000" required>
+                            <span class="error-message" id="zipError"></span>
                         </div>
                         <div class="form-group">
-                            <label for="city">City</label>
-                            <input type="text" id="city" name="city" placeholder="Zurich">
+                            <label for="city">City <span class="required">*</span></label>
+                            <input type="text" id="city" name="city" placeholder="Zurich" required>
+                            <span class="error-message" id="cityError"></span>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="country">Country</label>
-                        <select id="country" name="country">
+                        <label for="country">Country <span class="required">*</span></label>
+                        <select id="country" name="country" required>
                             <option value="">Select Country</option>
                             <option value="CH" selected>Switzerland</option>
                             <option value="DE">Germany</option>
                             <option value="AT">Austria</option>
                             <option value="FR">France</option>
                             <option value="IT">Italy</option>
+                            <option value="US">United States</option>
+                            <option value="GB">United Kingdom</option>
+                            <option value="CA">Canada</option>
+                            <option value="AU">Australia</option>
+                            <option value="NL">Netherlands</option>
+                            <option value="BE">Belgium</option>
+                            <option value="ES">Spain</option>
+                            <option value="SE">Sweden</option>
+                            <option value="NO">Norway</option>
+                            <option value="DK">Denmark</option>
+                            <option value="FI">Finland</option>
+                            <option value="JP">Japan</option>
+                            <option value="CN">China</option>
+                            <option value="IN">India</option>
+                            <option value="BR">Brazil</option>
+                            <option value="MX">Mexico</option>
+                            <option value="RU">Russia</option>
+                            <option value="ZA">South Africa</option>
+                            <option value="KR">South Korea</option>
+                            <option value="SG">Singapore</option>
+                            <option value="HK">Hong Kong</option>
+                            <option value="TW">Taiwan</option>  
+                            <option value="AE">United Arab Emirates</option>
+
                         </select>
+                        <span class="error-message" id="countryError"></span>
                     </div>
                 </div>
 
                 <!-- Submit Button -->
-                <button type="submit" class="submit-payment-btn">Zahlungspflichtig bestellen</button>
+                <button type="submit" class="submit-payment-btn">PAY HERE</button>
             </form>
         </div>
 </body>

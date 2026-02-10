@@ -1,43 +1,49 @@
-// Warenkorb Funktionen
+// Einfacher Warenkorb mit Session-Cookies
 
-const pricePerItem = 30.00;
+const PRICE = 30.00;
 
-function increaseQuantity() {
-    const quantityElement = document.getElementById('quantity');
-    let quantity = parseInt(quantityElement.textContent);
-    quantity++;
-    quantityElement.textContent = quantity;
-    updateTotal();
+async function increaseQuantity() {
+    const quantity = parseInt(document.getElementById('quantity').textContent) + 1;
+    await updateCart(quantity);
 }
 
-function decreaseQuantity() {
-    const quantityElement = document.getElementById('quantity');
-    let quantity = parseInt(quantityElement.textContent);
+async function decreaseQuantity() {
+    const quantity = parseInt(document.getElementById('quantity').textContent);
     if (quantity > 1) {
-        quantity--;
-        quantityElement.textContent = quantity;
-        updateTotal();
+        await updateCart(quantity - 1);
     }
 }
 
-function updateTotal() {
-    const quantityElement = document.getElementById('quantity');
-    const quantity = parseInt(quantityElement.textContent);
-    const total = (pricePerItem * quantity).toFixed(2);
-    document.getElementById('total').textContent = ' CHF ' + total;
+async function updateCart(quantity) {
+    const response = await fetch('/api/cart/update', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ quantity })
+    });
+    
+    const data = await response.json();
+    document.getElementById('quantity').textContent = data.quantity;
+    document.getElementById('total').textContent = ' CHF ' + data.total;
 }
 
-// Checkout-Button
+async function loadCart() {
+    const response = await fetch('/api/cart');
+    if (!response.ok) {
+        return;
+    }
+    const data = await response.json();
+    document.getElementById('quantity').textContent = data.quantity;
+    document.getElementById('total').textContent = ' CHF ' + data.total;
+}
+
+// Checkout
 document.addEventListener('DOMContentLoaded', function() {
-    const checkoutBtn = document.querySelector('.checkout');
-    if (checkoutBtn) {
-        checkoutBtn.addEventListener('click', function() {
-            const quantity = parseInt(document.getElementById('quantity').textContent);
-            const totalText = document.getElementById('total').textContent;
-            const total = totalText.replace(' CHF', '').replace(',', '.');
-            
-            // Zur Zahlungsseite mit Betrag und Menge umleiten
-            window.location.href = `/payment?total=${total}&quantity=${quantity}&product=Desk%20Dunk`;
-        });
-    }
+    loadCart();
+    document.querySelector('.checkout').addEventListener('click', function() {
+        const quantity = document.getElementById('quantity').textContent;
+        const total = document.getElementById('total').textContent.replace(' CHF ', '');
+        window.location.href = `/payment?total=${total}&quantity=${quantity}&product=Desk%20Dunk`;
+    });
 });
+
+

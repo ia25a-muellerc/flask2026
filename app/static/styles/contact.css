@@ -19,10 +19,21 @@ body {
 }
 
 .back {
+    display: inline-flex;
+    align-items: center;
     color: #f58800;
     font-weight: 700;
     margin-bottom: 22px;
     cursor: pointer;
+    text-decoration: none;
+    padding: 8px 12px;
+    border-radius: 6px;
+    transition: all 0.2s ease;
+}
+
+.back:hover {
+    background: rgba(245, 136, 0, 0.1);
+    transform: translateX(-3px);
 }
 
 .label {

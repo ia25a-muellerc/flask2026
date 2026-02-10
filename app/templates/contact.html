@@ -1,26 +1,26 @@
 {% extends 'base.html' %}
 
-{% block title %}Result{% endblock %}
+{% block title %}Contact{% endblock %}
 
 {% block content %}
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="{{ url_for('static', filename='styles/carddetails.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/contact.css') }}">
 </head>
 <div class="profile-card">
 
-    <p class="back">← Back</p>
+    <a href="{{ url_for('home') }}" class="back">← Back</a>
 
     <p class="label">Name</p>
     <input class="inputButton"></input>
 
-    <p class="label">Surname</p>
+    <p class="label">Email</p>
     <input class="inputButton"></input>
 
-    <p class="label">Card Number</p>
+    <p class="label">Subject</p>
     <input class="inputButton"></input>
 
-    <p class="label">Card-Pin</p>
+    <p class="label">Message</p>
     <input class="inputButton"></input>
 
     <button class="saveButton">Submit</button>
