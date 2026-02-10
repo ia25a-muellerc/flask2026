@@ -1,0 +1,46 @@
+body {
+    background-color: #000000;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+    padding: 48px 24px 80px;
+    gap: 40px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.order{
+    display: flex;
+    flex-direction: row;
+    outline: 3px solid rgba(245, 136, 0, 0.5);
+    border-radius: 16px;
+    padding: 0;
+}
+
+.DeskDunkImg {
+    width: max(20%, 191px);
+    height: max(20%, 191px);
+    justify-self: center;
+    outline: 3px solid rgba(245, 136, 0, 0.5);
+    border-radius: 16px;
+    cursor: url('mouseHover.png'),pointer;
+}
+
+.info {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
+p {
+    margin: 0;
+    padding-left: 15px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}

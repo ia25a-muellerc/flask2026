@@ -247,7 +247,6 @@ html {
     border: none;
     border-radius: 999px;
     transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
-    cursor: pointer;
     position: relative;
     overflow: hidden;
     display: inline-flex;
@@ -291,7 +290,6 @@ html {
     border: none;
     border-radius: 999px;
     transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
-    cursor: pointer;
     position: relative;
     overflow: hidden;
     display: inline-block;
