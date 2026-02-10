@@ -375,12 +375,14 @@ html {
 iframe {
     overflow: hidden !important;
     overflow-clip-margin: unset !important;
+    cursor: url('pointer.png'), auto;
 }
 
 .miniGameHolder {
-    height: 320px;
-    width: 100%;
-    outline: 1px solid rgba(245, 136, 0, 0.5);
+    cursor: url('pointer.png'), auto;
+    height: 500px;
+    width: 1000px;
+    outline: 3px solid rgba(245, 136, 0, 0.5);
     border-radius: 16px;
     display: flex;
     font-size: 1.1rem;
@@ -389,4 +391,10 @@ iframe {
     justify-content: center;
     color: rgba(255, 255, 255, 0.7);
     background: rgba(255, 255, 255, 0.02);
+    justify-self: center;
+}
+
+.cta-content {
+    /*align-self: center;*/
+    padding: 12px 22px;
 }
