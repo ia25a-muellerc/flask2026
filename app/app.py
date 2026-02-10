@@ -49,66 +49,7 @@ languages = [
 user_store = {}
 
 
-def send_confirmation_email(
-    to_email: str,
-    name: str,
-    order_id: str,
-    product: str,
-    quantity: str,
-    total: str,
-    address: str,
-    zip_code: str,
-    city: str,
-    country: str,
-    tracking_link: str,
-) -> None:
-    mailgun_domain = os.environ.get("MAILGUN_DOMAIN")
-    mailgun_api_key = os.environ.get("MAILGUN_API_KEY")
-    mailgun_from = os.environ.get("MAILGUN_FROM")
 
-    if not all([mailgun_domain, mailgun_api_key, mailgun_from]):
-        raise RuntimeError("Mailgun Konfiguration fehlt")
-
-    subject = f"DeskDunk Bestellung bestaetigt ({order_id})"
-    text = (
-        f"Hallo {name},\n\n"
-        "Danke fuer deine Bestellung bei DeskDunk.\n\n"
-        "Sendungsadresse:\n"
-        f"{address}\n{zip_code} {city}\n{country}\n\n"
-        "Sendungsdetails:\n"
-        f"Bestellnummer: {order_id}\n"
-        f"Tracking-Link: {tracking_link}\n"
-        "Versandart: Standard\n"
-        "Status: In Vorbereitung\n\n"
-        "Sendungsinhalt:\n"
-        f"{quantity} x {product}\n"
-        f"Total: CHF {total}\n\n"
-        "Danke und viel Spass!\n"
-        "DeskDunk"
-    )
-
-    payload = urllib.parse.urlencode({
-        "from": mailgun_from,
-        "to": to_email,
-        "subject": subject,
-        "text": text,
-    }).encode("utf-8")
-
-    auth = base64.b64encode(f"api:{mailgun_api_key}".encode("utf-8")).decode("ascii")
-    url = f"https://api.mailgun.net/v3/{mailgun_domain}/messages"
-    req = urllib.request.Request(url, data=payload, method="POST")
-    req.add_header("Authorization", f"Basic {auth}")
-    req.add_header("Content-Type", "application/x-www-form-urlencoded")
-
-    try:
-        with urllib.request.urlopen(req, timeout=10) as response:
-            status = response.getcode()
-            if status not in (200, 201, 202):
-                body = response.read().decode("utf-8", "ignore")
-                raise RuntimeError(f"Mailgun Fehler: {status} {body}")
-    except urllib.error.HTTPError as exc:
-        body = exc.read().decode("utf-8", "ignore")
-        raise RuntimeError(f"Mailgun HTTP Fehler: {exc.code} {body}") from exc
 
 @app.route('/')
 def home():
