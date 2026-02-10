@@ -29,11 +29,12 @@ html {
     justify-self: center;
     outline: 3px solid rgba(245, 136, 0, 0.5);
     border-radius: 16px;
-    cursor: url('mouseHover.png'),pointer;
+    /*cursor: url('mouseHover.png'),pointer;*/
 }
 
 .info {
     display: flex;
+    flex-grow: 0;
     flex-direction: column;
     justify-content: space-evenly;
 }
@@ -43,4 +44,22 @@ p {
     padding-left: 15px;
     padding-top: 5px;
     padding-bottom: 5px;
+    padding-right: 15px;
+}
+
+.buttons {
+    display: flex;
+    flex-grow: 100;
+    justify-content: center;
+}
+
+button {
+    border-radius: 16px;
+    height: max(25%,32px);
+    width: max(35%,100px);
+    justify-self: center;
+    align-self: center;
+    background-color: #141414;
+    color: #F58800;
+    border-color: #F58800;
 }
