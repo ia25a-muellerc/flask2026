@@ -358,18 +358,38 @@ html {
     inset: 0;
     width: 100%;
     height: 100%;
-    padding: 20px;
+    padding: 16px 18px;
     margin: 0;
     box-sizing: border-box;
-    background: rgba(0, 0, 0, 0.6);
+    background: linear-gradient(0deg, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0.5) 100%);
     opacity: 0;
     transition: opacity 0.3s ease;
     display: flex;
-    font-size: 30px;
-    font-family: Arial, sans-serif;
-    align-items: center;
-    justify-content: center;
-    color: #F58800;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 8px;
+    color: #f7a12e;
+    overflow: auto;
+    text-align: left;
+}
+
+.imageHolder .card__title {
+    margin: 0;
+    font-size: 1.15rem;
+    font-weight: 700;
+    letter-spacing: 0.3px;
+}
+
+.imageHolder .card__description {
+    margin: 0;
+    font-size: 0.98rem;
+    line-height: 1.55;
+    color: rgba(255, 255, 255, 0.88);
+}
+
+.imageHolder .card:hover .card__content {
+    opacity: 1;
 }
 
 iframe {
