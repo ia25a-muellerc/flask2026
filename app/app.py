@@ -125,9 +125,9 @@ def popUpPayment() -> str:
 def popUpSaved() -> str:
     return render_template("popUpSaved.html", languages=languages)
 
-@app.route("/minigame")
+@app.route("/order")
 def minigame() -> str:
-    return render_template("minigame.html", languages=languages)
+    return render_template("order.html", languages=languages)
 
 @app.route("/submit", methods=["POST"])
 def submit():
