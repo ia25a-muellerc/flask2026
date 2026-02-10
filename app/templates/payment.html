@@ -205,6 +205,18 @@
                 <button type="submit" class="submit-payment-btn">PAY HERE</button>
             </form>
         </div>
+
+        <!-- Bestellbestaetigung Modal -->
+        <div id="purchaseModal" class="purchase-modal" aria-hidden="true">
+            <div class="purchase-modal__content" role="dialog" aria-modal="true" aria-labelledby="purchaseModalTitle">
+                <h3 id="purchaseModalTitle">Confirm purchase</h3>
+                <p>Do you really want to place this order?</p>
+                <div class="purchase-modal__actions">
+                    <button type="button" class="purchase-modal__btn purchase-modal__btn--cancel" id="purchaseCancelBtn">Cancel</button>
+                    <button type="button" class="purchase-modal__btn purchase-modal__btn--confirm" id="purchaseConfirmBtn">Confirm and pay now</button>
+                </div>
+            </div>
+        </div>
 </body>
 
 <script src="{{ url_for('static', filename='payment.js') }}"></script>
