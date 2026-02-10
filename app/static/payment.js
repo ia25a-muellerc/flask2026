@@ -56,7 +56,7 @@ document.addEventListener('DOMContentLoaded', function() {
         
         if (field.required && !field.value.trim()) {
             field.classList.add('invalid');
-            errorSpan.textContent = 'Dieses Feld ist erforderlich';
+            errorSpan.textContent = 'This field is required';
             return false;
         }
         
@@ -67,7 +67,7 @@ document.addEventListener('DOMContentLoaded', function() {
         if (field.type === 'email') {
             if (!value.includes('@') || !value.includes('.')) {
                 field.classList.add('invalid');
-                errorSpan.textContent = 'Bitte geben Sie eine gültige E-Mail-Adresse ein';
+                errorSpan.textContent = 'Please enter a valid email address';
                 return false;
             }
         }
@@ -77,7 +77,7 @@ document.addEventListener('DOMContentLoaded', function() {
             let numbers = value.replace(/\s/g, '');
             if (numbers.length < 13 || numbers.length > 19) {
                 field.classList.add('invalid');
-                errorSpan.textContent = 'Ungültige Kartennummer';
+                errorSpan.textContent = 'Invalid card number';
                 return false;
             }
         }
@@ -95,7 +95,7 @@ document.addEventListener('DOMContentLoaded', function() {
         if (field.id === 'cvv') {
             if (value.length < 3) {
                 field.classList.add('invalid');
-                errorSpan.textContent = 'CVV muss 3 Ziffern haben';
+                errorSpan.textContent = 'CVV must have 3 digits';
                 return false;
             }
         }
@@ -104,7 +104,7 @@ document.addEventListener('DOMContentLoaded', function() {
         if (field.id === 'zip') {
             if (value.length < 4) {
                 field.classList.add('invalid');
-                errorSpan.textContent = 'Ungültige PLZ';
+                errorSpan.textContent = 'Invalid PLZ';
                 return false;
             }
         }
@@ -112,20 +112,58 @@ document.addEventListener('DOMContentLoaded', function() {
         return true;
     }
 
+    // Bestellbestätigung Modal
+    const purchaseModal = document.getElementById('purchaseModal');
+    const purchaseCancelBtn = document.getElementById('purchaseCancelBtn');
+    const purchaseConfirmBtn = document.getElementById('purchaseConfirmBtn');
+    let pendingPurchase = false;
+
+    function openPurchaseModal() {
+        if (!purchaseModal) return;
+        purchaseModal.classList.add('show');
+        purchaseModal.setAttribute('aria-hidden', 'false');
+    }
+
+    function closePurchaseModal() {
+        if (!purchaseModal) return;
+        purchaseModal.classList.remove('show');
+        purchaseModal.setAttribute('aria-hidden', 'true');
+        pendingPurchase = false;
+    }
+
+    if (purchaseCancelBtn) {
+        purchaseCancelBtn.addEventListener('click', closePurchaseModal);
+    }
+
+    if (purchaseConfirmBtn) {
+        purchaseConfirmBtn.addEventListener('click', function() {
+            if (!pendingPurchase) return;
+            window.location.href = '/popUpPayment';
+        });
+    }
+
+    if (purchaseModal) {
+        purchaseModal.addEventListener('click', function(event) {
+            if (event.target === purchaseModal) {
+                closePurchaseModal();
+            }
+        });
+    }
+
     // Formular absenden
     document.getElementById('selectedPaymentForm').addEventListener('submit', function(e) {
         e.preventDefault();
-        
+
         const requiredFields = [...this.querySelectorAll('[required]')];
         const invalidFields = requiredFields.filter(field => !validateField(field));
-        
+
         if (invalidFields.length > 0) {
             invalidFields[0].scrollIntoView({ behavior: 'smooth', block: 'center' });
             invalidFields[0].focus();
             return;
         }
-        
-        alert('Zahlung erfolgreich! Vielen Dank für Ihre Bestellung.');
-        window.location.href = '/';
+
+        pendingPurchase = true;
+        openPurchaseModal();
     });
 });

@@ -38,9 +38,16 @@
                 <a href="{{ url_for('warenkorb') }}" class="nav-item nav-shop">
                     <img src="../static/styles/shopping-cart-icon.png" alt="Shop" class="nav-icon">
                 </a>
-                <a href="{{ url_for('profile') }}" class="nav-item nav-profile">
-                    <img src="../static/styles/account-icon.png" alt="Profile" class="nav-icon">
-                </a>
+                <div class="nav-profile-container">
+                    <a href="{{ url_for('profile') }}" class="nav-item nav-profile">
+                        <img src="../static/styles/account-icon.png" alt="Profile" class="nav-icon">
+                    </a>
+                    <div class="profile-hover-menu" id="profileMenu">
+                        <div id="userInfo">
+                            <p><a href="{{ url_for('signin') }}" style="color: #333; text-decoration: none;">Anmelden</a></p>
+                        </div>
+                    </div>
+                </div>
             </div>
         </nav>
     </div>

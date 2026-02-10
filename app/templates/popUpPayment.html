@@ -23,9 +23,27 @@
             click the cross in the top left corner.
         </p>
 
-        <button class="rateButton">Rate!</button>
+        <div class="button-container">
+            <button class="rateButton">Rate!</button>
+            <a href="/" class="cancelButton">Cancel</a>
+        </div>
+
+        <!-- Rating Section (hidden by default) -->
+        <div class="rating-section" style="display: none;">
+            <h3>How was your experience?</h3>
+            <div class="stars-container">
+                <span class="star" data-value="1">★</span>
+                <span class="star" data-value="2">★</span>
+                <span class="star" data-value="3">★</span>
+                <span class="star" data-value="4">★</span>
+                <span class="star" data-value="5">★</span>
+            </div>
+            <p class="rating-text" id="ratingText">Click on a star to rate</p>
+            <button class="submit-rating-btn">Submit Rating</button>
+        </div>
     </div>
 </div>
 
+<script src="{{ url_for('static', filename='popUpPayment.js') }}"></script>
 </body>
 {% endblock %}

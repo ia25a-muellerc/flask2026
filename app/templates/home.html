@@ -19,9 +19,7 @@
                     satisfying mini-game feel for focused breaks.
                 </p>
                 <div class="cta-row">
-                    <form action="{{ url_for('warenkorb') }}" method="get" class="reveal reveal--up" style="--reveal-delay: 0.05s;">
-                        <button type="submit" class="purchaser">Purchase</button>
-                    </form>
+                    <button onclick="addToCartAndRedirect()" class="purchaser reveal reveal--up" style="--reveal-delay: 0.05s;">Purchase</button>
                 </div>
             </div>
 
@@ -151,15 +149,56 @@
             <div class="cta-content">
                 <h2>Ready to transform your desk?</h2>
                 <p>Join thousands of happy DeskDunk users and bring fun back to your workspace.</p>
-                <form action="{{ url_for('warenkorb') }}" method="get">
-                    <button type="submit" class="purchaser-large">Get Your DeskDunk Now</button>
-                </form>
+                <button onclick="addToCartAndRedirect()" class="purchaser-large">Get Your DeskDunk Now</button>
             </div>
         </section>
 
     </div>
 
+    <!-- Bestätigungsmodal -->
+    <div id="confirmModal" class="modal">
+        <div class="modal-content">
+            <h2>Do you want to add to the cart?</h2>
+            <p>Desk Dunk - CHF 30.00</p>
+            <div class="modal-buttons">
+                <button onclick="closeConfirmModal()" class="modal-btn cancel-btn">Cancel</button>
+                <button onclick="confirmAddToCart()" class="modal-btn submit-btn">Submit</button>
+            </div>
+        </div>
+    </div>
+
     <script>
+        // Modal für Bestätigung
+        function showConfirmModal() {
+            document.getElementById('confirmModal').style.display = 'flex';
+        }
+
+        function closeConfirmModal() {
+            document.getElementById('confirmModal').style.display = 'none';
+        }
+
+        function confirmAddToCart() {
+            const pricePerItem = 30.00;
+            const items = JSON.parse(localStorage.getItem('cart') || '[]');
+            items.push({
+                name: 'Desk Dunk',
+                price: pricePerItem
+            });
+            localStorage.setItem('cart', JSON.stringify(items));
+            localStorage.setItem('cart_notice', 'added');
+            closeConfirmModal();
+
+            // Mit kleinem Delay umleiten um sicherzustellen dass localStorage gespeichert wird
+            setTimeout(function() {
+                window.location.href = '{{ url_for("warenkorb") }}';
+            }, 100);
+        }
+
+        // Funktion zum Hinzufügen zum Warenkorb und Umleiten
+        function addToCartAndRedirect() {
+            showConfirmModal();
+        }
+
         document.addEventListener('DOMContentLoaded', function () {
             const v = document.getElementById('hoverVideo');
             if (!v) return;
