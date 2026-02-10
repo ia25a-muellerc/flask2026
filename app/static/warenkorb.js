@@ -1,4 +1,4 @@
-// Warenkorb Funktionen
+// Einfacher Warenkorb mit Session-Cookies
 
 const pricePerItem = 30.00;
 let noticeTimer = null;
@@ -143,6 +143,19 @@ document.addEventListener('DOMContentLoaded', function() {
             window.location.href = `/payment?total=${total}&quantity=${quantity}&product=Desk%20Dunk`;
         });
     }
+    const data = await response.json();
+    document.getElementById('quantity').textContent = data.quantity;
+    document.getElementById('total').textContent = ' CHF ' + data.total;
+}
+
+// Checkout
+document.addEventListener('DOMContentLoaded', function() {
+    loadCart();
+    document.querySelector('.checkout').addEventListener('click', function() {
+        const quantity = document.getElementById('quantity').textContent;
+        const total = document.getElementById('total').textContent.replace(' CHF ', '');
+        window.location.href = `/payment?total=${total}&quantity=${quantity}&product=Desk%20Dunk`;
+    });
 });
 
 // Auch renderCart aufrufen wenn Script lädt (Fallback falls DOMContentLoaded zu früh ist)
