@@ -84,6 +84,12 @@
         </div>
         <div class="miniGameHolder">Coming soon!</div>
 
+        <form action="{{ url_for('add_product') }}" method="POST">
+            <input type="text" name="name" placeholder="Name" required>
+            <input type="number" name="price" placeholder="Preis" required>
+            <br><br>
+            <button type="submit" name="action" value="add_product">Produk hinzufügen</button>
+        </form>
     </div>
 
 

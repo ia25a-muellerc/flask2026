@@ -88,6 +88,12 @@ def popUpPayment() -> str:
 def popUpSaved() -> str:
     return render_template("popUpSaved.html", languages=languages)
 
+@app.route("/add-product", methods=["POST"])
+def add_product() -> str:
+    name = request.form["name"]
+    price = request.form["price"]
+    return redirect(url_for("home"))
+
 @app.route("/submit", methods=["POST"])
 def submit():
     app.logger.info("Form submitted")
