@@ -1,16 +1,22 @@
 {% extends 'base.html' %}
 
-{% block title %}Profile{% endblock %}
+{% block title %}Profile Data{% endblock %}
 
 {% block content %}
-<head>
-    <meta charset="UTF-8">
-    <link rel="stylesheet" href="{{ url_for('static', filename='styles/data.css') }}">
-</head>
-<div class="profile-card">
+<link rel="stylesheet" href="{{ url_for('static', filename='styles/data.css') }}">
 
+<div class="profile-card">
     <a href="{{ url_for('home') }}" class="back">← Back</a>
 
+    <form method="POST" action="{{ url_for('profile') }}">
+        <p class="label">Name</p>
+        <input class="inputButton" name="name" required>
+
+        <p class="label">Surname</p>
+        <input class="inputButton" name="surname" required>
+
+        <p class="label">Email</p>
+        <input class="inputButton" name="email" type="email" required>
     {% if session.get('user_email') %}
         <!-- Profildaten Formular - nur für eingeloggte Benutzer -->
         <h2 style="color: #f58800; text-align: center; margin: 0 0 24px 0; font-size: 1.5rem;">Profile Info</h2>
@@ -47,7 +53,13 @@
         </div>
     {% endif %}
 
+        <div class="actions">
+            <button type="reset" class="cancleButton">Cancel</button>
+            <button type="submit" class="saveButton">Submit</button>
+        </div>
+    </form>
 </div>
+{% endblock %}
 
 <!-- Delete Profile Modal -->
 <div id="deleteModal" class="modal">

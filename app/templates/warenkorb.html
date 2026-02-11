@@ -14,7 +14,6 @@
 </head>
 <body>
 
-{% block content %}
 <div class="container">
     <a href="{{ url_for('home') }}" class="back-button">
         <span class="back-arrow">←</span> Back
@@ -30,7 +29,6 @@
         <div id="empty-message" class="empty-message">
             Der Warenkorb ist leer
         </div>
-    </div>
 
         <div class="total" id="total-section" style="display: none;">
             <span>Total:</span>
@@ -38,9 +36,6 @@
         </div>
 
         <button class="checkout" id="checkout-btn" style="display: none;">buy now</button>
-    </div>
-
-    <button class="checkout">buy now</button>
 </div>
 <script src="{{ url_for('static', filename='warenkorb.js') }}"></script>
 {% endblock %}
