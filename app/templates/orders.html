@@ -9,38 +9,49 @@
 {% block content %}
 
     <div class="content">
-        <div class="order">
-            <img class="DeskDunkImg" src="{{ url_for('static', filename='Image (1).jpg') }}">
-            <div class="info">
-                <h2>Order created: 10.2.2026</h2>
-                <h2>Order status: Sent</h2>
-                <p>Order ID: 91298921</p>
-                <p>Shipping adress: VH8W+5G, Hanga Roa, Isla de Pascua, Valparaíso, Chile</p>
-                <p>Price: 30 CHF</p>
-            </div>
-            <div class="buttons">
-                <button>cancel order</button>
-                <button>download order</button>
-            </div>
-        </div>
-        <div class="order">
-            <img class="DeskDunkImg" src="{{ url_for('static', filename='Image (1).jpg') }}">
-            <div class="info">
-                <h2>Order created: 12.12.2025</h2>
-                <h2>Order status: Delivered</h2>
-                <p>Order ID: 818237891</p>
-                <p>Shipping adress: Neue Hard 9, 8005 Zürich</p>
-                <p>Price: 80 CHF</p>
-            </div>
-            <div class="buttons">
-                <button>cancel order</button>
-                <button>download order</button>
-            </div>
-        </div>
+        {% for order in orders %}
+            {% if order['canceled'] == false %}
+            <div class="order">
+            {% else %}
+            <div class="canceledOrder">
+            {% endif %}
+                <img class="DeskDunkImg" src="{{ url_for('static', filename='Image (1).jpg') }}">
+                <div class="info">
+                    <h2>Order created: {{ order['date'] }}</h2>
+                    <h2>Order status: {{ order['status'] }}</h2>
+                    <p>Order ID: {{ order['id'] }}</p>
+                    <p>Shipping adress: {{ order['shipping_address'] }}</p>
+                    <p>Price: {{ order['price'] }}</p>
+                </div>
+                <div class="buttons">
+                    {% if order['canceled'] == false %}
+                        <form class="formButtons" action="{{ url_for('cancel_order') }}" method="POST">
+                            <button type="submit" name="cancel_order" value="{{ order['id'] }}">Cancel Order</button>
+                        </form>    
+                        <button>download order</button>
+                    {% else %}
+                        <button class="canceled">order canceled</button>
+                        <button class="canceled">download order</button>
+                    {% endif %}
+                </div>
+            </div>   
+        {% endfor %}
+
+        <form action="{{ url_for('add_order') }}" method="POST">
+            <input type="date" name="date" placeholder="Date" required>
+            <input type="text" name="status" placeholder="Status" required>
+            
+            <input type="text" name="shipping_address" placeholder="Shipping Address" required>
+            <input type="number" name="price" placeholder="Price" required>
+            <br><br>
+            <button type="submit" name="action" value="add_product">Produk hinzufügen</button>
+        </form>
     </div>
 
     <script>
-        
+        function cancel(){
+            console.log("test");
+        }
     </script>
 
 {% endblock %}

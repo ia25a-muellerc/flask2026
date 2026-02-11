@@ -1,7 +1,10 @@
-CREATE TABLE IF NOT EXISTS products (
-    id SERIAL PRIMARY KEY,
-    name VARCHAR(50) UNIQUE NOT NULL,
-    price DECIMAL(10,2) NOT NULL
-);
+DROP TABLE orders;
 
-DROP TABLE product;
+CREATE TABLE IF NOT EXISTS orders (
+    id SERIAL PRIMARY KEY,
+    date DATE NOT NULL,
+    status VARCHAR(50) NOT NULL,
+    shipping_address VARCHAR(255) NOT NULL,
+    price DECIMAL(10,2) NOT NULL,
+    canceled BOOLEAN NOT NULL
+);

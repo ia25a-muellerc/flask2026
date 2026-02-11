@@ -4,7 +4,7 @@ from dotenv import load_dotenv # Lädt .env Datei
 from services import math_service
 from config import DevelopmentConfig, ProductionConfig
 import db
-from repository import product_repo
+from repository import orders_repo
 
 # Definieren einer Variable, die die aktuelle Datei zum Zentrum
 # der Anwendung macht.
@@ -47,8 +47,7 @@ languages = [
 def home():
     print(math_service.add(1.0, 2.0))
     app.logger.info("Rendering home page")
-    products = product_repo.get_all_products()
-    return render_template("home.html", products=products)
+    return render_template("home.html")
 
 @app.route('/result/', defaults={'name': 'Guest'})
 @app.route('/result/<name>')
@@ -131,15 +130,25 @@ def popUpSaved() -> str:
     return render_template("popUpSaved.html", languages=languages)
 
 @app.route("/add-product", methods=["POST"])
-def add_product() -> str:
-    name = request.form["name"]
+def add_order() -> str:
+    date = request.form["date"]
+    #id = request.form["id"]
+    status = request.form["status"]
+    shipping_address = request.form["shipping_address"]
     price = request.form["price"]
-    product_repo.add_product(name, price)
-    return redirect(url_for("home"))
+    orders_repo.add_order(date, status, shipping_address, price)
+    return redirect(url_for("orders"))
+
+@app.route("/cancel-order", methods=["POST"])
+def cancel_order() -> str:
+    id = request.form['cancel_order']
+    orders_repo.cancel_order(id)
+    return redirect(url_for("orders"))
 
 @app.route("/orders")
-def minigame() -> str:
-    return render_template("orders.html", languages=languages)
+def orders() -> str:
+    orders = orders_repo.get_all_products()
+    return render_template("orders.html", orders=orders)
 
 @app.route("/submit", methods=["POST"])
 def submit():
