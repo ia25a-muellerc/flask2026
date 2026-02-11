@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block title %}Home{% endblock %}
+
+{% block head %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/order.css') }}">
+{% endblock %}
+
+{% block content %}
+
+    <div class="content">
+        <div class="order">
+            <img class="DeskDunkImg" src="{{ url_for('static', filename='Image (1).jpg') }}">
+            <div class="info">
+                <p>Order created: 10.2.2026</p>
+                <p>Order ID: 91298921</p>
+                <p>Order status: Sent</p>
+                <p>Shipping adress: VH8W+5G, Hanga Roa, Isla de Pascua, Valparaíso, Chile</p>
+                <p>Price: 30 CHF</p>
+            </div>
+            <div class="buttons">
+                <button>cancel order</button>
+            </div>
+        </div>
+        <div class="order">
+            <img class="DeskDunkImg" src="{{ url_for('static', filename='Image (1).jpg') }}">
+            <div class="info">
+                <p>Order created: 12.12.2025</p>
+                <p>Order ID: 818237891</p>
+                <p>Order status: Delivered</p>
+                <p>Shipping adress: Neue Hard 9, 8005 Zürich</p>
+                <p>Price: 80 CHF</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        
+    </script>
+
+{% endblock %}

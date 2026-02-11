@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+
+{% block title %}Register{% endblock %}
+
+{% block content %}
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/signin.css') }}">
+</head>
+<div class="profile-card">
+
+    <a href="{{ url_for('home') }}" class="back">← Back</a>
+
+    {% if error %}
+    <p style="color: #f58800; text-align: center; margin-bottom: 10px;">{{ error }}</p>
+    {% endif %}
+
+    <form method="POST" action="{{ url_for('register') }}" style="all: unset;">
+        <p class="label">Name</p>
+        <input type="text" name="name" class="inputButton" required></input>
+
+        <p class="label">Surname</p>
+        <input type="text" name="surname" class="inputButton" required></input>
+
+        <p class="label">Email</p>
+        <input type="email" name="email" class="inputButton" required></input>
+
+        <p class="label">Password</p>
+        <div class="password-wrapper">
+            <input type="password" name="password" class="inputButton" required></input>
+            <button type="button" class="toggle-password" data-target="password" aria-label="Passwort anzeigen">👁</button>
+        </div>
+
+        <p class="label">Password wiederholen</p>
+        <div class="password-wrapper">
+            <input type="password" name="password_confirm" class="inputButton" required></input>
+            <button type="button" class="toggle-password" data-target="password_confirm" aria-label="Passwort anzeigen">👁</button>
+        </div>
+
+        <p class="label">Adresse</p>
+        <input type="text" name="address" class="inputButton" required></input>
+
+        <p class="label">PLZ</p>
+        <input type="text" name="zip" class="inputButton" required></input>
+
+        <p class="label">Stadt</p>
+        <input type="text" name="city" class="inputButton" required></input>
+
+        <p class="label">Land</p>
+        <input type="text" name="country" class="inputButton" required></input>
+
+        <button type="submit" class="saveButton">Registrieren</button>
+    </form>
+
+    <a href="{{ url_for('signin') }}">Schon ein Konto? Anmelden</a>
+
+</div>
+{% endblock %}

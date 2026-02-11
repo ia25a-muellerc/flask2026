@@ -1,7 +1,6 @@
-
 {% extends 'base.html' %}
 
-{% block title %}Home{% endblock %}
+{% block title %}Shopping Cart{% endblock %}
 
 {% block content %}
  <h1 class="subtitle">Shopping cart</h1>
@@ -11,37 +10,32 @@
 <head>
     <meta charset="UTF-8">
     <title>Desk Dunk – Shopping cart</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='styles/Warenkorb.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/warenkorb.css') }}">
 </head>
 <body>
 
-    <div class="container">
-        <a href="{{ url_for('home') }}" class="back-button">
-            <span class="back-arrow">←</span> Back
-        </a>
-        <h1>Desk Dunk</h1>
+<div class="container">
+    <a href="{{ url_for('home') }}" class="back-button">
+        <span class="back-arrow">←</span> Back
+    </a>
+    <h1>Desk Dunk</h1>
 
-        <div class="item">
-            <div class="item-info">
-                <span class="item-name">Desk Dunk </span>
-                <span class="item-price">CHF 30.00</span>
-            </div>
-            <div class="quantity-control">
-                <button class="qty-btn" onclick="decreaseQuantity()">-</button>
-                <span class="quantity" id="quantity">1</span>
-                <button class="qty-btn" onclick="increaseQuantity()">+</button>
-            </div>
+        <div id="cart-notice" class="cart-notice" role="status" aria-live="polite"></div>
+
+        <div id="cart-items">
+            <!-- Items werden hier dynamisch eingefügt -->
         </div>
 
-        <div class="total">
+        <div id="empty-message" class="empty-message">
+            Der Warenkorb ist leer
+        </div>
+
+        <div class="total" id="total-section" style="display: none;">
             <span>Total:</span>
-            <span id="total">CHF 30.00</span>
+            <span id="total">CHF 0.00</span>
         </div>
 
-        <button class="checkout">buy now</button>
-    </div>
-    <script src="{{ url_for('static', filename='warenkorb.js') }}"></script>
-</body>
-</html>
-
+        <button class="checkout" id="checkout-btn" style="display: none;">buy now</button>
+</div>
+<script src="{{ url_for('static', filename='warenkorb.js') }}"></script>
 {% endblock %}
