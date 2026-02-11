@@ -21,6 +21,17 @@ html {
     outline: 3px solid rgba(245, 136, 0, 0.5);
     border-radius: 16px;
     padding: 0;
+    background-color: #161616;
+}
+
+.canceledOrder {
+    display: flex;
+    flex-direction: row;
+    outline: 3px solid rgba(245, 136, 0, 0.3);
+    border-radius: 16px;
+    padding: 0;
+    background-color: #0a0a0a;
+    color:#F58800;
 }
 
 .DeskDunkImg {
@@ -39,7 +50,7 @@ html {
     justify-content: space-evenly;
 }
 
-p {
+p, h2 {
     margin: 0;
     padding-left: 15px;
     padding-top: 5px;
@@ -47,19 +58,42 @@ p {
     padding-right: 15px;
 }
 
+h2 {
+    color:#F58800;
+}
+
+.canceledOrder h2, .canceledOrder p {
+    color:#f5870093;
+}
+
+.canceledOrder .DeskDunkImg {
+    filter: brightness(0.5);
+}
+
 .buttons {
     display: flex;
+    flex-direction: column;
     flex-grow: 100;
     justify-content: center;
+    gap: 20px;
+    align-content: end;
 }
 
 button {
     border-radius: 16px;
-    height: max(25%,32px);
-    width: max(35%,100px);
+    height: 40px;
+    width: 150px;
     justify-self: center;
-    align-self: center;
-    background-color: #141414;
-    color: #F58800;
-    border-color: #F58800;
+    align-self: flex-end;
+    background-color: #f58700d2;
+    margin-right: 15px;
+}
+
+.formButtons {
+    align-self: flex-end;
+}
+
+.canceled {
+    background-color: #ff8c005b;
+    cursor: default;
 }
