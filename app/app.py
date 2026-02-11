@@ -3,6 +3,8 @@ from flask import Flask, render_template, request, redirect, url_for, session, j
 from dotenv import load_dotenv # Lädt .env Datei
 from services import math_service
 from config import DevelopmentConfig, ProductionConfig
+import db
+from repository import product_repo
 
 # Definieren einer Variable, die die aktuelle Datei zum Zentrum
 # der Anwendung macht.
@@ -30,6 +32,8 @@ else:
     app.config.from_object(ProductionConfig)
 #-------------------------------
 
+db.init_app(app)
+
 # mock data
 languages = [
     {"name": "Python", "creator": "Guido van Rossum", "year": 1991},
@@ -43,7 +47,8 @@ languages = [
 def home():
     print(math_service.add(1.0, 2.0))
     app.logger.info("Rendering home page")
-    return render_template("home.html")
+    products = product_repo.get_all_products()
+    return render_template("home.html", products=products)
 
 @app.route('/result/', defaults={'name': 'Guest'})
 @app.route('/result/<name>')
@@ -124,6 +129,13 @@ def popUpPayment() -> str:
 @app.route("/popUpSaved")
 def popUpSaved() -> str:
     return render_template("popUpSaved.html", languages=languages)
+
+@app.route("/add-product", methods=["POST"])
+def add_product() -> str:
+    name = request.form["name"]
+    price = request.form["price"]
+    product_repo.add_product(name, price)
+    return redirect(url_for("home"))
 
 @app.route("/orders")
 def minigame() -> str:
