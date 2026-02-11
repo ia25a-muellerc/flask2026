@@ -98,5 +98,7 @@ def submit():
     name = request.form.get("name")
     return redirect(url_for("result", name=name))
 
+
+
 if __name__ == '__main__':
     app.run(port=5000)
