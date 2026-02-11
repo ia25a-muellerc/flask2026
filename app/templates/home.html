@@ -90,6 +90,12 @@
             <br><br>
             <button type="submit" name="action" value="add_product">Produk hinzufügen</button>
         </form>
+        <h1>Produkte</h1>
+        <ul>
+            {% for product in products %}
+             <li> {{ product['name'] }} - {{ product[2] }}Geld</li>
+            {% endfor %}
+        </ul>
     </div>
 
 
