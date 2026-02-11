@@ -5,6 +5,7 @@ from flask import current_app, g
 
 def get_db():
     if 'db' not in g:
+        print(current_app.config['DB_URL'])
         g.db = psycopg2.connect(current_app.config['DB_URL'])
         g.db.cursor_factory = psycopg2.extras.DictCursor
     return g.db

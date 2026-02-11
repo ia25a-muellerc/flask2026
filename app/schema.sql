@@ -1,5 +1,3 @@
-DROP TABLE orders;
-
 CREATE TABLE IF NOT EXISTS orders (
     id SERIAL PRIMARY KEY,
     date DATE NOT NULL,
