@@ -18,6 +18,7 @@ h1 {
   margin-left: 20vw;
   border-radius: 12px;
   flex-direction: column;
+  margin-bottom: 35px;
 }
 
 .aboutContainer .aboutText {
