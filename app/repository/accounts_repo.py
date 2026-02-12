@@ -1,12 +1,12 @@
 from db import get_db
 from flask import current_app
 
-def add_order(date, status, shipping_address, price):
+def add_account(name, surname, email, password, address, zip_code, city, country):
     conn = get_db()
     cur = conn.cursor()
     try:
         cur.execute(
-            "INSERT INTO orders (date, status, shipping_address, price, canceled) VALUES (%s, %s, %s, %s, %s)", (date, status, shipping_address, price, False)
+            "INSERT INTO accounts (name, surname, email, password, address, zip_code, city, country) VALUES (%s, %s, %s, %s, %s, %s, %s, %s)", (name, surname, email, password, address, zip_code, city, country)
         )
         conn.commit()
     except Exception as e:
@@ -26,10 +26,9 @@ def get_all_products():
 def get_by_id(id):
     conn = get_db()
     cur = conn.cursor()
-    orders = None
     try:
         cur.execute(
-            "SELECT * FROM orders WHERE id='%s'", ([id])
+            "SELECT * FROM accounts WHERE id='%s'", ([id])
         )
         orders = cur.fetchall()
     except Exception as e:
@@ -39,12 +38,28 @@ def get_by_id(id):
         cur.close()
     return orders
 
-def cancel_order(id):
+def get_by_email(email):
+    conn = get_db()
+    cur = conn.cursor()
+    account = None
+    try:
+        cur.execute(
+            "SELECT * FROM accounts WHERE email=%s", ([email])
+        )
+        account = cur.fetchall()
+    except Exception as e:
+        conn.rollback()
+        current_app.logger.error(e)
+    finally:
+        cur.close()
+    return account
+
+def delete_account(email):
     conn = get_db()
     cur = conn.cursor()
     try:
         cur.execute(
-            "UPDATE orders SET canceled = 'TRUE' WHERE id = %s;", (id)
+            "DELETE FROM accounts WHERE email=%s", ([email])
         )
         conn.commit()
     except Exception as e:
