@@ -1,10 +1,12 @@
 import os
-from flask import Flask, render_template, request, redirect, url_for, session, jsonify
+from flask import Flask, render_template, request, redirect, url_for, session, jsonify, send_file
 from dotenv import load_dotenv # Lädt .env Datei
 from services import math_service
 from config import DevelopmentConfig, ProductionConfig
 import db
 from repository import orders_repo
+from reportlab.platypus import SimpleDocTemplate, Paragraph
+from reportlab.lib.styles import getSampleStyleSheet
 
 # Definieren einer Variable, die die aktuelle Datei zum Zentrum
 # der Anwendung macht.
@@ -141,9 +143,16 @@ def add_order() -> str:
 
 @app.route("/cancel-order", methods=["POST"])
 def cancel_order() -> str:
-    id = request.form['cancel_order']
+    id = request.form['order_id']
     orders_repo.cancel_order(id)
     return redirect(url_for("orders"))
+
+@app.route("/download-order", methods=["POST"])
+def download_order() -> str:
+    id = int(request.form['order_id'])
+    orders = orders_repo.get_by_id(id)
+    generate_pdf(orders)
+    return send_file("static/Order_Confirmation.pdf", as_attachment=True)
 
 @app.route("/orders")
 def orders() -> str:
@@ -155,6 +164,28 @@ def submit():
     app.logger.info("Form submitted")
     name = request.form.get("name")
     return redirect(url_for("result", name=name))
+
+def generate_pdf(orders):
+    id = orders[0][0]
+    date = orders[0][1]
+    shipping_address = orders[0][3]
+    price = orders[0][4]
+    amount = price / 30
+    my_doc = SimpleDocTemplate("app/static/Order_Confirmation.pdf")
+    sample_style_sheet = getSampleStyleSheet()
+    paragraph_1 = Paragraph("Your Order confirmation", sample_style_sheet['Heading1'])
+    paragraph_2 = Paragraph(
+        "Your Order ID is: " + str(id) + 
+        "<br/>Your Order was created on " + str(date) + 
+        "<br/>Your shipping address is: " + shipping_address + 
+        "<br/>You ordered Desk Dunk " + str(amount) + "x" +
+        "<br/>The final cost of your Order is: " + str(price),
+        sample_style_sheet['BodyText']
+    )
+    flowables = []
+    flowables.append(paragraph_1)
+    flowables.append(paragraph_2)
+    my_doc.build(flowables)
 
 if __name__ == '__main__':
     app.run(port=5000)

@@ -23,6 +23,21 @@ def get_all_products():
     cur.close()
     return orders
 
+def get_by_id(id):
+    conn = get_db()
+    cur = conn.cursor()
+    try:
+        cur.execute(
+            "SELECT * FROM orders WHERE id='%s'", ([id])
+        )
+        orders = cur.fetchall()
+    except Exception as e:
+        conn.rollback()
+        current_app.logger.error(e)
+    finally:
+        cur.close()
+    return orders
+
 def cancel_order(id):
     conn = get_db()
     cur = conn.cursor()
