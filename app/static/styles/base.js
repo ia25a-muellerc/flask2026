@@ -33,6 +33,7 @@ document.addEventListener('DOMContentLoaded', function() {
                                 <hr style="margin: 10px 0; border: none; border-top: 1px solid #ddd;">
                                 <a href="/profile" style="display: block; color: #333; text-decoration: none; padding: 5px 0; margin: 5px 0;">My Profile</a>
                                 <a href="/logout" style="display: block; color: #d32f2f; text-decoration: none; padding: 5px 0; margin: 5px 0;">Logout</a>
+                                <a href="/orders" style="display: block; color: #333; text-decoration: none; padding: 5px 0; margin: 5px 0;">My Orders</a>
                             </div>
                         `;
                     } else {
