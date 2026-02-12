@@ -20,10 +20,20 @@
     </a>
     <h1>Desk Dunk</h1>
 
-        <div id="cart-notice" class="cart-notice" role="status" aria-live="polite"></div>
-
-        <div id="cart-items">
-            <!-- Items werden hier dynamisch eingefügt -->
+    <div id="cart-items">
+        <div class="item">
+            <div class="item-info">
+                <span class="item-name">Desk Dunk </span>
+                <span class="item-price">CHF 30.00</span>
+            </div>
+            <div class="carousel-card" style="--index: 0;--color-card: 142, 249, 252;">
+                        <img class="img" src="{{ url_for('static', filename='Image (1).jpg') }}"/>
+                    </div>
+            <div class="quantity-control">
+                <button class="qty-btn" onclick="decreaseQuantity()">-</button>
+                <span class="quantity" id="quantity">{{ quantity }}</span>
+                <button class="qty-btn" onclick="increaseQuantity()">+</button>
+            </div>
         </div>
 
         <div id="empty-message" class="empty-message">
