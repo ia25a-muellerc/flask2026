@@ -247,7 +247,6 @@ html {
     border: none;
     border-radius: 999px;
     transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
-    cursor: pointer;
     position: relative;
     overflow: hidden;
     display: inline-flex;
@@ -291,7 +290,6 @@ html {
     border: none;
     border-radius: 999px;
     transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
-    cursor: pointer;
     position: relative;
     overflow: hidden;
     display: inline-block;
@@ -358,45 +356,51 @@ html {
     inset: 0;
     width: 100%;
     height: 100%;
-    padding: 20px;
+    padding: 16px 18px;
     margin: 0;
     box-sizing: border-box;
-    background: rgba(0, 0, 0, 0.6);
+    background: linear-gradient(0deg, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0.5) 100%);
     opacity: 0;
     transition: opacity 0.3s ease;
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: flex-start;
-    backdrop-filter: blur(4px);
+    justify-content: flex-start;
+    gap: 8px;
+    color: #f7a12e;
+    overflow: auto;
+    text-align: left;
+}
+
+.imageHolder .card__title {
+    margin: 0;
+    font-size: 1.15rem;
+    font-weight: 700;
+    letter-spacing: 0.3px;
+}
+
+.imageHolder .card__description {
+    margin: 0;
+    font-size: 0.98rem;
+    line-height: 1.55;
+    color: rgba(255, 255, 255, 0.88);
 }
 
 .imageHolder .card:hover .card__content {
     opacity: 1;
 }
 
-.imageHolder .card__title {
-    margin: 0 0 12px;
-    font-size: 1.1rem;
-    color: #ffffff;
-    font-weight: 600;
-    font-family: "Poppins", sans-serif;
-    letter-spacing: 0.3px;
+iframe {
+    overflow: hidden !important;
+    overflow-clip-margin: unset !important;
+    cursor: url('pointer.png'), auto;
 }
 
-.imageHolder .card__description {
-    margin: 0;
-    font-size: 0.9rem;
-    color: rgba(255, 255, 255, 0.85);
-    line-height: 1.5;
-    font-family: "Poppins", sans-serif;
-}
-
-/* Mini Game */
 .miniGameHolder {
-    height: 320px;
-    width: 100%;
-    outline: 1px solid rgba(245, 136, 0, 0.5);
+    cursor: url('pointer.png'), auto;
+    height: 500px;
+    width: 1000px;
+    outline: 3px solid rgba(245, 136, 0, 0.5);
     border-radius: 16px;
     display: flex;
     font-size: 1.1rem;
@@ -405,15 +409,7 @@ html {
     justify-content: center;
     color: rgba(255, 255, 255, 0.7);
     background: rgba(255, 255, 255, 0.02);
-}
-
-/* CTA Section */
-.cta-section {
-    background: linear-gradient(135deg, rgba(255, 140, 0, 0.1) 0%, rgba(255, 140, 0, 0.05) 100%);
-    border: 1px solid rgba(245, 136, 0, 0.3);
-    border-radius: 20px;
-    padding: 60px 40px;
-    text-align: center;
+    justify-self: center;
 }
 
 .cta-content {
@@ -484,6 +480,7 @@ html {
         max-width: 100%;
     }
 }
+
 
 @media (max-width: 768px) {
     .homeScreen {
@@ -600,5 +597,121 @@ html {
         width: 100%;
         padding: 12px 24px;
         font-size: 0.95rem;
+    }
+}
+
+/* Modal Styles */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modal-content {
+    background-color: #111;
+    border: 1px solid #f58800;
+    border-radius: 20px;
+    padding: 40px;
+    max-width: 400px;
+    width: 90%;
+    box-shadow: 0 8px 32px rgba(245, 136, 0, 0.3);
+    text-align: center;
+    animation: slideIn 0.3s ease;
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateY(-50px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.modal-content h2 {
+    color: #f58800;
+    font-size: 1.5rem;
+    margin: 0 0 15px 0;
+}
+
+.modal-content p {
+    color: #ccc;
+    font-size: 1rem;
+    margin: 0 0 30px 0;
+}
+
+.modal-buttons {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+}
+
+.modal-btn {
+    padding: 12px 30px;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    min-width: 120px;
+}
+
+.cancel-btn {
+    background-color: #333;
+    color: #fff;
+    border: 1px solid #555;
+}
+
+.cancel-btn:hover {
+    background-color: #444;
+    border-color: #777;
+}
+
+.submit-btn {
+    background: linear-gradient(135deg, #f58800, #ff9f1a);
+    color: #000;
+}
+
+.submit-btn:hover {
+    background: linear-gradient(135deg, #ff9f1a, #ffa726);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(245, 136, 0, 0.5);
+}
+
+.submit-btn:active {
+    transform: translateY(0);
+}
+
+/* Modal responsive */
+@media (max-width: 480px) {
+    .modal-content {
+        padding: 30px 20px;
+        border-radius: 16px;
+    }
+
+    .modal-content h2 {
+        font-size: 1.2rem;
+        margin-bottom: 10px;
+    }
+
+    .modal-content p {
+        font-size: 0.9rem;
+        margin-bottom: 20px;
+    }
+
+    .modal-btn {
+        padding: 10px 20px;
+        font-size: 0.9rem;
+        min-width: 100px;
     }
 }

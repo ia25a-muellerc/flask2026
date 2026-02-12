@@ -2,16 +2,24 @@
 
 {% block title %}Shopping Cart{% endblock %}
 
-{% block head %}
-<link rel="stylesheet" href="{{ url_for('static', filename='styles/warenkorb.css') }}">
-{% endblock %}
-
 {% block content %}
+ <h1 class="subtitle">Shopping cart</h1>
+
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <title>Desk Dunk – Shopping cart</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/warenkorb.css') }}">
+</head>
+<body>
+
 <div class="container">
     <a href="{{ url_for('home') }}" class="back-button">
         <span class="back-arrow">←</span> Back
     </a>
-    <h1>Desk Dunk</h1>+
+    <h1>Desk Dunk</h1>
+
     <div id="cart-items">
         <div class="item">
             <div class="item-info">
@@ -27,14 +35,17 @@
                 <button class="qty-btn" onclick="increaseQuantity()">+</button>
             </div>
         </div>
-    </div>
 
-    <div class="total">
-        <span>Total:</span>
-        <span id="total">CHF {{ total }}</span>
-    </div>
+        <div id="empty-message" class="empty-message">
+            Der Warenkorb ist leer
+        </div>
 
-    <button class="checkout">buy now</button>
+        <div class="total" id="total-section" style="display: none;">
+            <span>Total:</span>
+            <span id="total">CHF 0.00</span>
+        </div>
+
+        <button class="checkout" id="checkout-btn" style="display: none;">buy now</button>
 </div>
 <script src="{{ url_for('static', filename='warenkorb.js') }}"></script>
 {% endblock %}
