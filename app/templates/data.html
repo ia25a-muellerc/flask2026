@@ -39,11 +39,16 @@
 
         <!-- Abmelden, Delete Profile und Change Info Links -->
         <div style="margin-top: 20px; text-align: center; display: flex; gap: 15px; justify-content: center; align-items: center; flex-wrap: wrap;">
+            
             <a href="#" onclick="enableEdit(); return false;" style="color: #f58800; text-decoration: underline; font-weight: bold;">Change Info</a>
             <span style="color: #555;">|</span>
+
             <a href="{{ url_for('logout') }}" style="color: #d32f2f; text-decoration: underline; font-weight: bold;">Logout</a>
             <span style="color: #555;">|</span>
+
             <a href="#" onclick="showDeleteModal(); return false;" style="color: #d32f2f; text-decoration: underline; font-weight: bold;">Delete Profile</a>
+            <span style="color: #555;">|</span>
+
         </div>
     {% else %}
         <!-- Nachricht wenn nicht eingeloggt -->
@@ -59,7 +64,6 @@
         </div>
     </form>
 </div>
-{% endblock %}
 
 <!-- Delete Profile Modal -->
 <div id="deleteModal" class="modal">
