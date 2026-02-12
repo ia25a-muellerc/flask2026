@@ -67,3 +67,26 @@ def delete_account(email):
         current_app.logger.error(e)
     finally:
         cur.close()
+
+def change_account_info(name, surname, email, id):
+    conn = get_db()
+    cur = conn.cursor()
+    succeeded = False
+    try:
+        cur.execute(
+            "UPDATE accounts SET name = %s WHERE id = %s;", (name, id)
+        )
+        cur.execute(
+            "UPDATE accounts SET surname = %s WHERE id = %s;", (surname, id)
+        )
+        cur.execute(
+            "UPDATE accounts SET email = %s WHERE id = %s;", (email, id)
+        )
+        conn.commit()
+        succeeded = True
+    except Exception as e:
+        conn.rollback()
+        current_app.logger.error(e)
+    finally:
+        cur.close()
+    return succeeded

@@ -90,9 +90,18 @@ def profile():
         return redirect(url_for("signin"))
 
     if request.method == "POST":
-        session['user_name'] = request.form.get("name", "").strip()
-        session['user_surname'] = request.form.get("surname", "").strip()
-        session['user_email'] = request.form.get("email", "").strip()
+        name = request.form.get("name", "").strip()
+        surname = request.form.get("surname", "").strip()
+        email = request.form.get("email", "").strip()
+        user = accounts_repo.get_by_email(session['user_email'])
+        id = user[0][0]
+        succeeded = accounts_repo.change_account_info(name, surname, email, id)
+        if succeeded:
+            session['user_name'] = name
+            session['user_surname'] = surname
+            session['user_email'] = email
+        else:
+            app.logger.error("Couldn't change account info. Try again.")
 
         app.logger.info(f"Profile updated: {session.get('user_name')} {session.get('user_surname')}")
         return redirect(url_for("home"))
