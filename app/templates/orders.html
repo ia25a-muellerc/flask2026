@@ -37,6 +37,7 @@
             </div>   
         {% endfor %}
 
+        <h1>Für debug zwecke, dies muss nacher im hintergrund funktionirern</h1>
         <form action="{{ url_for('add_order') }}" method="POST">
             <input type="date" name="date" placeholder="Date" required>
             <input type="text" name="status" placeholder="Status" required>
@@ -44,7 +45,7 @@
             <input type="text" name="shipping_address" placeholder="Shipping Address" required>
             <input type="number" name="price" placeholder="Price" required>
             <br><br>
-            <button type="submit" name="action" value="add_product">Produk hinzufügen</button>
+            <button type="submit" name="action" value="add_product">Order Kreieren</button>
         </form>
     </div>
 
