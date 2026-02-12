@@ -6,3 +6,15 @@ CREATE TABLE IF NOT EXISTS orders (
     price DECIMAL(10,2) NOT NULL,
     canceled BOOLEAN NOT NULL
 );
+
+CREATE TABLE IF NOT EXISTS accounts (
+    id SERIAL PRIMARY KEY,
+    name VARCHAR(255),
+    surname VARCHAR(255),
+    email VARCHAR(255),
+    password VARCHAR(255),
+    address VARCHAR(255),
+    zip_code VARCHAR(255),
+    city VARCHAR(255),
+    country VARCHAR(255)
+);

@@ -4,7 +4,7 @@ from dotenv import load_dotenv # Lädt .env Datei
 from services import math_service
 from config import DevelopmentConfig, ProductionConfig
 import db
-from repository import orders_repo
+from repository import orders_repo, accounts_repo
 from reportlab.platypus import SimpleDocTemplate, Paragraph
 from reportlab.lib.styles import getSampleStyleSheet
 
@@ -47,9 +47,6 @@ languages = [
 
 
 # In-memory User-Store (nur fuer aktuelle Laufzeit)
-user_store = {}
-
-
 
 
 @app.route('/')
@@ -119,21 +116,22 @@ def signin() -> str:
         if not email or not password:
             return render_template("signin.html", languages=languages, error="Email und Passwort erforderlich")
 
-        user = user_store.get(email)
-        if not user:
+        #user = user_store.get(email)
+        user = accounts_repo.get_by_email(email)
+        if user == []:
             return render_template("signin.html", languages=languages, error="Kein Konto gefunden. Bitte registrieren.")
 
-        if user.get("password") != password:
+        if user[0][4] != password:
             return render_template("signin.html", languages=languages, error="Falsches Passwort")
 
         # Session speichern (nur fuer Browser-Sitzung, nicht permanent)
-        session["user_email"] = user.get("email", "")
-        session["user_name"] = user.get("name", "")
-        session["user_surname"] = user.get("surname", "")
-        session["user_address"] = user.get("address", "")
-        session["user_zip"] = user.get("zip", "")
-        session["user_city"] = user.get("city", "")
-        session["user_country"] = user.get("country", "")
+        session["user_email"] = user[0][3]
+        session["user_name"] = user[0][1]
+        session["user_surname"] = user[0][2]
+        session["user_address"] = user[0][5]
+        session["user_zip"] = user[0][6]
+        session["user_city"] = user[0][7]
+        session["user_country"] = user[0][8]
 
         app.logger.info(f"User logged in: {email}")
         return redirect(url_for("home"))
@@ -143,7 +141,7 @@ def signin() -> str:
 @app.route("/logout")
 def logout():
     session.clear()
-    app.logger.info("User logged out")
+    #app.logger.info("User logged out")
     return redirect(url_for("home"))
 
 @app.route("/delete_profile")
@@ -151,11 +149,7 @@ def delete_profile():
     """Löscht das Profil des eingeloggten Benutzers"""
     if session.get("user_email"):
         email = session.get("user_email")
-        # Benutzer aus dem user_store löschen (falls vorhanden)
-        if email in user_store:
-            del user_store[email]
-            app.logger.info(f"Profile deleted: {email}")
-        # Session löschen und zur Startseite umleiten
+        accounts_repo.delete_account(email)
         session.clear()
     return redirect(url_for("home"))
 
@@ -233,19 +227,21 @@ def register() -> str:
         if password != password_confirm:
             return render_template("register.html", error="Passwoerter stimmen nicht ueberein")
 
-        if email in user_store:
+        if accounts_repo.get_by_email(email) != []:
             return render_template("register.html", error="Account existiert bereits")
 
-        user_store[email] = {
-            "name": name,
-            "surname": surname,
-            "email": email,
-            "password": password,  # Demo-only
-            "address": address,
-            "zip": zip_code,
-            "city": city,
-            "country": country,
-        }
+        #user_store[email] = {
+        #    "name": name,
+        #    "surname": surname,
+        #    "email": email,
+        #    "password": password,  # Demo-only
+        #    "address": address,
+        #    "zip": zip_code,
+        #    "city": city,
+        #    "country": country,
+        #}
+
+        accounts_repo.add_account(name, surname, email, password, address, zip_code, city, country)
 
         session["user_name"] = name
         session["user_surname"] = surname
