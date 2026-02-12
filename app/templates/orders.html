@@ -26,12 +26,14 @@
                 <div class="buttons">
                     {% if order['canceled'] == false %}
                         <form class="formButtons" action="{{ url_for('cancel_order') }}" method="POST">
-                            <button type="submit" name="cancel_order" value="{{ order['id'] }}">Cancel Order</button>
+                            <button type="submit" name="order_id" value="{{ order['id'] }}">Cancel Order</button>
+                        </form>
+                        <form class="formButtons" action="{{ url_for('download_order') }}" method="POST">
+                            <button type="submit" name="order_id" value="{{ order['id'] }}">Download as PDF</button>  
                         </form>    
-                        <button>download order</button>
                     {% else %}
-                        <button class="canceled">order canceled</button>
-                        <button class="canceled">download order</button>
+                        <button class="canceled">Order Canceled</button>
+                        <button class="canceled">Download PDF</button>
                     {% endif %}
                 </div>
             </div>   
