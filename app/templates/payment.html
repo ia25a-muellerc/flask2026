@@ -29,12 +29,13 @@
                 </div>
             </div>
         </div>
-        
+
         <div class="payment-methods">
             <!-- PayPal -->
             <div class="payment-option">
                 <div class="payment-logo">
-                    <img src="https://download.logo.wine/logo/PayPal/PayPal-Logo.wine.png" alt="PayPal Logo" class="logo-image">
+                    <img src="https://download.logo.wine/logo/PayPal/PayPal-Logo.wine.png" alt="PayPal Logo"
+                        class="logo-image">
                 </div>
                 <h3>PayPal</h3>
                 <p>Fast and secure payment with PayPal</p>
@@ -44,7 +45,8 @@
             <!-- Kreditkarte -->
             <div class="payment-option">
                 <div class="payment-logo">
-                    <img src="https://www.visa.de/content/dam/VCOM/regional/ve/germany/in-page-images/Produkte/card-classic.png" alt="Kreditkarte Logo" class="logo-image">
+                    <img src="https://www.visa.de/content/dam/VCOM/regional/ve/germany/in-page-images/Produkte/card-classic.png"
+                        alt="Kreditkarte Logo" class="logo-image">
                 </div>
                 <h3>Credit Card</h3>
                 <p>Visa, Mastercard or other cards</p>
@@ -54,7 +56,8 @@
             <!-- Apple Pay -->
             <div class="payment-option">
                 <div class="payment-logo">
-                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTWxYUQvdwKXZ9meVu4Jx6fr7nNNo99TLl-bA&s" alt="Apple Pay" class="logo-image">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTWxYUQvdwKXZ9meVu4Jx6fr7nNNo99TLl-bA&s"
+                        alt="Apple Pay" class="logo-image">
                 </div>
                 <h3>Apple Pay</h3>
                 <p>Payment with Apple Pay</p>
@@ -64,7 +67,8 @@
             <!-- Google Pay -->
             <div class="payment-option">
                 <div class="payment-logo">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f2/Google_Pay_Logo.svg/960px-Google_Pay_Logo.svg.png" alt="Google Pay Logo" class="logo-image">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f2/Google_Pay_Logo.svg/960px-Google_Pay_Logo.svg.png"
+                        alt="Google Pay Logo" class="logo-image">
                 </div>
                 <h3>Google Pay</h3>
                 <p>Fast payment with Google Pay</p>
@@ -74,7 +78,8 @@
             <!-- Twint -->
             <div class="payment-option">
                 <div class="payment-logo">
-                    <img src="https://play-lh.googleusercontent.com/pGZsOWcRRSQLNncRTfhGQKP_Oql9-ZmtdygrFd8myq7wONKa-INO-gFSy1xp5BL2yA" alt="Twint Logo" class="logo-image">
+                    <img src="https://play-lh.googleusercontent.com/pGZsOWcRRSQLNncRTfhGQKP_Oql9-ZmtdygrFd8myq7wONKa-INO-gFSy1xp5BL2yA"
+                        alt="Twint Logo" class="logo-image">
                 </div>
                 <h3>Twint</h3>
                 <p>Twint payment</p>
@@ -84,7 +89,8 @@
             <!-- Lastschrift -->
             <div class="payment-option">
                 <div class="payment-logo">
-                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTtiR10jbwxu0jyjy-x-cGgR8p_qWgy0D6GqQ&ss" alt="Lastschrift Logo" class="logo-image">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTtiR10jbwxu0jyjy-x-cGgR8p_qWgy0D6GqQ&ss"
+                        alt="Lastschrift Logo" class="logo-image">
                 </div>
                 <h3>Invoice</h3>
                 <p>Payment by invoice</p>
@@ -95,7 +101,7 @@
         <!-- Payment Form (initially hidden) -->
         <div id="paymentFormSection" class="payment-form-section" style="display: none; margin-top: 40px;">
             <h2 id="formTitle">Payment Details</h2>
-            <form class="payment-form" id="selectedPaymentForm">
+            <form action="{{ url_for('add_order') }}" class="payment-form" id="selectedPaymentForm" method="POST">
                 <!-- Credit Card Details -->
                 <div class="form-section" id="cardSection" style="display: none;">
                     <h3>Credit Card Information</h3>
@@ -106,7 +112,8 @@
                     </div>
                     <div class="form-group">
                         <label for="cardNumber">Card Number <span class="required">*</span></label>
-                        <input type="text" id="cardNumber" name="cardNumber" placeholder="1234 5678 9012 3456" maxlength="19">
+                        <input type="text" id="cardNumber" name="cardNumber" placeholder="1234 5678 9012 3456"
+                            maxlength="19">
                         <span class="error-message" id="cardNumberError"></span>
                     </div>
                     <div class="form-row">
@@ -193,7 +200,7 @@
                             <option value="KR">South Korea</option>
                             <option value="SG">Singapore</option>
                             <option value="HK">Hong Kong</option>
-                            <option value="TW">Taiwan</option>  
+                            <option value="TW">Taiwan</option>
                             <option value="AE">United Arab Emirates</option>
 
                         </select>
@@ -202,21 +209,26 @@
                 </div>
 
                 <!-- Submit Button -->
-                <button type="submit" class="submit-payment-btn">PAY HERE</button>
+                <button type="button" onclick="openPurchaseModal()">PAY HERE</button>
+
+                <!-- Bestellbestaetigung Modal -->
+                <div id="purchaseModal" class="purchase-modal" aria-hidden="true">
+                    <div class="purchase-modal__content" role="dialog" aria-modal="true"
+                        aria-labelledby="purchaseModalTitle">
+                        <h3 id="purchaseModalTitle">Confirm purchase</h3>
+                        <p>Do you really want to place this order?</p>
+                        <div class="purchase-modal__actions">
+                            <button type="button" class="purchase-modal__btn purchase-modal__btn--cancel"
+                                id="purchaseCancelBtn">Cancel</button>
+                            <button class="purchase-modal__btn purchase-modal__btn--confirm" id="purchaseConfirmBtn"
+                                type="submit" name="action" value="add_order/{{ total }}">Confirm and pay now</button>
+                        </div>
+                    </div>
+                </div>
             </form>
         </div>
 
-        <!-- Bestellbestaetigung Modal -->
-        <div id="purchaseModal" class="purchase-modal" aria-hidden="true">
-            <div class="purchase-modal__content" role="dialog" aria-modal="true" aria-labelledby="purchaseModalTitle">
-                <h3 id="purchaseModalTitle">Confirm purchase</h3>
-                <p>Do you really want to place this order?</p>
-                <div class="purchase-modal__actions">
-                    <button type="button" class="purchase-modal__btn purchase-modal__btn--cancel" id="purchaseCancelBtn">Cancel</button>
-                    <button type="button" class="purchase-modal__btn purchase-modal__btn--confirm" id="purchaseConfirmBtn">Confirm and pay now</button>
-                </div>
-            </div>
-        </div>
+
 </body>
 
 <script src="{{ url_for('static', filename='payment.js') }}"></script>

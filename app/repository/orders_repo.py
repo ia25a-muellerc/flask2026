@@ -44,7 +44,7 @@ def cancel_order(id):
     cur = conn.cursor()
     try:
         cur.execute(
-            "UPDATE orders SET canceled = 'TRUE' WHERE id = %s;", (id)
+            "UPDATE orders SET canceled = 'TRUE' WHERE id = %s;", ([id])
         )
         conn.commit()
     except Exception as e:

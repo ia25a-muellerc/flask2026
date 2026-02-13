@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     const rateButton = document.querySelector('.rateButton');
     const submitRatingBtn = document.querySelector('.submit-rating-btn');
     const closeBtn = document.querySelector('.close-btn');
@@ -17,7 +17,7 @@ document.addEventListener('DOMContentLoaded', function() {
         5: 'Excellent!'
     };
 
-    rateButton.addEventListener('click', function(e) {
+    rateButton.addEventListener('click', function (e) {
         e.preventDefault();
         ratingSection.style.display = 'block';
         buttonContainer.style.display = 'none';
@@ -26,14 +26,14 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     stars.forEach(star => {
-        star.addEventListener('click', function() {
+        star.addEventListener('click', function () {
             selectedRating = this.getAttribute('data-value');
             updateStars();
             ratingText.textContent = ratingLabels[selectedRating];
             ratingText.style.color = '#f58800';
         });
 
-        star.addEventListener('mouseover', function() {
+        star.addEventListener('mouseover', function () {
             const hoverValue = this.getAttribute('data-value');
             stars.forEach(s => {
                 if (s.getAttribute('data-value') <= hoverValue) {
@@ -46,7 +46,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     stars.forEach(star => {
-        star.addEventListener('mouseout', function() {
+        star.addEventListener('mouseout', function () {
             stars.forEach(s => {
                 s.classList.remove('hovered');
             });
@@ -65,7 +65,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    submitRatingBtn.addEventListener('click', function() {
+    submitRatingBtn.addEventListener('click', function () {
         if (selectedRating === 0) {
             ratingText.textContent = 'Please select a rating!';
             ratingText.style.color = '#ff6b6b';
@@ -79,16 +79,7 @@ document.addEventListener('DOMContentLoaded', function() {
         submitRatingBtn.style.opacity = '0.6';
 
         setTimeout(() => {
-            window.location.href = '/';
+            window.location.href = '/orders';
         }, 1500);
-    });
-
-    closeBtn.addEventListener('click', function() {
-        window.location.href = '/';
-    });
-
-    cancelButton.addEventListener('click', function(e) {
-        e.preventDefault();
-        window.location.href = '/';
     });
 });

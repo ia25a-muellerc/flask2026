@@ -3,47 +3,49 @@
 {% block title %}Result{% endblock %}
 
 {% block content %}
+
 <head>
-  <meta charset="UTF-8">
-  <title>Payment Done</title>
-  <link rel="stylesheet" href="{{ url_for('static', filename='styles/popUpPayment.css') }}">
+    <meta charset="UTF-8">
+    <title>Payment Done</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/popUpPayment.css') }}">
 </head>
 
 <body>
 
-<div class="page">
-    <div class="payment-card">
-        <button class="close-btn">✖</button>
+    <div class="page">
+        <div class="payment-card">
+            <button class="close-btn"><a style="text-decoration: none; color: #ccc;"
+                    href="{{ url_for('orders')}}">✖</a></button>
 
-        <h2>Payment done!</h2>
+            <h2>Payment done!</h2>
 
-        <p>
-            Thank you for buying at DeskDunk. If you wanna leave a rating,
-            klick the button below. If you wanna continue shopping,
-            click the cross in the top left corner.
-        </p>
+            <p>
+                Thank you for buying at DeskDunk. If you wanna leave a rating,
+                klick the button below. If you wanna continue shopping,
+                click the cross in the top left corner.
+            </p>
 
-        <div class="button-container">
-            <button class="rateButton">Rate!</button>
-            <a href="/" class="cancelButton">Cancel</a>
-        </div>
-
-        <!-- Rating Section (hidden by default) -->
-        <div class="rating-section" style="display: none;">
-            <h3>How was your experience?</h3>
-            <div class="stars-container">
-                <span class="star" data-value="1">★</span>
-                <span class="star" data-value="2">★</span>
-                <span class="star" data-value="3">★</span>
-                <span class="star" data-value="4">★</span>
-                <span class="star" data-value="5">★</span>
+            <div class="button-container">
+                <button class="rateButton">Rate!</button>
+                <a href="{{ url_for('orders')}}" class="cancelButton">Cancel</a>
             </div>
-            <p class="rating-text" id="ratingText">Click on a star to rate</p>
-            <button class="submit-rating-btn">Submit Rating</button>
+
+            <!-- Rating Section (hidden by default) -->
+            <div class="rating-section" style="display: none;">
+                <h3>How was your experience?</h3>
+                <div class="stars-container">
+                    <span class="star" data-value="1">★</span>
+                    <span class="star" data-value="2">★</span>
+                    <span class="star" data-value="3">★</span>
+                    <span class="star" data-value="4">★</span>
+                    <span class="star" data-value="5">★</span>
+                </div>
+                <p class="rating-text" id="ratingText">Click on a star to rate</p>
+                <button class="submit-rating-btn">Submit Rating</button>
+            </div>
         </div>
     </div>
-</div>
 
-<script src="{{ url_for('static', filename='popUpPayment.js') }}"></script>
+    <script src="{{ url_for('static', filename='popUpPayment.js') }}"></script>
 </body>
 {% endblock %}

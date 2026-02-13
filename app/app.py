@@ -7,6 +7,7 @@ import db
 from repository import orders_repo, accounts_repo
 from reportlab.platypus import SimpleDocTemplate, Paragraph
 from reportlab.lib.styles import getSampleStyleSheet
+from datetime import date
 
 # Definieren einer Variable, die die aktuelle Datei zum Zentrum
 # der Anwendung macht.
@@ -185,14 +186,15 @@ def popUpSaved() -> str:
 
 @app.route("/add-order", methods=["POST"])
 def add_order() -> str:
-    date = request.form["date"]
-    #id = request.form["id"]
-    status = request.form["status"]
-    shipping_address = request.form["shipping_address"]
-    price = request.form["price"]
-    account_id = request.form["account_id"]
-    orders_repo.add_order(date, status, shipping_address, price, account_id)
-    return redirect(url_for("orders"))
+    order_date = date.today()
+    app.logger.info(order_date)
+    status = "Ordered"
+    shipping_address = request.form["address"] + ", " + request.form["zip"] + ", " + request.form["city"] + ", " + request.form["country"]
+    price = 30
+    app.logger.info(price)
+    account_id = accounts_repo.get_by_email(request.form['email'])[0][0]
+    orders_repo.add_order(order_date, status, shipping_address, price, account_id)
+    return redirect(url_for("popUpPayment"))
 
 @app.route("/cancel-order", methods=["POST"])
 def cancel_order() -> str:
