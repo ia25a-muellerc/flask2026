@@ -127,14 +127,14 @@ function renderCart() {
 }
 
 // Checkout-Button und initiales Rendern
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     console.log('DOMContentLoaded Event ausgelöst');
     renderCart();
     consumePendingNotice();
 
     const checkoutBtn = document.getElementById('checkout-btn');
     if (checkoutBtn) {
-        checkoutBtn.addEventListener('click', function() {
+        checkoutBtn.addEventListener('click', function () {
             const items = getCartItems();
             const total = items.reduce((sum, item) => sum + item.price, 0).toFixed(2);
             const quantity = items.length;
