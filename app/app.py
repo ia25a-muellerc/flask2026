@@ -183,14 +183,15 @@ def popUpPayment() -> str:
 def popUpSaved() -> str:
     return render_template("popUpSaved.html", languages=languages)
 
-@app.route("/add-product", methods=["POST"])
+@app.route("/add-order", methods=["POST"])
 def add_order() -> str:
     date = request.form["date"]
     #id = request.form["id"]
     status = request.form["status"]
     shipping_address = request.form["shipping_address"]
     price = request.form["price"]
-    orders_repo.add_order(date, status, shipping_address, price)
+    account_id = request.form["account_id"]
+    orders_repo.add_order(date, status, shipping_address, price, account_id)
     return redirect(url_for("orders"))
 
 @app.route("/cancel-order", methods=["POST"])

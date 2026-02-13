@@ -1,12 +1,12 @@
 from db import get_db
 from flask import current_app
 
-def add_order(date, status, shipping_address, price):
+def add_order(date, status, shipping_address, price, account_id):
     conn = get_db()
     cur = conn.cursor()
     try:
         cur.execute(
-            "INSERT INTO orders (date, status, shipping_address, price, canceled) VALUES (%s, %s, %s, %s, %s)", (date, status, shipping_address, price, False)
+            "INSERT INTO orders (date, status, shipping_address, price, canceled, account_id) VALUES (%s, %s, %s, %s, %s, %s)", (date, status, shipping_address, price, False, account_id)
         )
         conn.commit()
     except Exception as e:

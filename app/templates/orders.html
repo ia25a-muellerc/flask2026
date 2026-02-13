@@ -3,58 +3,59 @@
 {% block title %}Home{% endblock %}
 
 {% block head %}
-    <link rel="stylesheet" href="{{ url_for('static', filename='styles/order.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='styles/order.css') }}">
 {% endblock %}
 
 {% block content %}
 
-    <div class="content">
-        {% for order in orders %}
-            {% if order['canceled'] == false %}
-            <div class="order">
-            {% else %}
-            <div class="canceledOrder">
+<div class="content">
+    {% for order in orders %}
+    {% if order['canceled'] == false %}
+    <div class="order">
+        {% else %}
+        <div class="canceledOrder">
             {% endif %}
-                <img class="DeskDunkImg" src="{{ url_for('static', filename='Image (1).jpg') }}">
-                <div class="info">
-                    <h2>Order created: {{ order['date'] }}</h2>
-                    <h2>Order status: {{ order['status'] }}</h2>
-                    <p>Order ID: {{ order['id'] }}</p>
-                    <p>Shipping adress: {{ order['shipping_address'] }}</p>
-                    <p>Price: {{ order['price'] }}</p>
-                </div>
-                <div class="buttons">
-                    {% if order['canceled'] == false %}
-                        <form class="formButtons" action="{{ url_for('cancel_order') }}" method="POST">
-                            <button type="submit" name="order_id" value="{{ order['id'] }}">Cancel Order</button>
-                        </form>
-                        <form class="formButtons" action="{{ url_for('download_order') }}" method="POST">
-                            <button type="submit" name="order_id" value="{{ order['id'] }}">Download as PDF</button>  
-                        </form>    
-                    {% else %}
-                        <button class="canceled">Order Canceled</button>
-                        <button class="canceled">Download PDF</button>
-                    {% endif %}
-                </div>
-            </div>   
+            <img class="DeskDunkImg" src="{{ url_for('static', filename='Image (1).jpg') }}">
+            <div class="info">
+                <h2>Order created: {{ order['date'] }}</h2>
+                <h2>Order status: {{ order['status'] }}</h2>
+                <p>Order ID: {{ order['id'] }}</p>
+                <p>Shipping adress: {{ order['shipping_address'] }}</p>
+                <p>Price: {{ order['price'] }}</p>
+            </div>
+            <div class="buttons">
+                {% if order['canceled'] == false %}
+                <form class="formButtons" action="{{ url_for('cancel_order') }}" method="POST">
+                    <button type="submit" name="order_id" value="{{ order['id'] }}">Cancel Order</button>
+                </form>
+                <form class="formButtons" action="{{ url_for('download_order') }}" method="POST">
+                    <button type="submit" name="order_id" value="{{ order['id'] }}">Download as PDF</button>
+                </form>
+                {% else %}
+                <button class="canceled">Order Canceled</button>
+                <button class="canceled">Download PDF</button>
+                {% endif %}
+            </div>
+        </div>
         {% endfor %}
 
         <h1 style="color: white;">Für debug zwecke, dies muss nacher im hintergrund funktioniren</h1>
         <form action="{{ url_for('add_order') }}" method="POST">
             <input type="date" name="date" placeholder="Date" required>
             <input type="text" name="status" placeholder="Status" required>
-            
+
             <input type="text" name="shipping_address" placeholder="Shipping Address" required>
             <input type="number" name="price" placeholder="Price" required>
+            <input type="number" name="account_id" placeholder="Account ID" required>
             <br><br>
-            <button type="submit" name="action" value="add_product">Order Kreieren</button>
+            <button type="submit" name="action" value="add_order">Order Kreieren</button>
         </form>
     </div>
 
     <script>
-        function cancel(){
+        function cancel() {
             console.log("test");
         }
     </script>
 
-{% endblock %}
+    {% endblock %}
