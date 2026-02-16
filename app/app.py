@@ -107,10 +107,6 @@ def profile():
 
     return render_template("data.html")
 
-@app.route("/shipping")
-def shipping() -> str:
-    return render_template("shipping.html", languages=languages)
-
 @app.route("/contact")
 def contact() -> str:
     return render_template("contact.html", languages=languages)
