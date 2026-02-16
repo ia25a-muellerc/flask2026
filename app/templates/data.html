@@ -8,15 +8,7 @@
 <div class="profile-card">
     <a href="{{ url_for('home') }}" class="back">← Back</a>
 
-    <form method="POST" action="{{ url_for('profile') }}">
-        <p class="label">Name</p>
-        <input class="inputButton" name="name" required>
-
-        <p class="label">Surname</p>
-        <input class="inputButton" name="surname" required>
-
-        <p class="label">Email</p>
-        <input class="inputButton" name="email" type="email" required>
+    
     {% if session.get('user_email') %}
         <!-- Profildaten Formular - nur für eingeloggte Benutzer -->
         <h2 style="color: #f58800; text-align: center; margin: 0 0 24px 0; font-size: 1.5rem;">Profile Info</h2>
