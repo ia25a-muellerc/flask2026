@@ -60,6 +60,7 @@ body {
     gap: 12px;
     justify-content: space-between;
     margin-bottom: 20px;
+    flex-wrap: wrap;
 }
 
 .rateButton {
@@ -92,14 +93,37 @@ body {
     cursor: pointer;
     text-decoration: none;
     text-align: center;
+    align-items: center;
+    justify-content: center;
     transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
-    display: inline-block;
+    display: flex;
 }
 
 .cancelButton:hover {
     background-color: #444;
     border-color: #666;
     color: #fff;
+}
+
+.downloadButton {
+    flex: 1;
+    background-color: #27ae60;
+    color: #fff;
+    border: none;
+    padding: 14px;
+    border-radius: 16px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    text-decoration: none;
+    text-align: center;
+    transition: background-color 0.2s ease, box-shadow 0.2s ease;
+    display: inline-block;
+}
+
+.downloadButton:hover {
+    background-color: #2ecc71;
+    box-shadow: 0 0 10px rgba(46, 204, 113, 0.7);
 }
 
 /* Rating Section */

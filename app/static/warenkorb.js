@@ -132,15 +132,26 @@ document.addEventListener('DOMContentLoaded', function() {
     renderCart();
     consumePendingNotice();
 
-    const checkoutBtn = document.getElementById('checkout-btn');
-    if (checkoutBtn) {
-        checkoutBtn.addEventListener('click', function() {
+    const checkoutForm = document.getElementById('checkout-form');
+    if (checkoutForm) {
+        checkoutForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+
             const items = getCartItems();
-            const total = items.reduce((sum, item) => sum + item.price, 0).toFixed(2);
             const quantity = items.length;
 
-            // Zur Zahlungsseite mit Betrag und Menge umleiten
-            window.location.href = `/payment?total=${total}&quantity=${quantity}&product=Desk%20Dunk`;
+            // Zuerst Quantity an Server senden, dann Form submitten
+            fetch('/api/cart/update', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ quantity: quantity })
+            }).then(() => {
+                // Nach erfolgreicher Speicherung das Form submitten
+                checkoutForm.submit();
+            }).catch(() => {
+                // Bei Fehler trotzdem submitten
+                checkoutForm.submit();
+            });
         });
     }
 });

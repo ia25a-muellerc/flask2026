@@ -1,17 +1,23 @@
-// Bestelldaten aus URL-Parametern
-const urlParams = new URLSearchParams(window.location.search);
-const total = urlParams.get('total') || '30.00';
-const quantity = urlParams.get('quantity') || '1';
-const product = urlParams.get('product') || 'Desk Dunk';
-
+// Bestelldaten vom Server holen
 document.addEventListener('DOMContentLoaded', function() {
-    // Bestellzusammenfassung anzeigen
-    document.getElementById('summaryProduct').textContent = decodeURIComponent(product);
-    document.getElementById('summaryQuantity').textContent = quantity;
-    
-    const totalValue = parseFloat(total) || 30.00;
-    document.getElementById('summaryTotal').textContent = ' CHF ' + totalValue.toLocaleString('de-CH', {minimumFractionDigits: 2, maximumFractionDigits: 2});
-    
+    // Daten vom Server holen
+    fetch('/api/cart')
+        .then(response => response.json())
+        .then(data => {
+            const quantity = data.quantity || 1;
+            const total = data.total || '30.00';
+
+            // Bestellzusammenfassung anzeigen
+            document.getElementById('summaryProduct').textContent = 'Desk Dunk';
+            document.getElementById('summaryQuantity').textContent = quantity;
+            document.getElementById('summaryTotal').textContent = ' CHF ' + parseFloat(total).toLocaleString('de-CH', {minimumFractionDigits: 2, maximumFractionDigits: 2});
+        })
+        .catch(() => {
+            // Fallback
+            document.getElementById('summaryQuantity').textContent = '1';
+            document.getElementById('summaryTotal').textContent = ' CHF 30.00';
+        });
+
     // Zahlungsmethode auswählen
     document.querySelectorAll('.payment-option').forEach(option => {
         option.addEventListener('click', function() {

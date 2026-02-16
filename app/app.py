@@ -1,8 +1,10 @@
 import os
-from flask import Flask, render_template, request, redirect, url_for, session, jsonify
+from io import BytesIO
+from flask import Flask, render_template, request, redirect, url_for, session, jsonify, send_file
 from dotenv import load_dotenv # Lädt .env Datei
 from services import math_service
 from config import DevelopmentConfig, ProductionConfig
+from generatepdf import generate_bestellbestaetigung
 
 # Definieren einer Variable, die die aktuelle Datei zum Zentrum
 # der Anwendung macht.
@@ -100,9 +102,69 @@ def get_cart():
     })
 
 
+@app.route("/checkout", methods=["POST"])
+def checkout():
+    """Checkout - berechnet Preis serverseitig um Manipulation zu verhindern"""
+    # Preis pro Artikel (fest definiert auf Server)
+    PRICE_PER_ITEM = 30.00
+
+    # Quantity aus Session holen (nicht aus Request!)
+    quantity = int(session.get('cart_quantity', 1))
+
+    # Total serverseitig berechnen
+    total = quantity * PRICE_PER_ITEM
+
+    # In Session speichern für PDF
+    session['cart_total'] = f"{total:.2f}"
+    session.modified = True
+
+    return redirect(url_for('payment'))
+
+
 @app.route("/payment")
 def payment() -> str:
     return render_template("payment.html")
+
+@app.route("/download_bestellbestaetigung")
+def download_bestellbestaetigung():
+    """Generiert und lädt die Bestellbestätigung als PDF herunter"""
+
+    # Prüfen ob Benutzer eingeloggt ist
+    if not session.get("user_email"):
+        return redirect(url_for("signin"))
+
+    # Benutzerdaten aus Session holen
+    user_name = session.get("user_name", "Kunde")
+    user_surname = session.get("user_surname", "")
+    user_address = session.get("user_address", "Unbekannte Adresse")
+    user_zip = session.get("user_zip", "")
+    user_city = session.get("user_city", "")
+    quantity = session.get("cart_quantity", 1)
+    print(session)
+
+    # Bestellnummer generieren (vereinfacht)
+    order_number = hash(session.get("user_email")) % 100000
+
+    # PDF generieren
+    pdf_bytes = generate_bestellbestaetigung(
+        order_number=order_number,
+        user_name=user_name,
+        user_surname=user_surname,
+        user_address=user_address,
+        user_zip=user_zip,
+        user_city=user_city,
+        quantity=quantity,
+        price=30.00
+    )
+
+    # PDF zum Download senden
+    return send_file(
+        BytesIO(pdf_bytes),
+        mimetype="application/pdf",
+        as_attachment=True,
+        download_name=f"bestellbestaetigung_{order_number}.pdf"
+    )
+
 
 @app.route("/data")
 def data() -> str:

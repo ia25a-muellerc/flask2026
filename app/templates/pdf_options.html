@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% block title %}Order Confirmation PDF{% endblock %}
+{% block content %}
+<div style="padding: 40px; text-align: center; background: #111; min-height: 80vh;">
+    <div style="background: #222; padding: 30px; border-radius: 15px; max-width: 600px; margin: 0 auto; border: 1px solid #f58800;">
+        <h1 style="color: #f58800; margin-bottom: 20px;">Order Confirmation</h1>
+        <p style="color: #ccc; margin-bottom: 30px;">
+            Your order confirmation is ready! Choose an option:
+        </p>
+        <div style="display: flex; flex-direction: row; gap: 15px; justify-content: center; flex-wrap: wrap;">
+            <a href="{{ url_for('download_pdf_test') }}" target="_blank"
+               style="background: #27ae60; color: white; padding: 12px 20px; border-radius: 10px; text-decoration: none; font-weight: bold;">
+                Open PDF
+            </a>
+            <a href="{{ url_for('download_pdf_attachment') }}"
+               style="background: #3498db; color: white; padding: 12px 20px; border-radius: 10px; text-decoration: none; font-weight: bold;">
+                Download PDF
+            </a>
+            <a href="/"
+               style="background: #333; color: #ccc; padding: 12px 20px; border-radius: 10px; text-decoration: none; border: 1px solid #555;">
+                Back
+            </a>
+        </div>
+        <p style="color: #666; margin-top: 30px; font-size: 12px;">
+            If the download doesnt work, click Open PDF<br>
+            and save it with Ctrl+S or via the print menu.
+        </p>
+    </div>
+</div>
+{% endblock %}

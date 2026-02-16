@@ -35,7 +35,9 @@
             <span id="total">CHF 0.00</span>
         </div>
 
-        <button class="checkout" id="checkout-btn" style="display: none;">buy now</button>
+    <form method="POST" action="{{ url_for('checkout') }}" id="checkout-form">
+        <button type="submit" class="checkout" id="checkout-btn" style="display: none;">buy now</button>
+    </form>
 </div>
 <script src="{{ url_for('static', filename='warenkorb.js') }}"></script>
 {% endblock %}
