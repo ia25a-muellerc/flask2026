@@ -30,7 +30,7 @@
 
     <a href="{{ url_for('register') }}">Noch kein Konto? Registrieren</a>
 
-    <a href="/forgot-password" style="text-decoration: underline;">Forgot password?</a>
+    <a href="{{ url_for('reset_password') }}" style="text-decoration: underline;">Forgot password?</a>
 
 </div>
 {% endblock %}

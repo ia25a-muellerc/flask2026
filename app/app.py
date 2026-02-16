@@ -234,6 +234,32 @@ def submit():
     name = request.form.get("name")
     return redirect(url_for("result", name=name))
 
+@app.route("/reset-password", methods=["GET", "POST"])
+def reset_password() -> str:
+    if request.method == "POST":
+        email = request.form.get("email", "").strip()
+        password = request.form.get("password", "").strip()
+        password_confirm = request.form.get("password_confirm", "").strip()
+
+        if not email or not password or not password_confirm:
+            return render_template("reset-password.html", error="Bitte alle Felder ausfuellen")
+
+        if email not in user_store:
+            return render_template("reset-password.html", error="Kein Konto mit dieser Email gefunden")
+
+        if password != password_confirm:
+            return render_template("reset-password.html", error="Passwoerter stimmen nicht ueberein")
+
+        if len(password) < 4:
+            return render_template("reset-password.html", error="Passwort muss mindestens 4 Zeichen lang sein")
+
+        # Passwort aktualisieren
+        user_store[email]["password"] = password
+        app.logger.info(f"Password reset for user: {email}")
+        return render_template("reset-password.html", success="Passwort erfolgreich geaendert! Bitte loggen Sie sich mit dem neuen Passwort ein.")
+
+    return render_template("reset-password.html")
+
 @app.route("/register", methods=["GET", "POST"])
 def register() -> str:
     if request.method == "POST":
