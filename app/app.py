@@ -5,8 +5,7 @@ from services import math_service
 from config import DevelopmentConfig, ProductionConfig
 import db
 from repository import orders_repo, accounts_repo
-from reportlab.platypus import SimpleDocTemplate, Paragraph
-from reportlab.lib.styles import getSampleStyleSheet
+
 
 # Definieren einer Variable, die die aktuelle Datei zum Zentrum
 # der Anwendung macht.
