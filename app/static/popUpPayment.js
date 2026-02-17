@@ -72,7 +72,7 @@ document.addEventListener('DOMContentLoaded', function() {
             return;
         }
 
-        ratingText.textContent = `Vielen Dank! Sie haben ${selectedRating} Stern${selectedRating !== 1 ? 'e' : ''} gegeben`;
+        ratingText.textContent = `Danke! Du hast ${selectedRating} Stern${selectedRating !== 1 ? 'e' : ''} vergeben`;
         ratingText.style.color = '#4ade80';
 
         submitRatingBtn.disabled = true;

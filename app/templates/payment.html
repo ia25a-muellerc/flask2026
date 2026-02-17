@@ -81,10 +81,10 @@
                 <button class="payment-btn" data-method="twint">Mit Twint bezahlen</button>
             </div>
 
-            <!-- Lastschrift -->
+            <!-- Rechnung -->
             <div class="payment-option">
                 <div class="payment-logo">
-                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTtiR10jbwxu0jyjy-x-cGgR8p_qWgy0D6GqQ&ss" alt="Lastschrift Logo" class="logo-image">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTtiR10jbwxu0jyjy-x-cGgR8p_qWgy0D6GqQ&ss" alt="Rechnung Logo" class="logo-image">
                 </div>
                 <h3>Rechnung</h3>
                 <p>Zahlung per Rechnung</p>
@@ -92,11 +92,11 @@
             </div>
         </div>
 
-        <!-- Payment Form (initially hidden) -->
+        <!-- Zahlungsformular (anfangs versteckt) -->
         <div id="paymentFormSection" class="payment-form-section" style="display: none; margin-top: 40px;">
             <h2 id="formTitle">Zahlungsdetails</h2>
             <form class="payment-form" id="selectedPaymentForm">
-                <!-- Credit Card Details -->
+                <!-- Kreditkarten-Details -->
                 <div class="form-section" id="cardSection" style="display: none;">
                     <h3>Kreditkarten-Informationen</h3>
                     <div class="form-group">
@@ -123,7 +123,7 @@
                     </div>
                 </div>
 
-                <!-- Twint Details -->
+                <!-- Twint-Details -->
                 <div class="form-section" id="twintSection" style="display: none;">
                     <h3>Twint Informationen</h3>
                     <div class="form-group">
@@ -133,7 +133,7 @@
                     </div>
                 </div>
 
-                <!-- Billing Address -->
+                <!-- Rechnungsadresse -->
                 <div class="form-section">
                     <h3>Rechnungsadresse</h3>
                     <div class="form-group">
@@ -206,7 +206,7 @@
             </form>
         </div>
 
-        <!-- Bestellbestaetigung Modal -->
+        <!-- Bestellbestätigung Modal -->
         <div id="purchaseModal" class="purchase-modal" aria-hidden="true">
             <div class="purchase-modal__content" role="dialog" aria-modal="true" aria-labelledby="purchaseModalTitle">
                 <h3 id="purchaseModalTitle">Kauf bestätigen</h3>

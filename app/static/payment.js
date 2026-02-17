@@ -88,11 +88,10 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         }
         
-        // Ablaufdatum prüfen
         if (field.id === 'expiry') {
             if (!/^\d{2}\/\d{2}$/.test(value)) {
                 field.classList.add('invalid');
-                errorSpan.textContent = 'Format: MM/YY';
+                errorSpan.textContent = 'Format: MM/JJ';
                 return false;
             }
         }
