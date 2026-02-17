@@ -1,11 +1,11 @@
 {% extends 'base.html' %}
 
-{% block title %}Result{% endblock %}
+{% block title %}Ergebnis{% endblock %}
 
 {% block content %}
 <head>
   <meta charset="UTF-8">
-  <title>Payment Done</title>
+  <title>Gespeichert</title>
   <link rel="stylesheet" href="{{ url_for('static', filename='styles/popUpSaved.css') }}">
 </head>
 
@@ -15,13 +15,13 @@
     <div class="saved-card">
         <button class="info-btn">ⓘ</button>
 
-        <h2>Saved!</h2>
+        <h2>Gespeichert!</h2>
 
         <p>
-            Your password has been successfully saved!
+            Ihr Passwort wurde erfolgreich gespeichert!
         </p>
 
-        <button class="rateButton">Back to home</button>
+        <button class="rateButton">Zurück zur Startseite</button>
     </div>
 </div>
 

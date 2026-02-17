@@ -24,9 +24,9 @@ function consumePendingNotice() {
     if (!notice) return;
 
     if (notice === 'added') {
-        showNotification('Added to cart');
+        showNotification('Zum Warenkorb hinzugefügt');
     } else if (notice === 'removed') {
-        showNotification('Removed from cart');
+        showNotification('Aus Warenkorb entfernt');
     }
 
     localStorage.removeItem('cart_notice');
@@ -48,7 +48,7 @@ function addToCart() {
         price: pricePerItem
     });
     saveCartItems(items);
-    showNotification('Added to cart');
+    showNotification('Zum Warenkorb hinzugefügt');
     renderCart();
 }
 
@@ -60,7 +60,7 @@ function increaseQuantity() {
             price: pricePerItem
         });
         saveCartItems(items);
-        showNotification('Added to cart');
+        showNotification('Zum Warenkorb hinzugefügt');
         renderCart();
     }
 }
@@ -70,7 +70,7 @@ function decreaseQuantity() {
     if (items.length > 0) {
         items.pop();
         saveCartItems(items);
-        showNotification('Removed from cart');
+        showNotification('Aus Warenkorb entfernt');
         renderCart();
     }
 }
