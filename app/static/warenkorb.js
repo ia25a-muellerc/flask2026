@@ -70,7 +70,7 @@ function decreaseQuantity() {
     if (items.length > 0) {
         items.pop();
         saveCartItems(items);
-        showNotification('Removed from cart');
+        showNotification('Aus dem Warenkorb entfernt');
         renderCart();
     }
 }

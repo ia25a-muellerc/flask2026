@@ -9,29 +9,29 @@
 </head>
 <div class="profile-card">
 
-    <a href="{{ url_for('home') }}" class="back">← Back</a>
+    <a href="{{ url_for('home') }}" class="back">← Zurück</a>
 
     {% if error %}
     <p style="color: #f58800; text-align: center; margin-bottom: 10px;">{{ error }}</p>
     {% endif %}
 
     <form method="POST" action="{{ url_for('register') }}" style="all: unset;">
-        <p class="label">Name</p>
+        <p class="label">Vorname</p>
         <input type="text" name="name" class="inputButton" required></input>
 
-        <p class="label">Surname</p>
+        <p class="label">Nachname</p>
         <input type="text" name="surname" class="inputButton" required></input>
 
-        <p class="label">Email</p>
+        <p class="label">E-Mail</p>
         <input type="email" name="email" class="inputButton" required></input>
 
-        <p class="label">Password</p>
+        <p class="label">Passwort</p>
         <div class="password-wrapper">
             <input type="password" name="password" class="inputButton" required></input>
             <button type="button" class="toggle-password" data-target="password" aria-label="Passwort anzeigen">👁</button>
         </div>
 
-        <p class="label">Password wiederholen</p>
+        <p class="label">Passwort wiederholen</p>
         <div class="password-wrapper">
             <input type="password" name="password_confirm" class="inputButton" required></input>
             <button type="button" class="toggle-password" data-target="password_confirm" aria-label="Passwort anzeigen">👁</button>

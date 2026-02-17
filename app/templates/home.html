@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 
-{% block title %}Home{% endblock %}
+{% block title %}Startseite{% endblock %}
 
 {% block head %}
     <link rel="stylesheet" href="{{ url_for('static', filename='styles/style2.css') }}">
@@ -13,13 +13,13 @@
         <section class="hero section-block">
             <div class="hero-text reveal reveal--up">
                 <p class="eyebrow">DeskDunk</p>
-                <h1 class="hero-title">Make your desk a playground</h1>
+                <h1 class="hero-title">Mach deinen Schreibtisch zum Spielplatz</h1>
                 <p class="hero-lead">
-                    A premium desk accessory that blends design and play. Clean materials, solid build, and a
-                    satisfying mini-game feel for focused breaks.
+                    Ein hochwertiges Schreibtisch-Accessoire, das Design und Spiel vereint. Saubere Materialien,
+                    solide Verarbeitung und ein befriedigendes Mini-Spielgefühl für konzentrierte Pausen.
                 </p>
                 <div class="cta-row">
-                    <button onclick="addToCartAndRedirect()" class="purchaser reveal reveal--up" style="--reveal-delay: 0.05s;">Purchase</button>
+                    <button onclick="addToCartAndRedirect()" class="purchaser reveal reveal--up" style="--reveal-delay: 0.05s;">Kaufen</button>
                 </div>
             </div>
 
@@ -38,29 +38,29 @@
         <!-- Features Section -->
         <section class="section-block">
             <div class="section-header reveal reveal--up">
-                <h2 class="section-title">Why DeskDunk?</h2>
-                <p class="section-subtitle">Everything you need for the perfect desk break.</p>
+                <h2 class="section-title">Warum DeskDunk?</h2>
+                <p class="section-subtitle">Alles was du für die perfekte Schreibtischpause brauchst.</p>
             </div>
             <div class="features-grid">
                 <div class="feature-card reveal reveal--up" style="--reveal-delay: 0.05s;">
                     <div class="feature-icon-box">🎯</div>
-                    <h3>High Quality</h3>
-                    <p>Premium materials and solid construction for long-lasting fun.</p>
+                    <h3>Hohe Qualität</h3>
+                    <p>Premium-Materialien und solide Konstruktion für langanhaltenden Spielspass.</p>
                 </div>
                 <div class="feature-card reveal reveal--up" style="--reveal-delay: 0.1s;">
                     <div class="feature-icon-box">⚡</div>
-                    <h3>Quick Breaks</h3>
-                    <p>Perfect for 2-5 minute desk breaks to boost productivity.</p>
+                    <h3>Schnelle Pausen</h3>
+                    <p>Perfekt für 2-5 Minuten Schreibtischpausen, um die Produktivität zu steigern.</p>
                 </div>
                 <div class="feature-card reveal reveal--up" style="--reveal-delay: 0.15s;">
                     <div class="feature-icon-box">🏢</div>
-                    <h3>Office Ready</h3>
-                    <p>Space-saving design fits any desk without clutter.</p>
+                    <h3>Bürotauglich</h3>
+                    <p>Platzsparendes Design, das auf jeden Schreibtisch passt.</p>
                 </div>
                 <div class="feature-card reveal reveal--up" style="--reveal-delay: 0.2s;">
                     <div class="feature-icon-box">👥</div>
-                    <h3>Social Fun</h3>
-                    <p>Challenge colleagues and boost team spirit.</p>
+                    <h3>Gemeinsamer Spass</h3>
+                    <p>Fordere Kollegen heraus und stärke den Teamgeist.</p>
                 </div>
             </div>
         </section>
@@ -68,25 +68,25 @@
         <!-- Product Views Section -->
         <section class="section-block">
             <div class="section-header reveal reveal--up">
-                <h2 class="section-title">Product views</h2>
-                <p class="section-subtitle">A quick look at the craftsmanship and details.</p>
+                <h2 class="section-title">Produktansichten</h2>
+                <p class="section-subtitle">Ein kurzer Blick auf die Handwerkskunst und Details.</p>
             </div>
             <div class="wrapper reveal reveal--fade" style="--reveal-delay: 0.05s;">
                 <div class="inner" style="--quantity: 5;">
                     <div class="carousel-card" style="--index: 0;--color-card: 142, 249, 252;">
-                        <img class="img" src="{{ url_for('static', filename='Image (1).jpg') }}"/>
+                        <img class="img" src="{{ url_for('static', filename='Image (1).jpg') }}" alt="Produktbild 1"/>
                     </div>
                     <div class="carousel-card" style="--index: 1;--color-card: 142, 252, 204;">
-                        <img class="img" src="{{ url_for('static', filename='Image (2).jpg') }}"/>
+                        <img class="img" src="{{ url_for('static', filename='Image (2).jpg') }}" alt="Produktbild 2"/>
                     </div>
                     <div class="carousel-card" style="--index: 2;--color-card: 142, 252, 157;">
-                        <img class="img" src="{{ url_for('static', filename='Image (3).jpg') }}"/>
+                        <img class="img" src="{{ url_for('static', filename='Image (3).jpg') }}" alt="Produktbild 3"/>
                     </div>
                     <div class="carousel-card" style="--index: 3;--color-card: 215, 252, 142;">
-                        <img class="img" src="{{ url_for('static', filename='Image (4).jpg') }}"/>
+                        <img class="img" src="{{ url_for('static', filename='Image (4).jpg') }}" alt="Produktbild 4"/>
                     </div>
                     <div class="carousel-card" style="--index: 4;--color-card: 252, 252, 142;">
-                        <img class="img" src="{{ url_for('static', filename='Image (5).jpg') }}"/>
+                        <img class="img" src="{{ url_for('static', filename='Image (5).jpg') }}" alt="Produktbild 5"/>
                     </div>
                 </div>
             </div>
@@ -95,41 +95,41 @@
         <!-- Behind the Build Section -->
         <section class="section-block">
             <div class="section-header reveal reveal--up">
-                <h2 class="section-title">Behind the build</h2>
-                <p class="section-subtitle">How DeskDunk goes from idea to finished piece.</p>
+                <h2 class="section-title">Hinter den Kulissen</h2>
+                <p class="section-subtitle">Wie DeskDunk von der Idee zum fertigen Produkt wird.</p>
             </div>
             <div class="imageHolder">
                 <div class="card reveal reveal--up" style="--reveal-delay: 0.05s;">
                     <img class="descriptionImage" src="{{ url_for('static', filename='Image (6).jpg') }}"
-                         alt="Description Image">
+                         alt="Beschreibungsbild">
                     <div class="card__content">
-                        <p class="card__title">Coloring</p>
-                        <p class="card__description">The first step in creating our product was to draw the basketball court
-                            and design the balls. We used acrylic paints from Jumbo and painted the entire box white. After
-                            that, we outlined the basketball court.
-                            Once this was finished, we added the final details and glued our logo to the top of the box.</p>
+                        <p class="card__title">Bemalen</p>
+                        <p class="card__description">Der erste Schritt bei der Erstellung unseres Produkts war das Zeichnen des Basketballfelds
+                            und das Design der Bälle. Wir haben Acrylfarben von Jumbo verwendet und die gesamte Box weiss bemalt. Danach
+                            haben wir das Basketballfeld umrissen.
+                            Als das fertig war, fügten wir die letzten Details hinzu und klebten unser Logo oben auf die Box.</p>
                     </div>
                 </div>
                 <div class="card reveal reveal--up" style="--reveal-delay: 0.1s;">
                     <img class="descriptionImage" src="{{ url_for('static', filename='Image (7).jpg') }}"
-                         alt="Description Image">
+                         alt="Beschreibungsbild">
                     <div class="card__content">
-                        <p class="card__title">Construct</p>
-                        <p class="card__description">When we finished drawing the entire box, we started constructing our
-                            idea. First, we screwed both basketball buckets onto the box. Then, we built the net between the
-                            two buckets. After completing this step, we taped everything and glued it in place to ensure a
-                            better hold.</p>
+                        <p class="card__title">Konstruieren</p>
+                        <p class="card__description">Als wir mit dem Bemalen der gesamten Box fertig waren, begannen wir mit der Konstruktion unserer
+                            Idee. Zuerst schraubten wir beide Basketballkörbe an die Box. Dann bauten wir das Netz zwischen den
+                            beiden Körben. Nach Abschluss dieses Schritts haben wir alles abgeklebt und festgeklebt, um einen
+                            besseren Halt zu gewährleisten.</p>
                     </div>
                 </div>
                 <div class="card reveal reveal--up" style="--reveal-delay: 0.15s;">
                     <img class="descriptionImage" src="{{ url_for('static', filename='Image (8).jpg') }}"
-                         alt="Description Image">
+                         alt="Beschreibungsbild">
                     <div class="card__content">
-                        <p class="card__title">Play</p>
-                        <p class="card__description">After constructing the entire project, the basketball game is ready to
-                            be played in your office. Everything is firmly attached and stable, allowing the game to be used
-                            safely and comfortably. Now you can enjoy playing basketball during breaks or in your free time
-                            and have fun with friends or colleagues. HAVE FUN!</p>
+                        <p class="card__title">Spielen</p>
+                        <p class="card__description">Nach dem Aufbau des gesamten Projekts ist das Basketballspiel bereit,
+                            in deinem Büro gespielt zu werden. Alles ist fest befestigt und stabil, sodass das Spiel sicher
+                            und bequem verwendet werden kann. Jetzt kannst du während der Pausen oder in deiner Freizeit
+                            Basketball spielen und Spass mit Freunden oder Kollegen haben. VIEL SPASS!</p>
                     </div>
                 </div>
             </div>
@@ -138,21 +138,20 @@
         <!-- Mini Game Section -->
         <section class="section-block">
             <div class="section-header reveal reveal--up">
-                <h2 class="section-title">Mini game</h2>
-                <p class="section-subtitle">A playful add-on is on the way.</p>
+                <h2 class="section-title">Minispiel</h2>
+                <p class="section-subtitle">Ein spielerisches Extra ist in Arbeit.</p>
             </div>
-        </div>
         <div class="miniGameHolder">
-            <iframe src="{{ url_for('static', filename='MinigameV4/minigame.html') }}" style="border:none;" scrolling="no" title="description" height="100%" width="100%"></iframe>
+            <iframe src="{{ url_for('static', filename='MinigameV4/minigame.html') }}" style="border:none;" scrolling="no" title="Minispiel" height="100%" width="100%"></iframe>
         </div>
         </section>
 
         <!-- CTA Section -->
         <section class="section-block cta-section reveal reveal--up">
             <div class="cta-content">
-                <h2>Ready to transform your desk?</h2>
-                <p>Join thousands of happy DeskDunk users and bring fun back to your workspace.</p>
-                <button onclick="addToCartAndRedirect()" class="purchaser-large">Get Your DeskDunk Now</button>
+                <h2>Bereit, deinen Schreibtisch zu verwandeln?</h2>
+                <p>Schliesse dich Tausenden zufriedener DeskDunk-Nutzer an und bringe Spass zurück an deinen Arbeitsplatz.</p>
+                <button onclick="addToCartAndRedirect()" class="purchaser-large">Hol dir jetzt dein DeskDunk</button>
             </div>
         </section>
 
@@ -161,11 +160,11 @@
     <!-- Bestätigungsmodal -->
     <div id="confirmModal" class="modal">
         <div class="modal-content">
-            <h2>Do you want to add to the cart?</h2>
+            <h2>Möchtest du es zum Warenkorb hinzufügen?</h2>
             <p>Desk Dunk - CHF 30.00</p>
             <div class="modal-buttons">
-                <button onclick="closeConfirmModal()" class="modal-btn cancel-btn">Cancel</button>
-                <button onclick="confirmAddToCart()" class="modal-btn submit-btn">Submit</button>
+                <button onclick="closeConfirmModal()" class="modal-btn cancel-btn">Abbrechen</button>
+                <button onclick="confirmAddToCart()" class="modal-btn submit-btn">Bestätigen</button>
             </div>
         </div>
     </div>

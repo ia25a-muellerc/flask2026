@@ -10,11 +10,11 @@ document.addEventListener('DOMContentLoaded', function() {
 
     let selectedRating = 0;
     const ratingLabels = {
-        1: 'Poor',
-        2: 'Not good',
+        1: 'Schlecht',
+        2: 'Nicht gut',
         3: 'Okay',
-        4: 'Good',
-        5: 'Excellent!'
+        4: 'Gut',
+        5: 'Ausgezeichnet!'
     };
 
     rateButton.addEventListener('click', function(e) {
@@ -67,12 +67,12 @@ document.addEventListener('DOMContentLoaded', function() {
 
     submitRatingBtn.addEventListener('click', function() {
         if (selectedRating === 0) {
-            ratingText.textContent = 'Please select a rating!';
+            ratingText.textContent = 'Bitte wähle eine Bewertung!';
             ratingText.style.color = '#ff6b6b';
             return;
         }
 
-        ratingText.textContent = `Thank you! You rated ${selectedRating} star${selectedRating !== 1 ? 's' : ''}`;
+        ratingText.textContent = `Danke! Du hast ${selectedRating} Stern${selectedRating !== 1 ? 'e' : ''} vergeben`;
         ratingText.style.color = '#4ade80';
 
         submitRatingBtn.disabled = true;

@@ -8,23 +8,23 @@
 <body>
     <div class="payment-container">
         <a href="{{ url_for('warenkorb') }}" class="back-button">
-            <span class="back-arrow">←</span> Back
+            <span class="back-arrow">←</span> Zurück
         </a>
 
         <!-- Bestellzusammenfassung -->
         <div class="order-summary">
-            <h2>Order Summary</h2>
+            <h2>Bestellübersicht</h2>
             <div class="summary-details">
                 <div class="summary-item">
-                    <span>Product:</span>
+                    <span>Produkt:</span>
                     <span id="summaryProduct">Desk Dunk</span>
                 </div>
                 <div class="summary-item">
-                    <span>Items:</span>
+                    <span>Anzahl:</span>
                     <span id="summaryQuantity">1</span>
                 </div>
                 <div class="summary-item total">
-                    <span>Total:</span>
+                    <span>Gesamtbetrag:</span>
                     <span id="summaryTotal">CHF 30,00</span>
                 </div>
             </div>
@@ -37,8 +37,8 @@
                     <img src="https://download.logo.wine/logo/PayPal/PayPal-Logo.wine.png" alt="PayPal Logo" class="logo-image">
                 </div>
                 <h3>PayPal</h3>
-                <p>Fast and secure payment with PayPal</p>
-                <button class="payment-btn" data-method="paypal">Pay with PayPal</button>
+                <p>Schnelle und sichere Zahlung mit PayPal</p>
+                <button class="payment-btn" data-method="paypal">Mit PayPal bezahlen</button>
             </div>
 
             <!-- Kreditkarte -->
@@ -46,9 +46,9 @@
                 <div class="payment-logo">
                     <img src="https://www.visa.de/content/dam/VCOM/regional/ve/germany/in-page-images/Produkte/card-classic.png" alt="Kreditkarte Logo" class="logo-image">
                 </div>
-                <h3>Credit Card</h3>
-                <p>Visa, Mastercard or other cards</p>
-                <button class="payment-btn" data-method="card">Pay with Card</button>
+                <h3>Kreditkarte</h3>
+                <p>Visa, Mastercard oder andere Karten</p>
+                <button class="payment-btn" data-method="card">Mit Karte bezahlen</button>
             </div>
 
             <!-- Apple Pay -->
@@ -57,8 +57,8 @@
                     <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTWxYUQvdwKXZ9meVu4Jx6fr7nNNo99TLl-bA&s" alt="Apple Pay" class="logo-image">
                 </div>
                 <h3>Apple Pay</h3>
-                <p>Payment with Apple Pay</p>
-                <button class="payment-btn" data-method="applepay">Pay with Apple Pay</button>
+                <p>Zahlung mit Apple Pay</p>
+                <button class="payment-btn" data-method="applepay">Mit Apple Pay bezahlen</button>
             </div>
 
             <!-- Google Pay -->
@@ -67,8 +67,8 @@
                     <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f2/Google_Pay_Logo.svg/960px-Google_Pay_Logo.svg.png" alt="Google Pay Logo" class="logo-image">
                 </div>
                 <h3>Google Pay</h3>
-                <p>Fast payment with Google Pay</p>
-                <button class="payment-btn" data-method="googlepay">Pay with Google Pay</button>
+                <p>Schnelle Zahlung mit Google Pay</p>
+                <button class="payment-btn" data-method="googlepay">Mit Google Pay bezahlen</button>
             </div>
 
             <!-- Twint -->
@@ -77,42 +77,42 @@
                     <img src="https://play-lh.googleusercontent.com/pGZsOWcRRSQLNncRTfhGQKP_Oql9-ZmtdygrFd8myq7wONKa-INO-gFSy1xp5BL2yA" alt="Twint Logo" class="logo-image">
                 </div>
                 <h3>Twint</h3>
-                <p>Twint payment</p>
-                <button class="payment-btn" data-method="twint">Pay with Twint</button>
+                <p>Twint Zahlung</p>
+                <button class="payment-btn" data-method="twint">Mit Twint bezahlen</button>
             </div>
 
-            <!-- Lastschrift -->
+            <!-- Rechnung -->
             <div class="payment-option">
                 <div class="payment-logo">
-                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTtiR10jbwxu0jyjy-x-cGgR8p_qWgy0D6GqQ&ss" alt="Lastschrift Logo" class="logo-image">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTtiR10jbwxu0jyjy-x-cGgR8p_qWgy0D6GqQ&ss" alt="Rechnung Logo" class="logo-image">
                 </div>
-                <h3>Invoice</h3>
-                <p>Payment by invoice</p>
-                <button class="payment-btn" data-method="invoice">Select Invoice</button>
+                <h3>Rechnung</h3>
+                <p>Zahlung per Rechnung</p>
+                <button class="payment-btn" data-method="invoice">Rechnung auswählen</button>
             </div>
         </div>
 
-        <!-- Payment Form (initially hidden) -->
+        <!-- Zahlungsformular (anfangs versteckt) -->
         <div id="paymentFormSection" class="payment-form-section" style="display: none; margin-top: 40px;">
-            <h2 id="formTitle">Payment Details</h2>
+            <h2 id="formTitle">Zahlungsdetails</h2>
             <form class="payment-form" id="selectedPaymentForm">
-                <!-- Credit Card Details -->
+                <!-- Kreditkarten-Details -->
                 <div class="form-section" id="cardSection" style="display: none;">
-                    <h3>Credit Card Information</h3>
+                    <h3>Kreditkarten-Informationen</h3>
                     <div class="form-group">
-                        <label for="cardName">Name on Card <span class="required">*</span></label>
+                        <label for="cardName">Name auf der Karte <span class="required">*</span></label>
                         <input type="text" id="cardName" name="cardName" placeholder="Max Mustermann">
                         <span class="error-message" id="cardNameError"></span>
                     </div>
                     <div class="form-group">
-                        <label for="cardNumber">Card Number <span class="required">*</span></label>
+                        <label for="cardNumber">Kartennummer <span class="required">*</span></label>
                         <input type="text" id="cardNumber" name="cardNumber" placeholder="1234 5678 9012 3456" maxlength="19">
                         <span class="error-message" id="cardNumberError"></span>
                     </div>
                     <div class="form-row">
                         <div class="form-group">
-                            <label for="expiry">Expiration Date <span class="required">*</span></label>
-                            <input type="text" id="expiry" name="expiry" placeholder="MM/YY" maxlength="5">
+                            <label for="expiry">Ablaufdatum <span class="required">*</span></label>
+                            <input type="text" id="expiry" name="expiry" placeholder="MM/JJ" maxlength="5">
                             <span class="error-message" id="expiryError"></span>
                         </div>
                         <div class="form-group">
@@ -123,97 +123,96 @@
                     </div>
                 </div>
 
-                <!-- Twint Details -->
+                <!-- Twint-Details -->
                 <div class="form-section" id="twintSection" style="display: none;">
-                    <h3>Twint Information</h3>
+                    <h3>Twint-Informationen</h3>
                     <div class="form-group">
-                        <label for="twintPhone">Phone Number <span class="required">*</span></label>
+                        <label for="twintPhone">Telefonnummer <span class="required">*</span></label>
                         <input type="tel" id="twintPhone" name="twintPhone" placeholder="+41 79 123 45 67">
                         <span class="error-message" id="twintPhoneError"></span>
                     </div>
                 </div>
 
-                <!-- Billing Address -->
+                <!-- Rechnungsadresse -->
                 <div class="form-section">
-                    <h3>Billing Address</h3>
+                    <h3>Rechnungsadresse</h3>
                     <div class="form-group">
-                        <label for="fullName">Full Name <span class="required">*</span></label>
+                        <label for="fullName">Vollständiger Name <span class="required">*</span></label>
                         <input type="text" id="fullName" name="fullName" placeholder="Max Mustermann" required>
                         <span class="error-message" id="fullNameError"></span>
                     </div>
                     <div class="form-group">
-                        <label for="email">Email Address <span class="required">*</span></label>
-                        <input type="email" id="email" name="email" placeholder="max@example.com" required>
+                        <label for="email">E-Mail-Adresse <span class="required">*</span></label>
+                        <input type="email" id="email" name="email" placeholder="max@beispiel.ch" required>
                         <span class="error-message" id="emailError"></span>
                     </div>
                     <div class="form-group">
-                        <label for="address">Street and House Number <span class="required">*</span></label>
-                        <input type="text" id="address" name="address" placeholder="Sample Street 123" required>
+                        <label for="address">Strasse und Hausnummer <span class="required">*</span></label>
+                        <input type="text" id="address" name="address" placeholder="Musterstrasse 123" required>
                         <span class="error-message" id="addressError"></span>
                     </div>
                     <div class="form-row">
                         <div class="form-group">
-                            <label for="zip">ZIP Code <span class="required">*</span></label>
+                            <label for="zip">PLZ <span class="required">*</span></label>
                             <input type="text" id="zip" name="zip" placeholder="8000" required>
                             <span class="error-message" id="zipError"></span>
                         </div>
                         <div class="form-group">
-                            <label for="city">City <span class="required">*</span></label>
-                            <input type="text" id="city" name="city" placeholder="Zurich" required>
+                            <label for="city">Stadt <span class="required">*</span></label>
+                            <input type="text" id="city" name="city" placeholder="Zürich" required>
                             <span class="error-message" id="cityError"></span>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="country">Country <span class="required">*</span></label>
+                        <label for="country">Land <span class="required">*</span></label>
                         <select id="country" name="country" required>
-                            <option value="">Select Country</option>
-                            <option value="CH" selected>Switzerland</option>
-                            <option value="DE">Germany</option>
-                            <option value="AT">Austria</option>
-                            <option value="FR">France</option>
-                            <option value="IT">Italy</option>
-                            <option value="US">United States</option>
-                            <option value="GB">United Kingdom</option>
-                            <option value="CA">Canada</option>
-                            <option value="AU">Australia</option>
-                            <option value="NL">Netherlands</option>
-                            <option value="BE">Belgium</option>
-                            <option value="ES">Spain</option>
-                            <option value="SE">Sweden</option>
-                            <option value="NO">Norway</option>
-                            <option value="DK">Denmark</option>
-                            <option value="FI">Finland</option>
+                            <option value="">Land auswählen</option>
+                            <option value="CH" selected>Schweiz</option>
+                            <option value="DE">Deutschland</option>
+                            <option value="AT">Österreich</option>
+                            <option value="FR">Frankreich</option>
+                            <option value="IT">Italien</option>
+                            <option value="US">Vereinigte Staaten</option>
+                            <option value="GB">Vereinigtes Königreich</option>
+                            <option value="CA">Kanada</option>
+                            <option value="AU">Australien</option>
+                            <option value="NL">Niederlande</option>
+                            <option value="BE">Belgien</option>
+                            <option value="ES">Spanien</option>
+                            <option value="SE">Schweden</option>
+                            <option value="NO">Norwegen</option>
+                            <option value="DK">Dänemark</option>
+                            <option value="FI">Finnland</option>
                             <option value="JP">Japan</option>
                             <option value="CN">China</option>
-                            <option value="IN">India</option>
-                            <option value="BR">Brazil</option>
-                            <option value="MX">Mexico</option>
-                            <option value="RU">Russia</option>
-                            <option value="ZA">South Africa</option>
-                            <option value="KR">South Korea</option>
-                            <option value="SG">Singapore</option>
-                            <option value="HK">Hong Kong</option>
-                            <option value="TW">Taiwan</option>  
-                            <option value="AE">United Arab Emirates</option>
-
+                            <option value="IN">Indien</option>
+                            <option value="BR">Brasilien</option>
+                            <option value="MX">Mexiko</option>
+                            <option value="RU">Russland</option>
+                            <option value="ZA">Südafrika</option>
+                            <option value="KR">Südkorea</option>
+                            <option value="SG">Singapur</option>
+                            <option value="HK">Hongkong</option>
+                            <option value="TW">Taiwan</option>
+                            <option value="AE">Vereinigte Arabische Emirate</option>
                         </select>
                         <span class="error-message" id="countryError"></span>
                     </div>
                 </div>
 
-                <!-- Submit Button -->
-                <button type="submit" class="submit-payment-btn">PAY HERE</button>
+                <!-- Absenden-Button -->
+                <button type="submit" class="submit-payment-btn">JETZT BEZAHLEN</button>
             </form>
         </div>
 
-        <!-- Bestellbestaetigung Modal -->
+        <!-- Bestellbestätigung Modal -->
         <div id="purchaseModal" class="purchase-modal" aria-hidden="true">
             <div class="purchase-modal__content" role="dialog" aria-modal="true" aria-labelledby="purchaseModalTitle">
-                <h3 id="purchaseModalTitle">Confirm purchase</h3>
-                <p>Do you really want to place this order?</p>
+                <h3 id="purchaseModalTitle">Kauf bestätigen</h3>
+                <p>Möchtest du diese Bestellung wirklich aufgeben?</p>
                 <div class="purchase-modal__actions">
-                    <button type="button" class="purchase-modal__btn purchase-modal__btn--cancel" id="purchaseCancelBtn">Cancel</button>
-                    <button type="button" class="purchase-modal__btn purchase-modal__btn--confirm" id="purchaseConfirmBtn">Confirm and pay now</button>
+                    <button type="button" class="purchase-modal__btn purchase-modal__btn--cancel" id="purchaseCancelBtn">Abbrechen</button>
+                    <button type="button" class="purchase-modal__btn purchase-modal__btn--confirm" id="purchaseConfirmBtn">Bestätigen und jetzt bezahlen</button>
                 </div>
             </div>
         </div>

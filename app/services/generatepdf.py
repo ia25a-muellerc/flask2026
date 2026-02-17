@@ -29,7 +29,7 @@ def generate_bestellbestaetigung(order_number, user_name, user_surname, user_add
         f"{user_zip} {user_city}\n\n"
         f"Ihre Bestellung wird nun bearbeitet und voraussichtlich in 2 Tagen versendet.\n"
         f"Sobald Ihr Paket unterwegs ist, erhalten Sie eine Versandbestaetigung mit Tracking-Informationen.\n\n"
-        f"Wir danken Ihnen für Ihr Vertrauen und wuenschen viel Spass!\n\n"
+        f"Wir danken Ihnen für Ihr Vertrauen und wünschen viel Spass!\n\n"
         f"Bei Fragen oder Problemen:\n"
         f"Email: deskdunker@gmail.com\n"
         f"Tel: 079 700 62 83\n\n"
