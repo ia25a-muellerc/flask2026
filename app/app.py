@@ -5,6 +5,7 @@ from dotenv import load_dotenv # Lädt .env Datei
 from services import math_service
 from config import DevelopmentConfig, ProductionConfig
 from services.generatepdf import generate_bestellbestaetigung
+from services.mailgun_service import send_order_email
 
 # Definieren einer Variable, die die aktuelle Datei zum Zentrum
 # der Anwendung macht.
@@ -140,7 +141,6 @@ def download_bestellbestaetigung():
     user_zip = session.get("user_zip", "")
     user_city = session.get("user_city", "")
     quantity = session.get("cart_quantity", 1)
-    print(session)
 
     # Bestellnummer generieren (vereinfacht)
     order_number = hash(session.get("user_email")) % 100000
@@ -259,6 +259,39 @@ def get_user():
 
 @app.route("/popUpPayment")
 def popUpPayment() -> str:
+    # Prüfen ob Benutzer eingeloggt ist
+    if not session.get("user_email"):
+        return redirect(url_for("signin"))
+    
+    # Benutzerdaten aus Session holen
+    user_name = session.get("user_name", "Kunde")
+    user_surname = session.get("user_surname", "")
+    user_email = session.get("user_email", "")
+    user_address = session.get("user_address", "Unbekannte Adresse")
+    user_zip = session.get("user_zip", "")
+    user_city = session.get("user_city", "")
+    quantity = session.get("cart_quantity", 1)
+    
+    # Bestellnummer generieren
+    order_number = hash(user_email) % 100000
+    
+    # E-Mail an Admin versenden
+    email_result = send_order_email(
+        order_number=order_number,
+        customer_name=user_name,
+        customer_email=user_email,
+        customer_address=user_address,
+        customer_zip=user_zip,
+        customer_city=user_city,
+        quantity=quantity,
+        price=30.00
+    )
+    
+    if email_result['success']:
+        app.logger.info(f"Order email sent for order #{order_number}")
+    else:
+        app.logger.error(f"Order email failed: {email_result['message']}")
+    
     return render_template("popUpPayment.html", languages=languages)
 
 @app.route("/popUpSaved")
