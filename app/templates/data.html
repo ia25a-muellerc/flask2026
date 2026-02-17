@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 
-{% block title %}Profile{% endblock %}
+{% block title %}Profil{% endblock %}
 
 {% block content %}
 <head>
@@ -9,35 +9,35 @@
 </head>
 <div class="profile-card">
 
-    <a href="{{ url_for('home') }}" class="back">← Back</a>
+    <a href="{{ url_for('home') }}" class="back">← Zurück</a>
 
     {% if session.get('user_email') %}
         <!-- Profildaten Formular - nur für eingeloggte Benutzer -->
-        <h2 style="color: #f58800; text-align: center; margin: 0 0 24px 0; font-size: 1.5rem;">Profile Info</h2>
+        <h2 style="color: #f58800; text-align: center; margin: 0 0 24px 0; font-size: 1.5rem;">Profilinformationen</h2>
 
         <form method="POST" action="{{ url_for('profile') }}">
-            <p class="label">Name</p>
+            <p class="label">Vorname</p>
             <input type="text" name="name" class="inputButton" value="{{ session.get('user_name', '') }}" readonly id="nameInput"></input>
 
-            <p class="label">Surname</p>
+            <p class="label">Nachname</p>
             <input type="text" name="surname" class="inputButton" value="{{ session.get('user_surname', '') }}" readonly id="surnameInput"></input>
 
-            <p class="label">Email</p>
+            <p class="label">E-Mail</p>
             <input type="email" name="email" class="inputButton" value="{{ session.get('user_email', '') }}" readonly id="emailInput"></input>
 
             <div class="actions" id="formActions" style="display: none;">
-                <a href="{{ url_for('home') }}" class="cancleButton" onclick="cancelEdit(); return false;">Cancel</a>
-                <button type="submit" class="saveButton">Submit</button>
+                <a href="{{ url_for('home') }}" class="cancleButton" onclick="cancelEdit(); return false;">Abbrechen</a>
+                <button type="submit" class="saveButton">Speichern</button>
             </div>
         </form>
 
         <!-- Abmelden, Delete Profile und Change Info Links -->
         <div style="margin-top: 20px; text-align: center; display: flex; gap: 15px; justify-content: center; align-items: center; flex-wrap: wrap;">
-            <a href="#" onclick="enableEdit(); return false;" style="color: #f58800; text-decoration: underline; font-weight: bold;">Change Info</a>
+            <a href="#" onclick="enableEdit(); return false;" style="color: #f58800; text-decoration: underline; font-weight: bold;">Daten ändern</a>
             <span style="color: #555;">|</span>
-            <a href="{{ url_for('logout') }}" style="color: #d32f2f; text-decoration: underline; font-weight: bold;">Logout</a>
+            <a href="{{ url_for('logout') }}" style="color: #d32f2f; text-decoration: underline; font-weight: bold;">Abmelden</a>
             <span style="color: #555;">|</span>
-            <a href="#" onclick="showDeleteModal(); return false;" style="color: #d32f2f; text-decoration: underline; font-weight: bold;">Delete Profile</a>
+            <a href="#" onclick="showDeleteModal(); return false;" style="color: #d32f2f; text-decoration: underline; font-weight: bold;">Profil löschen</a>
         </div>
     {% else %}
         <!-- Nachricht wenn nicht eingeloggt -->
@@ -52,11 +52,11 @@
 <!-- Delete Profile Modal -->
 <div id="deleteModal" class="modal">
     <div class="modal-content">
-        <h2>Delete Profile?</h2>
-        <p>Are you sure you want to delete your profile? This action cannot be undone.</p>
+        <h2>Profil löschen?</h2>
+        <p>Sind Sie sicher, dass Sie Ihr Profil löschen möchten? Diese Aktion kann nicht rückgängig gemacht werden.</p>
         <div class="modal-buttons">
-            <button onclick="closeDeleteModal()" class="modal-btn cancel-btn">Cancel</button>
-            <button onclick="confirmDeleteProfile()" class="modal-btn delete-btn">Delete</button>
+            <button onclick="closeDeleteModal()" class="modal-btn cancel-btn">Abbrechen</button>
+            <button onclick="confirmDeleteProfile()" class="modal-btn delete-btn">Löschen</button>
         </div>
     </div>
 </div>

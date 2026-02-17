@@ -29,7 +29,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Zahlungsformular anzeigen
     function showPaymentForm(method) {
         const titles = {
-            paypal: 'PayPal Zahlung', card: 'Kreditkarte Zahlung', applepay: 'Apple Pay Zahlung',
+            paypal: 'PayPal Zahlung', card: 'Kreditkarten Zahlung', applepay: 'Apple Pay Zahlung',
             googlepay: 'Google Pay Zahlung', twint: 'Twint Zahlung', invoice: 'Rechnung ausstellen'
         };
         
@@ -62,7 +62,7 @@ document.addEventListener('DOMContentLoaded', function() {
         
         if (field.required && !field.value.trim()) {
             field.classList.add('invalid');
-            errorSpan.textContent = 'This field is required';
+            errorSpan.textContent = 'Dieses Feld ist erforderlich';
             return false;
         }
         
@@ -73,7 +73,7 @@ document.addEventListener('DOMContentLoaded', function() {
         if (field.type === 'email') {
             if (!value.includes('@') || !value.includes('.')) {
                 field.classList.add('invalid');
-                errorSpan.textContent = 'Please enter a valid email address';
+                errorSpan.textContent = 'Bitte geben Sie eine gültige E-Mail-Adresse ein';
                 return false;
             }
         }
@@ -83,7 +83,7 @@ document.addEventListener('DOMContentLoaded', function() {
             let numbers = value.replace(/\s/g, '');
             if (numbers.length < 13 || numbers.length > 19) {
                 field.classList.add('invalid');
-                errorSpan.textContent = 'Invalid card number';
+                errorSpan.textContent = 'Ungültige Kartennummer';
                 return false;
             }
         }
@@ -101,7 +101,7 @@ document.addEventListener('DOMContentLoaded', function() {
         if (field.id === 'cvv') {
             if (value.length < 3) {
                 field.classList.add('invalid');
-                errorSpan.textContent = 'CVV must have 3 digits';
+                errorSpan.textContent = 'CVV muss 3 Ziffern haben';
                 return false;
             }
         }
@@ -110,7 +110,7 @@ document.addEventListener('DOMContentLoaded', function() {
         if (field.id === 'zip') {
             if (value.length < 4) {
                 field.classList.add('invalid');
-                errorSpan.textContent = 'Invalid PLZ';
+                errorSpan.textContent = 'Ungültige PLZ';
                 return false;
             }
         }
