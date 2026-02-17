@@ -29,7 +29,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Zahlungsformular anzeigen
     function showPaymentForm(method) {
         const titles = {
-            paypal: 'PayPal Zahlung', card: 'Kreditkarte Zahlung', applepay: 'Apple Pay Zahlung',
+            paypal: 'PayPal Zahlung', card: 'Kreditkarten Zahlung', applepay: 'Apple Pay Zahlung',
             googlepay: 'Google Pay Zahlung', twint: 'Twint Zahlung', invoice: 'Rechnung ausstellen'
         };
         
@@ -73,7 +73,7 @@ document.addEventListener('DOMContentLoaded', function() {
         if (field.type === 'email') {
             if (!value.includes('@') || !value.includes('.')) {
                 field.classList.add('invalid');
-                errorSpan.textContent = 'Bitte gib eine gültige E-Mail-Adresse ein';
+                errorSpan.textContent = 'Bitte geben Sie eine gültige E-Mail-Adresse ein';
                 return false;
             }
         }

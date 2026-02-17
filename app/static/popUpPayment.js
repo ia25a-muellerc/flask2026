@@ -67,7 +67,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     submitRatingBtn.addEventListener('click', function() {
         if (selectedRating === 0) {
-            ratingText.textContent = 'Bitte wähle eine Bewertung!';
+            ratingText.textContent = 'Bitte wählen Sie eine Bewertung!';
             ratingText.style.color = '#ff6b6b';
             return;
         }

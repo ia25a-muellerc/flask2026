@@ -31,12 +31,13 @@ document.addEventListener('DOMContentLoaded', function() {
                                 <p style="margin: 5px 0; font-weight: bold; color: #333;">${data.name}${surname}</p>
                                 <p style="margin: 5px 0; font-size: 0.9em; color: #666;">${data.email}</p>
                                 <hr style="margin: 10px 0; border: none; border-top: 1px solid #ddd;">
-                                <a href="/profile" style="display: block; color: #333; text-decoration: none; padding: 5px 0; margin: 5px 0;">My Profile</a>
-                                <a href="/logout" style="display: block; color: #d32f2f; text-decoration: none; padding: 5px 0; margin: 5px 0;">Logout</a>
+                                <a href="/profile" style="display: block; color: #333; text-decoration: none; padding: 5px 0; margin: 5px 0;">Mein Profil</a>
+                                <a href="/orders" style="display: block; color: #333; text-decoration: none; padding: 5px 0; margin: 5px 0;">Meine Bestellungen</a>
+                                <a href="/logout" style="display: block; color: #d32f2f; text-decoration: none; padding: 5px 0; margin: 5px 0;">Abmelden</a>
                             </div>
                         `;
                     } else {
-                        userInfo.innerHTML = '<a href="/signin" style="color: #fff; background: #f58800; text-decoration: none; padding: 8px 20px; border-radius: 6px; font-size: 0.9em; font-weight: 500; transition: all 0.2s ease; display: inline-block;">Sign In</a>';
+                        userInfo.innerHTML = '<a href="/signin" style="color: #fff; background: #f58800; text-decoration: none; padding: 8px 20px; border-radius: 6px; font-size: 0.9em; font-weight: 500; transition: all 0.2s ease; display: inline-block;">Anmelden</a>';
                     }
                     profileMenu.style.display = 'block';
                 })

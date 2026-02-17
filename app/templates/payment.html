@@ -13,7 +13,7 @@
 
         <!-- Bestellzusammenfassung -->
         <div class="order-summary">
-            <h2>Bestellübersicht</h2>
+            <h2>Bestellzusammenfassung</h2>
             <div class="summary-details">
                 <div class="summary-item">
                     <span>Produkt:</span>
@@ -24,7 +24,7 @@
                     <span id="summaryQuantity">1</span>
                 </div>
                 <div class="summary-item total">
-                    <span>Gesamtbetrag:</span>
+                    <span>Gesamt:</span>
                     <span id="summaryTotal">CHF 30,00</span>
                 </div>
             </div>
@@ -125,7 +125,7 @@
 
                 <!-- Twint-Details -->
                 <div class="form-section" id="twintSection" style="display: none;">
-                    <h3>Twint-Informationen</h3>
+                    <h3>Twint Informationen</h3>
                     <div class="form-group">
                         <label for="twintPhone">Telefonnummer <span class="required">*</span></label>
                         <input type="tel" id="twintPhone" name="twintPhone" placeholder="+41 79 123 45 67">
@@ -143,7 +143,7 @@
                     </div>
                     <div class="form-group">
                         <label for="email">E-Mail-Adresse <span class="required">*</span></label>
-                        <input type="email" id="email" name="email" placeholder="max@beispiel.ch" required>
+                        <input type="email" id="email" name="email" placeholder="max@example.com" required>
                         <span class="error-message" id="emailError"></span>
                     </div>
                     <div class="form-group">
@@ -172,8 +172,8 @@
                             <option value="AT">Österreich</option>
                             <option value="FR">Frankreich</option>
                             <option value="IT">Italien</option>
-                            <option value="US">Vereinigte Staaten</option>
-                            <option value="GB">Vereinigtes Königreich</option>
+                            <option value="US">USA</option>
+                            <option value="GB">Grossbritannien</option>
                             <option value="CA">Kanada</option>
                             <option value="AU">Australien</option>
                             <option value="NL">Niederlande</option>
@@ -193,15 +193,16 @@
                             <option value="KR">Südkorea</option>
                             <option value="SG">Singapur</option>
                             <option value="HK">Hongkong</option>
-                            <option value="TW">Taiwan</option>
+                            <option value="TW">Taiwan</option>  
                             <option value="AE">Vereinigte Arabische Emirate</option>
+
                         </select>
                         <span class="error-message" id="countryError"></span>
                     </div>
                 </div>
 
-                <!-- Absenden-Button -->
-                <button type="submit" class="submit-payment-btn">JETZT BEZAHLEN</button>
+                <!-- Submit Button -->
+                <button type="submit" class="submit-payment-btn">HIER BEZAHLEN</button>
             </form>
         </div>
 
@@ -209,7 +210,7 @@
         <div id="purchaseModal" class="purchase-modal" aria-hidden="true">
             <div class="purchase-modal__content" role="dialog" aria-modal="true" aria-labelledby="purchaseModalTitle">
                 <h3 id="purchaseModalTitle">Kauf bestätigen</h3>
-                <p>Möchtest du diese Bestellung wirklich aufgeben?</p>
+                <p>Möchten Sie diese Bestellung wirklich aufgeben?</p>
                 <div class="purchase-modal__actions">
                     <button type="button" class="purchase-modal__btn purchase-modal__btn--cancel" id="purchaseCancelBtn">Abbrechen</button>
                     <button type="button" class="purchase-modal__btn purchase-modal__btn--confirm" id="purchaseConfirmBtn">Bestätigen und jetzt bezahlen</button>
