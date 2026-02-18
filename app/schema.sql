@@ -89,3 +89,5 @@ CREATE TABLE newsletter_subscription (
     email VARCHAR(255) NOT NULL,
     customer_id INT REFERENCES customer(customer_id)
 );
+
+
