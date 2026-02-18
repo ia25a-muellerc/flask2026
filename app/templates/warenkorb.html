@@ -2,17 +2,13 @@
 
 {% block title %}Warenkorb{% endblock %}
 
-{% block content %}
- <h1 class="subtitle">Warenkorb</h1>
+{% block head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='styles/warenkorb.css') }}">
+{% endblock %}
 
-<!DOCTYPE html>
-<html lang="de">
-<head>
-    <meta charset="UTF-8">
-    <title>Desk Dunk – Warenkorb</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='styles/warenkorb.css') }}">
-</head>
-<body>
+{% block content %}
+<h1 class="subtitle">Warenkorb</h1>
+
 
 <div class="container">
     <a href="{{ url_for('home') }}" class="back-button">

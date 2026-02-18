@@ -1,6 +1,6 @@
 import os
 from io import BytesIO
-from flask import Flask, render_template, request, redirect, url_for, session, jsonify, send_file
+from flask import Flask, render_template, request, redirect, url_for, session, jsonify, send_file, flash
 from dotenv import load_dotenv # Lädt .env Datei
 from services import math_service
 from config import DevelopmentConfig, ProductionConfig
@@ -16,7 +16,7 @@ app = Flask(__name__)
 
 """
 Festlegen einer Route für die Homepage. Der String in den Klammern
-bildet das URL-Muster ab, unter dem der folgende Code ausgeführt
+bildet das URL-Muster ab, unter dem der folgende Code ausgeführt                         
 werden soll.                                                                                                                                                                                                                                                                        
 z.B.
 * @app.route('/')    -> http://127.0.0.1:5000/
@@ -225,19 +225,21 @@ def contact() -> str:
 
 @app.route("/signin", methods=["GET", "POST"])
 def signin() -> str:
+    next_page = request.args.get("next") or request.form.get("next") or ""
+
     if request.method == "POST":
         email = request.form.get("email", "").strip()
         password = request.form.get("password", "").strip()
 
         if not email or not password:
-            return render_template("signin.html", languages=languages, error="Email und Passwort erforderlich")
+            return render_template("signin.html", languages=languages, error="Email und Passwort erforderlich", next=next_page)
 
         user = user_store.get(email)
         if not user:
-            return render_template("signin.html", languages=languages, error="Kein Konto gefunden. Bitte registrieren.")
+            return render_template("signin.html", languages=languages, error="Kein Konto gefunden. Bitte registrieren.", next=next_page)
 
         if user.get("password") != password:
-            return render_template("signin.html", languages=languages, error="Falsches Passwort")
+            return render_template("signin.html", languages=languages, error="Falsches Passwort", next=next_page)
 
         # Session speichern (nur fuer Browser-Sitzung, nicht permanent)
         session["user_email"] = user.get("email", "")
@@ -249,9 +251,13 @@ def signin() -> str:
         session["user_country"] = user.get("country", "")
 
         app.logger.info(f"User logged in: {email}")
+        if next_page:
+            flash("Erfolgreich angemeldet. Du kannst jetzt fortfahren.", "success")
+            return redirect(next_page)
         return redirect(url_for("home"))
 
-    return render_template("signin.html", languages=languages)
+
+    return render_template("signin.html", languages=languages, next=next_page)
 
 @app.route("/logout")
 def logout():
@@ -289,7 +295,10 @@ def get_user():
 def popUpPayment() -> str:
     # Prüfen ob Benutzer eingeloggt ist
     if not session.get("user_email"):
-        return redirect(url_for("signin"))
+        flash("Bitte melde dich an, um fortzufahren.", "warning")
+        return redirect(url_for("signin", next=url_for("warenkorb")))
+
+
     
     # Benutzerdaten aus Session holen
     user_name = session.get("user_name", "Kunde")
@@ -338,6 +347,8 @@ def submit():
 
 @app.route("/register", methods=["GET", "POST"])
 def register() -> str:
+    next_page = request.args.get("next") or request.form.get("next") or ""
+
     if request.method == "POST":
         name = request.form.get("name", "").strip()
         surname = request.form.get("surname", "").strip()
@@ -350,13 +361,13 @@ def register() -> str:
         country = request.form.get("country", "").strip()
 
         if not all([name, surname, email, password, password_confirm, address, zip_code, city, country]):
-            return render_template("register.html", error="Bitte alle Felder ausfuellen")
+            return render_template("register.html", error="Bitte alle Felder ausfuellen", next=next_page)
 
         if password != password_confirm:
-            return render_template("register.html", error="Passwoerter stimmen nicht ueberein")
+            return render_template("register.html", error="Passwoerter stimmen nicht ueberein", next=next_page)
 
         if email in user_store:
-            return render_template("register.html", error="Account existiert bereits")
+            return render_template("register.html", error="Account existiert bereits", next=next_page)
 
         user_store[email] = {
             "name": name,
@@ -378,9 +389,12 @@ def register() -> str:
         session["user_country"] = country
 
         app.logger.info(f"User registered: {email}")
+        if next_page:
+            flash("Erfolgreich angemeldet. Du kannst jetzt fortfahren.", "success")
+            return redirect(next_page)
         return redirect(url_for("home"))
 
-    return render_template("register.html")
+    return render_template("register.html", next=next_page)
 
 def generate_pdf(orders):
     id = orders[0][0]
