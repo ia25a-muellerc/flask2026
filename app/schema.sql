@@ -1,93 +1,20 @@
--- Drop existing tables to recreate with correct structure
+DROP TABLE IF EXISTS order_item CASCADE;
+DROP TABLE IF EXISTS product_review CASCADE;
+DROP TABLE IF EXISTS product CASCADE;
 DROP TABLE IF EXISTS customer_payment CASCADE;
-DROP TABLE IF EXISTS customer_payment_data CASCADE;
-DROP TABLE IF EXISTS customer_addres CASCADE;
+DROP TABLE IF EXISTS payment_method CASCADE;
+DROP TABLE IF EXISTS profile_information CASCADE;
+DROP TABLE IF EXISTS newsletter_subscription CASCADE;
+DROP TABLE IF EXISTS contact_message CASCADE;
+DROP TABLE IF EXISTS customer_address CASCADE;
+DROP TABLE IF EXISTS salutation CASCADE;
+DROP TABLE IF EXISTS orders CASCADE;
 
 
-
-CREATE TABLE IF NOT EXISTS salutation (
+CREATE TABLE salutation (
     salutation_id SERIAL PRIMARY KEY,
-    salutation VARCHAR(20) NOT NULL
+    name VARCHAR(20) NOT NULL
 );
-
-CREATE TABLE IF NOT EXISTS customer_addres (
-    addres_id SERIAL PRIMARY KEY,
-    street VARCHAR(255) NOT NULL,
-    city VARCHAR(100) NOT NULL,
-    postal_code VARCHAR(20) NOT NULL,
-    country VARCHAR(100) NOT NULL
-);
-
-CREATE TABLE IF NOT EXISTS customer_payment_data (
-    payment_data_id SERIAL PRIMARY KEY,
-    card_number VARCHAR(20) NOT NULL,
-    expiry_date DATE NOT NULL,
-    cvv VARCHAR(4) NOT NULL
-);
-
-CREATE TABLE IF NOT EXISTS customer_payment_twint (
-    telon_number VARCHAR(20) PRIMARY KEY,
-    twint_id VARCHAR(255) NOT NULL
-);
-
-CREATE TABLE IF NOT EXISTS customer_payment (
-    payment_id SERIAL PRIMARY KEY,
-    name VARCHAR(255) NOT NULL,
-    email VARCHAR(255) NOT NULL,
-    salutation_id INT REFERENCES salutation(salutation_id),
-    addres_id INT REFERENCES customer_addres(addres_id),
-    payment_data_id INT REFERENCES customer_payment_data(payment_data_id)
-);
-
-
-CREATE TABLE IF NOT EXISTS contact_message (
-    message_id SERIAL PRIMARY KEY,
-    name VARCHAR(255) NOT NULL,
-    email VARCHAR(255) NOT NULL,
-    subject VARCHAR(255) NOT NULL,
-    message TEXT NOT NULL,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-);
-
-CREATE TABLE IF NOT EXISTS newsletter_subscription (
-    subscription_id SERIAL PRIMARY KEY,
-    email VARCHAR(255) NOT NULL UNIQUE,
-    subscribed_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-);
-
-CREATE TABLE IF NOT EXISTS profile_information (
-    profile_id SERIAL PRIMARY KEY,
-    name VARCHAR(255) NOT NULL,
-    email VARCHAR(255) NOT NULL UNIQUE,
-    salutation_id INT REFERENCES salutation(salutation_id),
-    addres_id INT REFERENCES customer_addres(addres_id),
-    payment_data_id INT REFERENCES customer_payment_data(payment_data_id)
-);
-
-CREATE TABLE IF NOT EXISTS order_information (
-    order_id SERIAL PRIMARY KEY,
-    customer_id INT REFERENCES profile_information(profile_id),
-    order_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    total_amount DECIMAL(10, 2) NOT NULL
-);
-
-CREATE TABLE IF NOT EXISTS order_item (
-    item_id SERIAL PRIMARY KEY,
-    order_id INT REFERENCES order_information(order_id),
-    product_name VARCHAR(255) NOT NULL,
-    quantity INT NOT NULL,
-    price DECIMAL(10, 2) NOT NULL
-);
-
-CREATE TABLE IF NOT EXISTS product_review (
-    review_id SERIAL PRIMARY KEY,
-    product_name VARCHAR(255) NOT NULL,
-    customer_id INT REFERENCES profile_information(profile_id),
-    rating INT CHECK (rating >= 1 AND rating <= 5),
-    review_text TEXT,
-    review_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-);
-
 
 CREATE TABLE IF NOT EXISTS orders (
     id SERIAL PRIMARY KEY,
@@ -97,3 +24,70 @@ CREATE TABLE IF NOT EXISTS orders (
     price DECIMAL(10,2) NOT NULL,
     canceled BOOLEAN NOT NULL
 );
+
+
+CREATE TABLE product (
+    product_id SERIAL PRIMARY KEY,
+    name VARCHAR(255),
+    price DECIMAL(10,2)
+);
+
+
+CREATE TABLE customer (
+    customer_id SERIAL PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    email VARCHAR(255) NOT NULL,
+    salutation_id INT REFERENCES salutation(salutation_id),
+    address_id INT REFERENCES customer_address(address_id)
+);
+
+
+CREATE TABLE customer_address (
+    address_id SERIAL PRIMARY KEY,
+    street VARCHAR(255),
+    city VARCHAR(100),
+    postal_code VARCHAR(20),
+    country VARCHAR(100)
+);
+
+
+CREATE TABLE payment_method (
+    payment_method_id SERIAL PRIMARY KEY,
+    customer_id INT REFERENCES customer(customer_id),
+    provider VARCHAR(50) NOT NULL,
+    provider_token VARCHAR(255) NOT NULL
+);
+
+CREATE TABLE customer_payment (
+    customer_payment_id SERIAL PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    email VARCHAR(255) NOT NULL,
+    address_id INT REFERENCES customer_address(address_id),
+    provider VARCHAR(50) NOT NULL,
+    provider_token VARCHAR(255) NOT NULL
+);
+
+CREATE TABLE contact_message (
+    message_id SERIAL PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    email VARCHAR(255) NOT NULL,
+    subject VARCHAR(255),
+    message TEXT,
+    customer_id INT REFERENCES customer(customer_id)
+);
+
+CREATE TABLE product_review (
+    review_id SERIAL PRIMARY KEY,
+    product_id INT REFERENCES product(product_id),
+    customer_id INT REFERENCES customer(customer_id),
+    rating INT,
+    review_text TEXT
+);
+
+CREATE TABLE newsletter_subscription (
+    subscription_id SERIAL PRIMARY KEY,
+    email VARCHAR(255) NOT NULL,
+    customer_id INT REFERENCES customer(customer_id)
+);
+
+

@@ -23,10 +23,10 @@ z.B.
 * @app.route('/home') -> http://127.0.0.1:5000/home
 """
 
-
-
-load_dotenv(dotenv_path=os.path.join(os.path.dirname(__file__), ".env"))
-
+#-------------------------------
+#Vorbereitungen
+# 1. .env laden (macht lokal Variablen verfügbar, auf Render passiert nichts)
+load_dotenv()
 
 # 2. Config wählen
 if os.environ.get('FLASK_ENV') == 'development':
