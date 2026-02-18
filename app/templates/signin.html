@@ -16,6 +16,7 @@
     {% endif %}
 
     <form method="POST" action="{{ url_for('signin') }}" style="all: unset;">
+        <input type="hidden" name="next" value="{{ next|default(request.args.get('next', '')) }}">
         <p class="label">E-Mail</p>
         <input type="email" name="email" class="inputButton" required></input>
 
@@ -28,7 +29,7 @@
         <button type="submit" class="saveButton">Anmelden</button>
     </form>
 
-    <a href="{{ url_for('register') }}">Noch kein Konto? Registrieren</a>
+    <a href="{{ url_for('register', next=next|default(request.args.get('next', ''))) }}">Noch kein Konto? Registrieren</a>
 
     <a href="/forgot-password" style="text-decoration: underline;">Passwort vergessen?</a>
 

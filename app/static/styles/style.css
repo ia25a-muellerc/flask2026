@@ -520,3 +520,104 @@ a {
 .profile-hover-menu a[href="/logout"]:hover {
     background: #ffebee;
 }
+
+/* Flash Messages */
+.flash-messages {
+    position: fixed;
+    top: 100px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 99999;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 90%;
+    max-width: 500px;
+    pointer-events: auto;
+}
+
+.flash-message {
+    display: flex;
+    align-items: center;
+    padding: 16px 20px;
+    border-radius: 12px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 1rem;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    animation: slideIn 0.3s ease-out;
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.flash-icon {
+    margin-right: 12px;
+    font-size: 1.2rem;
+}
+
+.flash-text {
+    flex: 1;
+}
+
+.flash-close {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    opacity: 0.7;
+    transition: opacity 0.2s;
+    padding: 0;
+    margin-left: 10px;
+}
+
+.flash-close:hover {
+    opacity: 1;
+}
+
+/* Warning (Orange - passend zu DeskDunk) */
+.flash-warning {
+    background: linear-gradient(135deg, #F58800 0%, #FF6B00 100%);
+    color: white;
+}
+
+.flash-warning .flash-close {
+    color: white;
+}
+
+/* Error (Rot) */
+.flash-error {
+    background: linear-gradient(135deg, #e53935 0%, #c62828 100%);
+    color: white;
+}
+
+.flash-error .flash-close {
+    color: white;
+}
+
+/* Success (Grün) */
+.flash-success {
+    background: linear-gradient(135deg, #43a047 0%, #2e7d32 100%);
+    color: white;
+}
+
+.flash-success .flash-close {
+    color: white;
+}
+
+/* Info (Blau) */
+.flash-info {
+    background: linear-gradient(135deg, #1e88e5 0%, #1565c0 100%);
+    color: white;
+}
+
+.flash-info .flash-close {
+    color: white;
+}
