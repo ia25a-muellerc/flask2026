@@ -15,11 +15,14 @@
                 <p class="eyebrow">DeskDunk</p>
                 <h1 class="hero-title">Make your desk a playground</h1>
                 <p class="hero-lead">
-                    Ein hochwertiges Schreibtisch-Accessoire, das Design und Spiel vereint. Saubere Materialien, solide Verarbeitung und ein
+                    Ein hochwertiges Schreibtisch-Accessoire, das Design und Spiel vereint. Saubere Materialien, solide
+                    Verarbeitung und ein
                     befriedigender Mini-Spiel-Effekt für konzentrierte Pausen.
                 </p>
                 <div class="cta-row">
-                    <button onclick="addToCartAndRedirect()" class="purchaser reveal reveal--up" style="--reveal-delay: 0.05s;">Jetzt kaufen</button>
+                    <button onclick="addToCartAndRedirect()" class="purchaser reveal reveal--up"
+                            style="--reveal-delay: 0.05s;">Jetzt kaufen
+                    </button>
                 </div>
             </div>
 
@@ -104,10 +107,13 @@
                          alt="Beschreibungsbild">
                     <div class="card__content">
                         <p class="card__title">Bemalen</p>
-                        <p class="card__description">Der erste Schritt bei der Erstellung unseres Produkts war das Zeichnen des Basketballfeldes
-                            und das Gestalten der Bälle. Wir verwendeten Acrylfarben von Jumbo und malten die gesamte Box weiss. Danach
+                        <p class="card__description">Der erste Schritt bei der Erstellung unseres Produkts war das
+                            Zeichnen des Basketballfeldes
+                            und das Gestalten der Bälle. Wir verwendeten Acrylfarben von Jumbo und malten die gesamte
+                            Box weiss. Danach
                             zeichneten wir das Basketballfeld vor.
-                            Als dies fertig war, fügten wir die letzten Details hinzu und klebten unser Logo oben auf die Box.</p>
+                            Als dies fertig war, fügten wir die letzten Details hinzu und klebten unser Logo oben auf
+                            die Box.</p>
                     </div>
                 </div>
                 <div class="card reveal reveal--up" style="--reveal-delay: 0.1s;">
@@ -115,8 +121,10 @@
                          alt="Beschreibungsbild">
                     <div class="card__content">
                         <p class="card__title">Konstruieren</p>
-                        <p class="card__description">Als wir mit dem Bemalen der gesamten Box fertig waren, begannen wir mit dem Bau unserer
-                            Idee. Zuerst schraubten wir beide Basketballkörbe auf die Box. Dann bauten wir das Netz zwischen den
+                        <p class="card__description">Als wir mit dem Bemalen der gesamten Box fertig waren, begannen wir
+                            mit dem Bau unserer
+                            Idee. Zuerst schraubten wir beide Basketballkörbe auf die Box. Dann bauten wir das Netz
+                            zwischen den
                             beiden Körben. Nach diesem Schritt klebten wir alles ab und befestigten es, um einen
                             besseren Halt zu gewährleisten.</p>
                     </div>
@@ -126,9 +134,11 @@
                          alt="Beschreibungsbild">
                     <div class="card__content">
                         <p class="card__title">Spielen</p>
-                        <p class="card__description">Nach dem Zusammenbau des gesamten Projekts ist das Basketballspiel bereit,
+                        <p class="card__description">Nach dem Zusammenbau des gesamten Projekts ist das Basketballspiel
+                            bereit,
                             in deinem Büro gespielt zu werden. Alles ist fest angebracht und stabil, sodass das Spiel
-                            sicher und komfortabel benutzt werden kann. Jetzt kannst du in den Pausen oder in der Freizeit
+                            sicher und komfortabel benutzt werden kann. Jetzt kannst du in den Pausen oder in der
+                            Freizeit
                             Basketball geniessen und Spass mit Freunden oder Kollegen haben. VIEL SPASS!</p>
                     </div>
                 </div>
@@ -140,21 +150,21 @@
             <div class="section-header reveal reveal--up">
                 <h2 class="section-title">Mini-Game</h2>
             </div>
-        </div>
-        <div class="miniGameHolder">
-            <iframe src="{{ url_for('static', filename='MinigameV4/minigame.html') }}" style="border:none;" scrolling="no" title="description" height="100%" width="100%"></iframe>
-        </div>
+            <div class="miniGameHolder">
+                <iframe src="{{ url_for('static', filename='MinigameV4/minigame.html') }}" style="border:none;"
+                        scrolling="no" title="description" height="100%" width="100%"></iframe>
+            </div>
         </section>
 
         <!-- CTA Section -->
         <section class="section-block cta-section reveal reveal--up">
             <div class="cta-content">
                 <h2>Bereit, deinen Schreibtisch zu verwandeln?</h2>
-                <p>Schliesse dich Tausenden zufriedener DeskDunk-Nutzer an und bring Spass zurück an deinen Arbeitsplatz.</p>
+                <p>Schliesse dich Tausenden zufriedener DeskDunk-Nutzer an und bring Spass zurück an deinen
+                    Arbeitsplatz.</p>
                 <button onclick="addToCartAndRedirect()" class="purchaser-large">Hol dir jetzt deinen DeskDunk</button>
             </div>
         </section>
-
     </div>
 
     <!-- Bestätigungsmodal -->
@@ -191,7 +201,7 @@
             closeConfirmModal();
 
             // Mit kleinem Delay umleiten um sicherzustellen dass localStorage gespeichert wird
-            setTimeout(function() {
+            setTimeout(function () {
                 window.location.href = '{{ url_for("warenkorb") }}';
             }, 100);
         }
