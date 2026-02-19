@@ -28,7 +28,7 @@
 
 </div>
 
-<!-- Erfolgs-Popup -->
+//popup das es gesendet wurde
 <div id="successModal" class="modal">
     <div class="modal-content success-modal">
         <div class="success-icon">✓</div>
@@ -48,16 +48,15 @@ function showSuccessModal() {
     document.getElementById('successModal').style.display = 'flex';
 }
 
-function closeSuccessModal() {
+function closeSuccessModal() { // Formular leeren
     document.getElementById('successModal').style.display = 'none';
-    // Formular leeren
     document.getElementById('name-input').value = '';
     document.getElementById('email-input').value = '';
     document.getElementById('subject-input').value = '';
     document.getElementById('message-input').value = '';
 }
 
-function validateAndSubmit() {
+function validateAndSubmit() { // wenn die emailadresse ungültig ist
     const emailInput = document.getElementById('email-input');
     const emailError = document.getElementById('email-error');
     const email = emailInput.value.trim();
@@ -71,12 +70,11 @@ function validateAndSubmit() {
     emailError.style.display = 'none';
     emailInput.classList.remove('input-error');
     
-    // Erfolgs-Popup anzeigen
+    //popup anzeigen
     showSuccessModal();
     return true;
 }
 
-// Fehler ausblenden beim Tippen
 document.getElementById('email-input').addEventListener('input', function() {
     const emailError = document.getElementById('email-error');
     if (validateEmail(this.value.trim())) {
@@ -85,7 +83,7 @@ document.getElementById('email-input').addEventListener('input', function() {
     }
 });
 
-// Modal schließen bei Klick außerhalb
+//schliesst
 document.getElementById('successModal').addEventListener('click', function(e) {
     if (e.target === this) {
         closeSuccessModal();
