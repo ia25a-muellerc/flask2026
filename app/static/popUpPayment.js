@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const buttonContainer = document.querySelector('.button-container');
 
     let selectedRating = 0;
-    const ratingLabels = {
+    const ratingLabels   = {
         1: 'Schlecht',
         2: 'Nicht gut',
         3: 'Okay',

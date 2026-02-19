@@ -46,7 +46,6 @@ document.addEventListener('DOMContentLoaded', function() {
         document.getElementById('twintPhone').required = (method === 'twint');
     }
 
-    // Echtzeit-Validierung bei Eingabe
     document.querySelectorAll('.payment-form input, .payment-form select').forEach(input => {
         input.addEventListener('blur', () => validateField(input));
         input.addEventListener('input', () => input.classList.contains('invalid') && validateField(input));

@@ -53,7 +53,7 @@
         <button type="submit" class="saveButton">Registrieren</button>
     </form>
 
-    <a href="{{ url_for('signin', next=next|default(request.args.get('next', ''))) }}">Schon ein Konto? Anmelden</a>
+    <a href="{{ url_for('signin', next=request.args.get('next', '')) }}">Schon ein Konto? Anmelden</a>
 
 </div>
 {% endblock %}
