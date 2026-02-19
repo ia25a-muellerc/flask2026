@@ -7,12 +7,17 @@ from config import DevelopmentConfig, ProductionConfig
 from services.generatepdf import generate_bestellbestaetigung
 from services.mailgun_service import send_order_email
 from repository import orders_repo
+from repository import customer_repo
 from reportlab.platypus import SimpleDocTemplate, Paragraph
 from reportlab.lib.styles import getSampleStyleSheet
+import db
 
 # Definieren einer Variable, die die aktuelle Datei zum Zentrum
 # der Anwendung macht.
 app = Flask(__name__)
+
+# Datenbank initialisieren (registriert CLI-Befehl "flask init-db")
+db.init_app(app)
 
 """
 Festlegen einer Route für die Homepage. Der String in den Klammern
@@ -234,7 +239,7 @@ def signin() -> str:
         if not email or not password:
             return render_template("signin.html", languages=languages, error="Email und Passwort erforderlich", next=next_page)
 
-        user = user_store.get(email)
+        user = customer_repo.get_customer_by_email(email)
         if not user:
             return render_template("signin.html", languages=languages, error="Kein Konto gefunden. Bitte registrieren.", next=next_page)
 
@@ -377,19 +382,25 @@ def register() -> str:
         if password != password_confirm:
             return render_template("register.html", error="Passwoerter stimmen nicht ueberein", next=next_page)
 
-        if email in user_store:
+        # Prüfen ob E-Mail bereits existiert (in Datenbank)
+        if customer_repo.email_exists(email):
             return render_template("register.html", error="Account existiert bereits", next=next_page)
 
-        user_store[email] = {
-            "name": name,
-            "surname": surname,
-            "email": email,
-            "password": password,  
-            "address": address,
-            "zip": zip_code,
-            "city": city,
-            "country": country,
-        }
+        # Kunde in Datenbank speichern
+        try:
+            customer_repo.create_customer(
+                name=name,
+                surname=surname,
+                email=email,
+                password=password,
+                street=address,
+                city=city,
+                postal_code=zip_code,
+                country=country
+            )
+        except Exception as e:
+            app.logger.error(f"Registration failed: {e}")
+            return render_template("register.html", error="Registrierung fehlgeschlagen", next=next_page)
 
         session["user_name"] = name
         session["user_surname"] = surname

@@ -6,6 +6,7 @@ DROP TABLE IF EXISTS payment_method CASCADE;
 DROP TABLE IF EXISTS profile_information CASCADE;
 DROP TABLE IF EXISTS newsletter_subscription CASCADE;
 DROP TABLE IF EXISTS contact_message CASCADE;
+DROP TABLE IF EXISTS customer CASCADE;
 DROP TABLE IF EXISTS customer_address CASCADE;
 DROP TABLE IF EXISTS salutation CASCADE;
 DROP TABLE IF EXISTS orders CASCADE;
@@ -28,21 +29,23 @@ CREATE TABLE product (
 );
 
 
-CREATE TABLE customer (
-    customer_id SERIAL PRIMARY KEY,
-    name VARCHAR(255) NOT NULL,
-    email VARCHAR(255) NOT NULL,
-    salutation_id INT REFERENCES salutation(salutation_id),
-    address_id INT REFERENCES customer_address(address_id)
-);
-
-
 CREATE TABLE customer_address (
     address_id SERIAL PRIMARY KEY,
     street VARCHAR(255),
     city VARCHAR(100),
     postal_code VARCHAR(20),
     country VARCHAR(100)
+);
+
+
+CREATE TABLE customer (
+    customer_id SERIAL PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    surname VARCHAR(255),
+    email VARCHAR(255) NOT NULL UNIQUE,
+    password VARCHAR(255) NOT NULL,
+    salutation_id INT REFERENCES salutation(salutation_id),
+    address_id INT REFERENCES customer_address(address_id)
 );
 
 
