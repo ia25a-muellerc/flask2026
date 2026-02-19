@@ -77,3 +77,98 @@ body {
 .saveButton:hover {
     background-color: #ff9f1a;
 }
+
+.error-message {
+    color: #ff4444;
+    font-size: 13px;
+    margin-top: 6px;
+    display: none;
+}
+
+.input-error {
+    border-color: #ff4444 !important;
+    box-shadow: 0 0 5px rgba(255, 68, 68, 0.5);
+}
+
+/* Success Modal */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modal-content {
+    background: #111;
+    border-radius: 20px;
+    padding: 40px;
+    text-align: center;
+    border: 2px solid #f58800;
+    box-shadow: 0 0 30px rgba(245, 136, 0, 0.3);
+    max-width: 400px;
+    animation: popIn 0.3s ease;
+}
+
+@keyframes popIn {
+    0% {
+        transform: scale(0.8);
+        opacity: 0;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+.success-icon {
+    width: 80px;
+    height: 80px;
+    background: linear-gradient(135deg, #f58800, #ff9f1a);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 40px;
+    color: #000;
+    margin: 0 auto 20px;
+    font-weight: bold;
+}
+
+.modal-content h2 {
+    color: #f58800;
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+}
+
+.modal-content p {
+    color: #ccc;
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: 25px;
+}
+
+.modal-btn {
+    padding: 12px 40px;
+    border: none;
+    border-radius: 12px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.success-btn {
+    background: #f58800;
+    color: #000;
+}
+
+.success-btn:hover {
+    background: #ff9f1a;
+    transform: scale(1.05);
+}
