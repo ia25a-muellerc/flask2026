@@ -11,11 +11,6 @@ DROP TABLE IF EXISTS salutation CASCADE;
 DROP TABLE IF EXISTS orders CASCADE;
 
 
-CREATE TABLE salutation (
-    salutation_id SERIAL PRIMARY KEY,
-    name VARCHAR(20) NOT NULL
-);
-
 CREATE TABLE IF NOT EXISTS orders (
     id SERIAL PRIMARY KEY,
     date DATE NOT NULL,
