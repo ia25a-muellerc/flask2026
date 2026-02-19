@@ -167,14 +167,29 @@
         </section>
     </div>
 
-    <!-- Bestätigungsmodal -->
+    <!-- Produktinfo-Modal -->
     <div id="confirmModal" class="modal">
-        <div class="modal-content">
-            <h2>Möchtest du zum Warenkorb hinzufügen?</h2>
-            <p>Desk Dunk - CHF 30.00</p>
+        <div class="modal-content product-modal">
+            <button class="modal-close" onclick="closeConfirmModal()">&times;</button>
+            <div class="product-modal-header">
+                <img src="{{ url_for('static', filename='Image (1).jpg') }}" alt="DeskDunk" class="product-modal-img">
+            </div>
+            <div class="product-modal-body">
+                <h2>DeskDunk - Mini Basketball</h2>
+                <p class="product-price">CHF 30.00</p>
+                <div class="product-description">
+                    <ul>
+                        <li>Hochwertiges Holz & Metall</li>
+                        <li>Kompaktes Design (passt auf jeden Schreibtisch)</li>
+                        <li>Perfekt für kurze Pausen</li>
+                        <li>Stressabbau & Spass garantiert</li>
+                        <li>Handgefertigt in der Schweiz</li>
+                    </ul>
+                </div>
+            </div>
             <div class="modal-buttons">
-                <button onclick="closeConfirmModal()" class="modal-btn cancel-btn">Abbrechen</button>
-                <button onclick="confirmAddToCart()" class="modal-btn submit-btn">Bestätigen</button>
+                <button onclick="closeConfirmModal()" class="modal-btn cancel-btn">Später</button>
+                <button onclick="confirmAddToCart()" class="modal-btn submit-btn">In den Warenkorb</button>
             </div>
         </div>
     </div>

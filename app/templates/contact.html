@@ -12,18 +12,84 @@
     <a href="{{ url_for('home') }}" class="back">← Zurück</a>
 
     <p class="label">Name</p>
-    <input class="inputButton"></input>
+    <input class="inputButton" id="name-input">
 
     <p class="label">E-Mail</p>
-    <input class="inputButton"></input>
+    <input class="inputButton" id="email-input" type="email">
+    <p class="error-message" id="email-error">Bitte gib eine gültige E-Mail-Adresse ein (mit @ und .)</p>
 
     <p class="label">Betreff</p>
-    <input class="inputButton"></input>
+    <input class="inputButton" id="subject-input">
 
     <p class="label">Nachricht</p>
-    <input class="inputButton"></input>
+    <input class="inputButton" id="message-input">
 
-    <button class="saveButton">Absenden</button>
+    <button class="saveButton" onclick="validateAndSubmit()">Absenden</button>
 
 </div>
+
+<!-- Erfolgs-Popup -->
+<div id="successModal" class="modal">
+    <div class="modal-content success-modal">
+        <div class="success-icon">✓</div>
+        <h2>Nachricht gesendet!</h2>
+        <p>Vielen Dank für deine Nachricht. Wir werden uns so schnell wie möglich bei dir melden.</p>
+        <button class="modal-btn success-btn" onclick="closeSuccessModal()">OK</button>
+    </div>
+</div>
+
+<script>
+function validateEmail(email) {
+    // Prüft ob @ und . vorhanden sind
+    return email.includes('@') && email.includes('.') && email.indexOf('@') < email.lastIndexOf('.');
+}
+
+function showSuccessModal() {
+    document.getElementById('successModal').style.display = 'flex';
+}
+
+function closeSuccessModal() {
+    document.getElementById('successModal').style.display = 'none';
+    // Formular leeren
+    document.getElementById('name-input').value = '';
+    document.getElementById('email-input').value = '';
+    document.getElementById('subject-input').value = '';
+    document.getElementById('message-input').value = '';
+}
+
+function validateAndSubmit() {
+    const emailInput = document.getElementById('email-input');
+    const emailError = document.getElementById('email-error');
+    const email = emailInput.value.trim();
+    
+    if (!email || !validateEmail(email)) {
+        emailError.style.display = 'block';
+        emailInput.classList.add('input-error');
+        return false;
+    }
+    
+    emailError.style.display = 'none';
+    emailInput.classList.remove('input-error');
+    
+    // Erfolgs-Popup anzeigen
+    showSuccessModal();
+    return true;
+}
+
+// Fehler ausblenden beim Tippen
+document.getElementById('email-input').addEventListener('input', function() {
+    const emailError = document.getElementById('email-error');
+    if (validateEmail(this.value.trim())) {
+        emailError.style.display = 'none';
+        this.classList.remove('input-error');
+    }
+});
+
+// Modal schließen bei Klick außerhalb
+document.getElementById('successModal').addEventListener('click', function(e) {
+    if (e.target === this) {
+        closeSuccessModal();
+    }
+});
+</script>
 {% endblock %}

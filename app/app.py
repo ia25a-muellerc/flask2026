@@ -334,15 +334,26 @@ def popUpPayment() -> str:
     else:
         app.logger.error(f"Order email failed: {email_result['message']}")
     
+    # Bestellung in Datenbank speichern
+    from datetime import date
+    full_address = f"{user_address}, {user_zip} {user_city}"
+    total_price = quantity * 30.00
+    orders_repo.add_order(
+        date=date.today(),
+        status="Bestellt",
+        shipping_address=full_address,
+        price=total_price
+    )
+    
+    # Warenkorb leeren nach erfolgreicher Bestellung
+    session['cart_quantity'] = 1
+    session.modified = True
+    
     return render_template("popUpPayment.html", languages=languages)
 
 @app.route("/popUpSaved")
 def popUpSaved() -> str:
     return render_template("popUpSaved.html", languages=languages)
-
-@app.route("/orders")
-def minigame() -> str:
-    return render_template("orders.html", languages=languages)
 
 @app.route("/submit", methods=["POST"])
 def submit():
