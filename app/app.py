@@ -116,6 +116,7 @@ def checkout():
     # Preis pro Artikel (fest definiert auf Server)
     PRICE_PER_ITEM = 30.00
 
+
     # Quantity aus Session holen (nicht aus Request!)
     quantity = int(session.get('cart_quantity', 1))
 
