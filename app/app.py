@@ -116,6 +116,7 @@ def checkout():
     # Preis pro Artikel (fest definiert auf Server)
     PRICE_PER_ITEM = 30.00
 
+
     # Quantity aus Session holen (nicht aus Request!)
     quantity = int(session.get('cart_quantity', 1))
 
@@ -131,6 +132,20 @@ def checkout():
 
 @app.route("/payment")
 def payment() -> str:
+    # Prüfen ob Benutzer eingeloggt ist
+    if not session.get("user_email"):
+        flash("Bitte melde dich an, um fortzufahren.", "warning")
+        return redirect(url_for("signin", next=url_for("payment")))
+    
+    # Benutzerdaten aus Session holen
+    user_name = session.get("user_name", "Kunde")
+    user_surname = session.get("user_surname", "")
+    user_email = session.get("user_email", "")
+    user_address = session.get("user_address", "Unbekannte Adresse")
+    user_zip = session.get("user_zip", "")
+    user_city = session.get("user_city", "")
+    quantity = session.get("cart_quantity", 1)
+    
     return render_template("payment.html")
 
 @app.route("/download_bestellbestaetigung")

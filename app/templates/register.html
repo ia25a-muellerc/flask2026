@@ -3,57 +3,141 @@
 {% block title %}Registrieren{% endblock %}
 
 {% block content %}
-<head>
-    <meta charset="UTF-8">
-    <link rel="stylesheet" href="{{ url_for('static', filename='styles/signin.css') }}">
-</head>
-<div class="profile-card">
+    <head>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="{{ url_for('static', filename='styles/signin.css') }}">
+    </head>
+    <div class="profile-card">
 
-    <a href="{{ url_for('home') }}" class="back">← Zurück</a>
+        <a href="{{ url_for('home') }}" class="back">← Zurück</a>
 
-    {% if error %}
-    <p style="color: #f58800; text-align: center; margin-bottom: 10px;">{{ error }}</p>
-    {% endif %}
+        {% if error %}
+            <p style="color: #f58800; text-align: center; margin-bottom: 10px;">{{ error }}</p>
+        {% endif %}
 
-    <form method="POST" action="{{ url_for('register') }}" style="all: unset;">
-        <input type="hidden" name="next" value="{{ request.args.get('next', '') }}">
-        <p class="label">Vorname</p>
-        <input type="text" name="name" class="inputButton" required></input>
+        <form method="POST" action="{{ url_for('register') }}" style="all: unset;">
+            <input type="hidden" name="next" value="{{ request.args.get('next', '') }}">
+            <p class="label">Vorname</p>
+            <input type="text" name="name" class="inputButton" required></input>
 
-        <p class="label">Nachname</p>
-        <input type="text" name="surname" class="inputButton" required></input>
+            <p class="label">Nachname</p>
+            <input type="text" name="surname" class="inputButton" required></input>
 
-        <p class="label">E-Mail</p>
-        <input type="email" name="email" class="inputButton" required></input>
+            <p class="label">E-Mail</p>
+            <input type="email" name="email" class="inputButton" required></input>
 
-        <p class="label">Passwort</p>
-        <div class="password-wrapper">
-            <input type="password" name="password" class="inputButton" required></input>
-            <button type="button" class="toggle-password" data-target="password" aria-label="Passwort anzeigen">👁</button>
-        </div>
+            <p class="label">Passwort</p>
+            <div class="password-wrapper">
+                <input type="password" name="password" class="inputButton" required></input>
+                <button type="button" class="toggle-password" data-target="password" aria-label="Passwort anzeigen">👁
+                </button>
+            </div>
 
-        <p class="label">Passwort wiederholen</p>
-        <div class="password-wrapper">
-            <input type="password" name="password_confirm" class="inputButton" required></input>
-            <button type="button" class="toggle-password" data-target="password_confirm" aria-label="Passwort anzeigen">👁</button>
-        </div>
+            <div class="password-strength-container">
+                <div class="password-strength-bar">
+                    <div id="strengthFill" class="password-strength-fill strength-0 strength-1 strength-2 strength-3 strength-4 strength-5"></div>
+                </div>
+                <p id="strengthText" class="password-strength-text text-weak text-medium text-good text-strong text-extreme"></p>
+            </div>
 
-        <p class="label">Adresse</p>
-        <input type="text" name="address" class="inputButton" required></input>
+            <p class="label">Passwort wiederholen</p>
+            <div class="password-wrapper">
+                <input type="password" name="password_confirm" class="inputButton" required></input>
+                <button type="button" class="toggle-password" data-target="password_confirm"
+                        aria-label="Passwort anzeigen">👁
+                </button>
+            </div>
 
-        <p class="label">PLZ</p>
-        <input type="text" name="zip" class="inputButton" required></input>
 
-        <p class="label">Stadt</p>
-        <input type="text" name="city" class="inputButton" required></input>
 
-        <p class="label">Land</p>
-        <input type="text" name="country" class="inputButton" required></input>
+            <p class="label">Adresse</p>
+            <input type="text" name="address" class="inputButton" required></input>
 
-        <button type="submit" class="saveButton">Registrieren</button>
-    </form>
+            <p class="label">PLZ</p>
+            <input type="text" name="zip" class="inputButton" required></input>
 
-    <a href="{{ url_for('signin', next=request.args.get('next', '')) }}">Schon ein Konto? Anmelden</a>
+            <p class="label">Stadt</p>
+            <input type="text" name="city" class="inputButton" required></input>
 
-</div>
+            <p class="label">Land</p>
+            <input type="text" name="country" class="inputButton" required></input>
+
+            <button type="submit" class="saveButton">Registrieren</button>
+        </form>
+
+        <a href="{{ url_for('signin', next=request.args.get('next', '')) }}">Schon ein Konto? Anmelden</a>
+
+    </div>
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const passwordInput = document.querySelector('input[name="password"]');
+        const strengthFill = document.getElementById('strengthFill');
+        const strengthText = document.getElementById('strengthText');
+
+        const strengthLevels = [
+            { class: 'strength-0', width: '0%', text: '' },
+            { class: 'strength-1', width: '20%', text: 'Sehr schwach' },
+            { class: 'strength-2', width: '40%', text: 'Schwach' },
+            { class: 'strength-3', width: '60%', text: 'Mittel' },
+            { class: 'strength-4', width: '80%', text: 'Stark' },
+            { class: 'strength-5', width: '100%', text: 'Sehr stark' }
+        ];
+
+        passwordInput.addEventListener('input', function() {
+            const password = this.value;
+            let strength = 0;
+
+            if (password.length >= 6) strength++;
+            if (password.length >= 10) strength++;
+            if (/[a-z]/.test(password) && /[A-Z]/.test(password)) strength++;
+            if (/\d/.test(password)) strength++;
+            if (/[^a-zA-Z0-9]/.test(password)) strength++;
+
+            const level = strengthLevels[strength];
+            strengthFill.className = 'password-strength-fill ' + level.class;
+            strengthFill.style.width = level.width;
+            strengthText.textContent = level.text;
+        });
+    });
+    </script>
+
+    <style>
+    .password-strength-container {
+        margin-top: 8px;
+    }
+
+    .password-strength-bar {
+        height: 6px;
+        background: #e0e0e0;
+        border-radius: 3px;
+        overflow: hidden;}
+
+    .password-strength-fill {
+        height: 100%;
+        width: 0%;
+        transition: width 0.3s, background-color 0.3s;
+        border-radius: 3px;
+    }
+
+    .password-strength-text {
+        font-size: 12px;
+        margin-top: 4px;
+        font-weight: 500;
+    }
+
+    .strength-0 { width: 0%; background-color: #e0e0e0; }
+    .strength-1 { width: 20%; background-color: #ff4444; }
+    .strength-2 { width: 40%; background-color: #ffaa00; }
+    .strength-3 { width: 60%; background-color: #ffdd00; }
+    .strength-4 { width: 80%; background-color: #00cc44; }
+    .strength-5 { width: 100%; background-color: #00aa00; }
+
+    .text-weak { color: #ff4444; }
+    .text-medium { color: #ffaa00; }
+    .text-good { color: #ffdd00; }
+    .text-strong { color: #00cc44; }
+    .text-extreme { color: #00aa00; }
+    </style>
+
+
 {% endblock %}
