@@ -11,24 +11,6 @@ DROP TABLE IF EXISTS customer_address CASCADE;
 DROP TABLE IF EXISTS salutation CASCADE;
 DROP TABLE IF EXISTS orders CASCADE;
 
-
-CREATE TABLE IF NOT EXISTS orders (
-    id SERIAL PRIMARY KEY,
-    date DATE NOT NULL,
-    status VARCHAR(50) NOT NULL,
-    shipping_address VARCHAR(255) NOT NULL,
-    price DECIMAL(10,2) NOT NULL,
-    canceled BOOLEAN NOT NULL
-);
-
-
-CREATE TABLE product (
-    product_id SERIAL PRIMARY KEY,
-    name VARCHAR(255),
-    price DECIMAL(10,2)
-);
-
-
 CREATE TABLE customer_address (
     address_id SERIAL PRIMARY KEY,
     street VARCHAR(255),
@@ -37,6 +19,10 @@ CREATE TABLE customer_address (
     country VARCHAR(100)
 );
 
+CREATE TABLE IF NOT EXISTS salutation (
+    salutation_id SERIAL PRIMARY KEY,
+    title VARCHAR(50) NOT NULL
+);
 
 CREATE TABLE customer (
     customer_id SERIAL PRIMARY KEY,
@@ -48,12 +34,9 @@ CREATE TABLE customer (
     address_id INT REFERENCES customer_address(address_id)
 );
 
-
 CREATE TABLE payment_method (
     payment_method_id SERIAL PRIMARY KEY,
-    customer_id INT REFERENCES customer(customer_id),
-    provider VARCHAR(50) NOT NULL,
-    provider_token VARCHAR(255) NOT NULL
+    method VARCHAR(50) NOT NULL
 );
 
 CREATE TABLE customer_payment (
@@ -61,9 +44,27 @@ CREATE TABLE customer_payment (
     name VARCHAR(255) NOT NULL,
     email VARCHAR(255) NOT NULL,
     address_id INT REFERENCES customer_address(address_id),
-    provider VARCHAR(50) NOT NULL,
-    provider_token VARCHAR(255) NOT NULL
+    payment_method_id INT REFERENCES payment_method(payment_method_id)
 );
+
+CREATE TABLE IF NOT EXISTS orders (
+    id SERIAL PRIMARY KEY,
+    date DATE NOT NULL,
+    status VARCHAR(50) NOT NULL,
+    shipping_address VARCHAR(255) NOT NULL,
+    price DECIMAL(10,2) NOT NULL,
+    customer_id INT REFERENCES customer(customer_id),
+    customer_payment_id INT REFERENCES customer_payment(customer_payment_id),
+    canceled BOOLEAN NOT NULL
+);
+
+CREATE TABLE product (
+    product_id SERIAL PRIMARY KEY,
+    name VARCHAR(255),
+    price DECIMAL(10,2)
+);
+
+
 
 CREATE TABLE contact_message (
     message_id SERIAL PRIMARY KEY,
@@ -80,12 +81,6 @@ CREATE TABLE product_review (
     customer_id INT REFERENCES customer(customer_id),
     rating INT,
     review_text TEXT
-);
-
-CREATE TABLE newsletter_subscription (
-    subscription_id SERIAL PRIMARY KEY,
-    email VARCHAR(255) NOT NULL,
-    customer_id INT REFERENCES customer(customer_id)
 );
 
 
