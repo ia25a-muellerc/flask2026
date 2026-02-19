@@ -1,9 +1,10 @@
 from db import get_db
 from flask import current_app
+import psycopg2.extras
 
 def add_order(date, status, shipping_address, price):
     conn = get_db()
-    cur = conn.cursor()
+    cur = conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
     try:
         cur.execute(
             "INSERT INTO orders (date, status, shipping_address, price, canceled) VALUES (%s, %s, %s, %s, %s)", (date, status, shipping_address, price, False)
@@ -17,7 +18,7 @@ def add_order(date, status, shipping_address, price):
 
 def get_all_products():
     conn = get_db()
-    cur = conn.cursor()
+    cur = conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
     cur.execute("SELECT * FROM orders")
     orders = cur.fetchall()
     cur.close()
@@ -25,7 +26,7 @@ def get_all_products():
 
 def get_by_id(id):
     conn = get_db()
-    cur = conn.cursor()
+    cur = conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
     try:
         cur.execute(
             "SELECT * FROM orders WHERE id='%s'", ([id])
@@ -40,7 +41,7 @@ def get_by_id(id):
 
 def cancel_order(id):
     conn = get_db()
-    cur = conn.cursor()
+    cur = conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
     try:
         cur.execute(
             "UPDATE orders SET canceled = 'TRUE' WHERE id = %s;", (id)
