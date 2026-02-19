@@ -384,7 +384,7 @@ def register() -> str:
             "name": name,
             "surname": surname,
             "email": email,
-            "password": password,  # Demo-only
+            "password": password,  
             "address": address,
             "zip": zip_code,
             "city": city,
