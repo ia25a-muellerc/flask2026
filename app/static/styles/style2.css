@@ -1,5 +1,8 @@
 body {
     background-color: #000000;
+    font-size: 1rem;
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
 }
 
 html {
@@ -30,14 +33,14 @@ html {
 .section-title {
     margin: 0;
     color: #ffffff;
-    font-size: 1.4rem;
+    font-size: 1.8rem;
     font-weight: 600;
 }
 
 .section-subtitle {
     margin: 0;
     color: rgba(255, 255, 255, 0.65);
-    font-size: 0.95rem;
+    font-size: 1rem;
 }
 
 /* Hero Section */
@@ -497,6 +500,18 @@ iframe {
         padding: 24px;
     }
 
+    .hero-title {
+        font-size: clamp(1.6rem, 5vw, 2.2rem);
+    }
+
+    .hero-lead {
+        font-size: 1rem;
+    }
+
+    .eyebrow {
+        font-size: 0.85rem;
+    }
+
     .features-grid {
         grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
         gap: 20px;
@@ -514,11 +529,11 @@ iframe {
     }
 
     .feature-card h3 {
-        font-size: 1rem;
+        font-size: 1.1rem;
     }
 
     .feature-card p {
-        font-size: 0.85rem;
+        font-size: 0.95rem;
     }
 
     .cta-section {
@@ -530,7 +545,15 @@ iframe {
     }
 
     .cta-section p {
-        font-size: 0.9rem;
+        font-size: 1rem;
+    }
+
+    .section-title {
+        font-size: 1.6rem;
+    }
+
+    .section-subtitle {
+        font-size: 1rem;
     }
 
     .purchaser-large {
@@ -538,16 +561,46 @@ iframe {
         font-size: 1rem;
         min-width: 180px;
     }
+
+    .imageHolder {
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 20px;
+    }
+
+    .imageHolder .card {
+        height: 240px;
+    }
+
+    .imageHolder .card__title {
+        font-size: 1.1rem;
+    }
+
+    .imageHolder .card__description {
+        font-size: 0.95rem;
+    }
+
+    .miniGameHolder {
+        height: 350px;
+        width: 100%;
+    }
 }
 
 @media (max-width: 640px) {
     .homeScreen {
-        gap: 56px;
-        padding: 32px 16px 64px;
+        gap: 48px;
+        padding: 24px 12px 56px;
     }
 
     .hero {
-        padding: 24px;
+        padding: 20px;
+    }
+
+    .hero-title {
+        font-size: clamp(1.4rem, 6vw, 1.8rem);
+    }
+
+    .hero-lead {
+        font-size: 1rem;
     }
 
     .cta-row {
@@ -560,10 +613,16 @@ iframe {
         width: 100%;
         text-align: center;
         justify-content: center;
+        font-size: 1rem;
     }
 
     .wrapper {
-        height: 300px;
+        height: 280px;
+    }
+
+    .inner {
+        --w: 160px;
+        --h: 180px;
     }
 
     .features-grid {
@@ -583,11 +642,19 @@ iframe {
     }
 
     .feature-card h3 {
-        font-size: 1rem;
+        font-size: 1.05rem;
     }
 
     .feature-card p {
-        font-size: 0.85rem;
+        font-size: 0.95rem;
+    }
+
+    .section-title {
+        font-size: 1.5rem;
+    }
+
+    .section-subtitle {
+        font-size: 1rem;
     }
 
     .cta-section {
@@ -598,10 +665,36 @@ iframe {
         font-size: 1.4rem;
     }
 
+    .cta-section p {
+        font-size: 1rem;
+    }
+
     .purchaser-large {
         width: 100%;
         padding: 12px 24px;
+        font-size: 1rem;
+    }
+
+    .imageHolder {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+
+    .imageHolder .card {
+        height: 220px;
+    }
+
+    .imageHolder .card__title {
+        font-size: 1.05rem;
+    }
+
+    .imageHolder .card__description {
         font-size: 0.95rem;
+    }
+
+    .miniGameHolder {
+        height: 300px;
+        width: 100%;
     }
 }
 
@@ -705,19 +798,45 @@ iframe {
     }
 
     .modal-content h2 {
-        font-size: 1.2rem;
+        font-size: 1.3rem;
         margin-bottom: 10px;
     }
 
     .modal-content p {
-        font-size: 0.9rem;
+        font-size: 1rem;
         margin-bottom: 20px;
     }
 
     .modal-btn {
         padding: 10px 20px;
-        font-size: 0.9rem;
+        font-size: 1rem;
         min-width: 100px;
+    }
+
+    .homeScreen {
+        gap: 40px;
+        padding: 20px 10px 48px;
+    }
+
+    .hero-title {
+        font-size: 1.3rem;
+    }
+
+    .hero-lead {
+        font-size: 0.95rem;
+    }
+
+    .wrapper {
+        height: 240px;
+    }
+
+    .inner {
+        --w: 140px;
+        --h: 160px;
+    }
+
+    .miniGameHolder {
+        height: 250px;
     }
 }
 

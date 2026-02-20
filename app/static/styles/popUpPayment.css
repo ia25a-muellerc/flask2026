@@ -3,6 +3,9 @@ body {
     min-height: 100vh;
     background-color: #000;
     font-family: Arial, Helvetica, sans-serif;
+    font-size: 1rem;
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
 }
 
 .page {
@@ -202,4 +205,90 @@ body {
 .submit-rating-btn:hover {
     background-color: #ff9f1a;
     box-shadow: 0 0 10px rgba(255, 159, 26, 0.7);
+}
+/* Responsive für Handys */
+@media screen and (max-width: 768px) {
+    .page {
+        padding-top: 30px;
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+
+    .payment-card {
+        max-width: 95%;
+        padding: 24px;
+    }
+
+    .payment-card h2 {
+        font-size: 20px;
+    }
+
+    .payment-card p {
+        font-size: 15px;
+    }
+
+    .rateButton,
+    .cancelButton,
+    .downloadButton {
+        font-size: 16px;
+        padding: 14px;
+    }
+
+    .star {
+        font-size: 40px;
+    }
+
+    .rating-section h3 {
+        font-size: 17px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .page {
+        padding-top: 20px;
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+
+    .payment-card {
+        max-width: 100%;
+        padding: 20px;
+        border-radius: 16px;
+    }
+
+    .payment-card h2 {
+        font-size: 19px;
+    }
+
+    .payment-card p {
+        font-size: 15px;
+        margin-bottom: 22px;
+    }
+
+    .button-container {
+        flex-direction: column;
+    }
+
+    .rateButton,
+    .cancelButton,
+    .downloadButton {
+        font-size: 16px;
+        padding: 12px;
+    }
+
+    .star {
+        font-size: 36px;
+    }
+
+    .stars-container {
+        gap: 10px;
+    }
+
+    .rating-text {
+        font-size: 14px;
+    }
+
+    .submit-rating-btn {
+        font-size: 15px;
+    }
 }

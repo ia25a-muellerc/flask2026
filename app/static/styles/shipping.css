@@ -6,6 +6,9 @@
 body {
     margin: 0;
     background-color: #000;
+    font-size: 1rem;
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
 }
 
 .profile-card {
@@ -65,4 +68,64 @@ body {
 
 .saveButton:hover {
     background-color: #ff9f1a;
+}
+/* Responsive für Handys */
+@media screen and (max-width: 768px) {
+    .profile-card {
+        max-width: 90%;
+        margin: 40px auto;
+        padding: 20px;
+    }
+
+    .label {
+        font-size: 15px;
+    }
+
+    .inputButton {
+        font-size: 16px;
+        padding: 14px;
+    }
+
+    .saveButton {
+        font-size: 16px;
+        padding: 12px 20px;
+        margin-left: 0;
+        width: 100%;
+    }
+
+    .actions {
+        flex-direction: column;
+        gap: 15px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .profile-card {
+        max-width: 95%;
+        margin: 25px auto;
+        padding: 18px;
+        border-radius: 16px;
+    }
+
+    .label {
+        font-size: 15px;
+        margin: 12px 0 5px;
+    }
+
+    .inputButton {
+        font-size: 16px;
+        padding: 12px;
+        border-radius: 12px;
+    }
+
+    .saveButton {
+        font-size: 16px;
+        padding: 12px;
+        border-radius: 14px;
+        margin-left: 0;
+    }
+
+    .back {
+        font-size: 14px;
+    }
 }

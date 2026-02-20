@@ -6,6 +6,9 @@
 body {
     margin: 0;
     background-color: #000;
+    font-size: 1rem;
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
 }
 
 .profile-card {
@@ -171,4 +174,90 @@ body {
 .success-btn:hover {
     background: #ff9f1a;
     transform: scale(1.05);
+}
+/* Responsive für Handys */
+@media screen and (max-width: 768px) {
+    .profile-card {
+        max-width: 90%;
+        margin: 40px auto;
+        padding: 20px;
+    }
+
+    .label {
+        font-size: 15px;
+    }
+
+    .inputButton {
+        font-size: 16px;
+        padding: 14px;
+    }
+
+    .saveButton {
+        font-size: 16px;
+        padding: 14px;
+    }
+
+    .modal-content {
+        max-width: 90%;
+        padding: 30px;
+    }
+
+    .modal-content h2 {
+        font-size: 1.4rem;
+    }
+
+    .modal-content p {
+        font-size: 1rem;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .profile-card {
+        max-width: 95%;
+        margin: 25px auto;
+        padding: 18px;
+        border-radius: 16px;
+    }
+
+    .label {
+        font-size: 15px;
+        margin: 12px 0 5px;
+    }
+
+    .inputButton {
+        font-size: 16px;
+        padding: 12px;
+        border-radius: 12px;
+    }
+
+    .saveButton {
+        font-size: 16px;
+        padding: 12px;
+        border-radius: 14px;
+    }
+
+    .back {
+        font-size: 14px;
+        padding: 6px 10px;
+    }
+
+    .modal-content {
+        max-width: 95%;
+        padding: 25px 20px;
+    }
+
+    .modal-content h2 {
+        font-size: 1.3rem;
+    }
+
+    .modal-btn {
+        font-size: 1rem;
+        padding: 12px 35px;
+    }
+
+    .success-icon {
+        width: 70px;
+        height: 70px;
+        font-size: 36px;
+    }
 }
