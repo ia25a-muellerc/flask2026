@@ -3,20 +3,24 @@ body {
     font-family: Arial, Helvetica, sans-serif;
     background-color: #0f0f0f;
     color: white;
+    font-size: 1rem;
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
 }
 
 .subtitle {
     text-align: center;
     color: #f58800;
     margin-bottom: 30px;
-    font-size: 50px;
+    font-size: 2.5rem;
 }
 
 .container {
-    width: 50vw;
-    margin: 100px auto;
+    width: 90%;
+    max-width: 600px;
+    margin: 60px auto;
     background-color: #000000;
-    padding: 35px;
+    padding: 25px;
     border-radius: 12px;
     box-shadow: 0 0 20px #f58800;
 }
@@ -210,4 +214,126 @@ h1 {
 .cart-notice.show {
     opacity: 1;
     transform: translateX(0);
+}
+/* Responsive für Handys */
+@media screen and (max-width: 768px) {
+    .container {
+        width: 92%;
+        margin: 40px auto;
+        padding: 20px;
+    }
+
+    .subtitle {
+        font-size: 2rem;
+    }
+
+    h1 {
+        font-size: 1.6rem;
+    }
+
+    .item {
+        font-size: 1rem;
+    }
+
+    .item-name {
+        font-size: 1.1rem;
+    }
+
+    .item-price {
+        font-size: 1rem;
+    }
+
+    .quantity {
+        font-size: 1.2rem;
+    }
+
+    .qty-btn {
+        width: 38px;
+        height: 38px;
+        font-size: 1.2rem;
+    }
+
+    .total {
+        font-size: 1.1rem;
+    }
+
+    .checkout {
+        font-size: 1rem;
+        padding: 14px;
+    }
+
+    .empty-message {
+        font-size: 1.1rem;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .container {
+        width: 95%;
+        margin: 25px auto;
+        padding: 16px;
+    }
+
+    .subtitle {
+        font-size: 1.6rem;
+        margin-bottom: 20px;
+    }
+
+    h1 {
+        font-size: 1.4rem;
+        margin-bottom: 20px;
+    }
+
+    .item {
+        font-size: 1rem;
+        padding: 15px 0;
+    }
+
+    .item-info {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+    }
+
+    .item-name {
+        font-size: 1.05rem;
+    }
+
+    .quantity-control {
+        gap: 12px;
+    }
+
+    .qty-btn {
+        width: 36px;
+        height: 36px;
+        font-size: 1.1rem;
+    }
+
+    .quantity {
+        font-size: 1.1rem;
+    }
+
+    .total {
+        font-size: 1.05rem;
+    }
+
+    .checkout {
+        font-size: 1rem;
+        padding: 12px;
+    }
+
+    .back-button {
+        font-size: 14px;
+        padding: 8px 14px;
+    }
+
+    .remove-btn {
+        font-size: 14px;
+        padding: 8px 14px;
+    }
+
+    .cart-notice {
+        font-size: 13px;
+        padding: 8px 14px;
+    }
 }

@@ -19,18 +19,14 @@ CREATE TABLE customer_address (
     country VARCHAR(100)
 );
 
-CREATE TABLE IF NOT EXISTS salutation (
-    salutation_id SERIAL PRIMARY KEY,
-    title VARCHAR(50) NOT NULL
-);
 
 CREATE TABLE customer (
     customer_id SERIAL PRIMARY KEY,
+    salutation VARCHAR(50),
     name VARCHAR(255) NOT NULL,
     surname VARCHAR(255),
     email VARCHAR(255) NOT NULL UNIQUE,
     password VARCHAR(255) NOT NULL,
-    salutation_id INT REFERENCES salutation(salutation_id),
     address_id INT REFERENCES customer_address(address_id)
 );
 
@@ -70,13 +66,13 @@ CREATE TABLE contact_message (
     email VARCHAR(255) NOT NULL,
     subject VARCHAR(255),
     message TEXT,
-    customer_id INT REFERENCES customer(customer_id)
+    customer_id INT REFERENCES customer(customer_id) ON DELETE CASCADE NULL
 );
 
 CREATE TABLE product_review (
     review_id SERIAL PRIMARY KEY,
     product_id INT REFERENCES product(product_id),
-    customer_id INT REFERENCES customer(customer_id),
+    customer_id INT REFERENCES customer(customer_id) ON DELETE CASCADE NULL,
     rating INT,
     review_text TEXT
 );

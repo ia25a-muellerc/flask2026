@@ -4,6 +4,9 @@ body{
     padding: 0;
     background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 50%, #0a0a0a 100%);
     color: white;
+    font-size: 1rem;
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
 }
 
 .product-container {
@@ -223,4 +226,151 @@ body{
     font-weight: 600;
 }
 
+/* Responsive für Handys */
+@media screen and (max-width: 768px) {
+    .product-container {
+        padding: 25px 15px;
+    }
 
+    .product-header {
+        flex-direction: column;
+        gap: 25px;
+        padding: 25px;
+        margin-bottom: 40px;
+    }
+
+    .product-title {
+        font-size: 36px;
+        letter-spacing: 3px;
+    }
+
+    .product-subtitle {
+        font-size: 18px;
+    }
+
+    .product-image img {
+        max-width: 300px;
+    }
+
+    .description-box {
+        padding: 25px;
+    }
+
+    .description-box h2 {
+        font-size: 26px;
+    }
+
+    .description-box p {
+        font-size: 16px;
+        line-height: 1.8;
+    }
+
+    .features {
+        grid-template-columns: 1fr;
+        gap: 20px;
+        margin: 35px 0;
+    }
+
+    .feature-card {
+        padding: 25px;
+    }
+
+    .feature-card h3 {
+        font-size: 18px;
+    }
+
+    .feature-card p {
+        font-size: 15px;
+    }
+
+    .material-content {
+        padding: 30px;
+    }
+
+    .material-content h2 {
+        font-size: 24px;
+    }
+
+    .material-content p {
+        font-size: 16px;
+        line-height: 1.8;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .product-container {
+        padding: 20px 12px;
+    }
+
+    .product-header {
+        padding: 20px;
+        border-radius: 15px;
+        gap: 20px;
+    }
+
+    .product-title {
+        font-size: 28px;
+        letter-spacing: 2px;
+    }
+
+    .product-subtitle {
+        font-size: 16px;
+    }
+
+    .product-image img {
+        max-width: 250px;
+        border-radius: 15px;
+    }
+
+    .description-box {
+        padding: 20px;
+        margin: 20px 0;
+        border-radius: 12px;
+    }
+
+    .description-box h2 {
+        font-size: 22px;
+    }
+
+    .description-box p {
+        font-size: 15px;
+        line-height: 1.7;
+    }
+
+    .features {
+        gap: 15px;
+        margin: 25px 0;
+    }
+
+    .feature-card {
+        padding: 20px;
+        border-radius: 12px;
+    }
+
+    .feature-card h3 {
+        font-size: 17px;
+    }
+
+    .feature-card p {
+        font-size: 14px;
+    }
+
+    .material-section {
+        margin: 25px 0;
+        border-radius: 15px;
+    }
+
+    .material-content {
+        padding: 25px 20px;
+        border-radius: 13px;
+    }
+
+    .material-content h2 {
+        font-size: 20px;
+    }
+
+    .material-content p {
+        font-size: 15px;
+        line-height: 1.7;
+    }
+}

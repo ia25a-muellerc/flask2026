@@ -4,6 +4,9 @@ body {
     color: #333333;
     margin: 0;
     padding: 0;
+    font-size: 1rem;
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
 }
 
 
@@ -225,7 +228,7 @@ body {
     }
 
     .payment-container h1 {
-        font-size: 2.2rem;
+        font-size: 2rem;
         margin-bottom: 40px;
     }
 
@@ -238,14 +241,38 @@ body {
         padding: 30px 20px;
     }
 
+    .payment-option h3 {
+        font-size: 1.2rem;
+    }
+
+    .payment-option p {
+        font-size: 1rem;
+    }
+
     .payment-btn {
         padding: 12px 20px;
-        font-size: 0.9rem;
+        font-size: 1rem;
     }
 
     .back-button {
-        padding: 8px 12px;
-        font-size: 12px;
+        padding: 10px 14px;
+        font-size: 14px;
+    }
+
+    .order-summary {
+        padding: 25px;
+    }
+
+    .order-summary h2 {
+        font-size: 1.4rem;
+    }
+
+    .summary-item {
+        font-size: 1rem;
+    }
+
+    .summary-item.total {
+        font-size: 1.15rem;
     }
 }
 
@@ -254,18 +281,59 @@ body {
         grid-template-columns: 1fr;
     }
 
+    .payment-container {
+        margin: 25px auto;
+        padding: 20px 12px;
+    }
+
     .payment-container h1 {
-        font-size: 1.8rem;
+        font-size: 1.6rem;
+        margin-bottom: 30px;
     }
 
     .payment-option {
-        padding: 25px 20px;
+        padding: 25px 18px;
+    }
+
+    .payment-option h3 {
+        font-size: 1.15rem;
+    }
+
+    .payment-option p {
+        font-size: 0.95rem;
+    }
+
+    .payment-btn {
+        font-size: 1rem;
+        padding: 12px 18px;
     }
 
     .back-button {
-        width: 100%;
-        padding: 10px;
+        width: auto;
+        padding: 10px 14px;
         font-size: 14px;
+    }
+
+    .order-summary {
+        padding: 20px;
+        margin-bottom: 30px;
+    }
+
+    .order-summary h2 {
+        font-size: 1.3rem;
+    }
+
+    .summary-item {
+        font-size: 0.95rem;
+    }
+
+    .summary-item.total {
+        font-size: 1.1rem;
+    }
+
+    .payment-logo {
+        width: 150px;
+        height: 100px;
     }
 }
 
@@ -479,11 +547,88 @@ body {
         margin: 40px 15px;
     }
 
+    .payment-form-section h2 {
+        font-size: 1.8rem;
+    }
+
     .form-section {
         padding: 20px;
+    }
+
+    .form-section h3 {
+        font-size: 1.2rem;
+    }
+
+    .form-group label {
+        font-size: 1rem;
+    }
+
+    .form-group input,
+    .form-group select {
+        font-size: 16px;
+        padding: 12px 14px;
     }
 
     .form-row {
         grid-template-columns: 1fr;
     }
+
+    .submit-payment-btn {
+        font-size: 1.05rem;
+        padding: 14px 28px;
+    }
 }
+
+@media (max-width: 480px) {
+    .payment-form-section {
+        padding: 25px 16px;
+        margin: 25px 10px;
+    }
+
+    .payment-form-section h2 {
+        font-size: 1.5rem;
+    }
+
+    .form-section {
+        padding: 16px;
+    }
+
+    .form-section h3 {
+        font-size: 1.1rem;
+    }
+
+    .form-group label {
+        font-size: 1rem;
+    }
+
+    .form-group input,
+    .form-group select {
+        font-size: 16px;
+        padding: 12px;
+    }
+
+    .submit-payment-btn {
+        font-size: 1rem;
+        padding: 14px 24px;
+    }
+
+    .purchase-modal__content {
+        padding: 24px 20px;
+    }
+
+    .purchase-modal__content h3 {
+        font-size: 1.15rem;
+    }
+
+    .purchase-modal__content p {
+        font-size: 1rem;
+    }
+
+    .purchase-modal__btn {
+        font-size: 1rem;
+        padding: 10px 16px;
+    }
+
+    .purchase-modal__actions {
+        flex-direction: column;
+        gap: 10px;

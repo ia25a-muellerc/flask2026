@@ -212,6 +212,7 @@ def download_bestellbestaetigung():
     user_zip = session.get("user_zip", "")
     user_city = session.get("user_city", "")
     quantity = session.get("cart_quantity", 1)
+    salutation = session.get("user_salutation", "")
 
     # Bestellnummer generieren (vereinfacht)
     order_number = hash(session.get("user_email")) % 100000
@@ -225,7 +226,8 @@ def download_bestellbestaetigung():
         user_zip=user_zip,
         user_city=user_city,
         quantity=quantity,
-        price=30.00
+        price=30.00,
+        salutation=salutation
     )
 
     # PDF zum Download senden
@@ -235,15 +237,6 @@ def download_bestellbestaetigung():
         as_attachment=True,
         download_name=f"bestellbestaetigung_{order_number}.pdf"
     )
-@app.route("/add-product", methods=["POST"])
-def add_order() -> str:
-    date = request.form["date"]
-    #id = request.form["id"]
-    status = request.form["status"]
-    shipping_address = request.form["shipping_address"]
-    price = request.form["price"]
-    orders_repo.add_order(date, status, shipping_address, price)
-    return redirect(url_for("orders"))
 
 @app.route("/cancel-order", methods=["POST"])
 def cancel_order() -> str:
@@ -260,8 +253,8 @@ def download_order() -> str:
 
 @app.route("/orders")
 def orders() -> str:
-    orders = orders_repo.get_all_products()
-    return render_template("orders.html", orders=orders)
+    orders = orders_repo.get_orders_by_customer_id(session.get("user_id"))
+    return render_template("orders.html", orders1=orders)
 
 @app.route("/data")
 def data() -> str:
@@ -275,12 +268,20 @@ def profile():
         return redirect(url_for("signin"))
 
     if request.method == "POST":
-        session['user_name'] = request.form.get("name", "").strip()
-        session['user_surname'] = request.form.get("surname", "").strip()
-        session['user_email'] = request.form.get("email", "").strip()
+        old_email = session.get("user_email")
+        new_name = request.form.get("name", "").strip()
+        new_surname = request.form.get("surname", "").strip()
+        new_email = request.form.get("email", "").strip()
 
-        app.logger.info(f"Profile updated: {session.get('user_name')} {session.get('user_surname')}")
-        return redirect(url_for("home"))
+        try:
+            customer_repo.update_customer(old_email, new_name, new_surname, new_email)
+        except Exception as e:
+            app.logger.error(f"Failed to update profile: {e}")
+
+        session["user_name"] = new_name
+        session["user_surname"] = new_surname
+        session["user_email"] = new_email
+        return redirect(url_for("data"))
 
     return render_template("data.html")
 
@@ -318,6 +319,7 @@ def signin() -> str:
         session["user_zip"] = user.get("zip", "")
         session["user_city"] = user.get("city", "")
         session["user_country"] = user.get("country", "")
+        session["user_id"] = user.get("customer_id")
 
         app.logger.info(f"User logged in: {email}")
         if next_page:
@@ -340,9 +342,12 @@ def delete_profile():
     if session.get("user_email"):
         email = session.get("user_email")
         # Benutzer aus dem user_store löschen (falls vorhanden)
-        if email in user_store:
-            del user_store[email]
-            app.logger.info(f"Profile deleted: {email}")
+        try:
+            customer_repo.delete_customer(email)
+            app.logger.info(f"User deleted: {email}")
+        except Exception as e:
+            app.logger.error(f"Failed to delete user {email}: {e}")
+
         # Session löschen und zur Startseite umleiten
         session.clear()
     return redirect(url_for("home"))
@@ -439,6 +444,7 @@ def register() -> str:
     next_page = request.args.get("next") or request.form.get("next") or ""
 
     if request.method == "POST":
+        salutation = request.form.get("salutation")
         name = request.form.get("name", "").strip()
         surname = request.form.get("surname", "").strip()
         email = request.form.get("email", "").strip()
@@ -449,7 +455,7 @@ def register() -> str:
         city = request.form.get("city", "").strip()
         country = request.form.get("country", "").strip()
 
-        if not all([name, surname, email, password, password_confirm, address, zip_code, city, country]):
+        if not all([salutation, name, surname, email, password, password_confirm, address, zip_code, city, country]):
             return render_template("register.html", error="Bitte alle Felder ausfuellen", next=next_page)
 
         if password != password_confirm:
@@ -462,6 +468,7 @@ def register() -> str:
         # Kunde in Datenbank speichern
         try:
             customer_repo.create_customer(
+                salutation=salutation,
                 name=name,
                 surname=surname,
                 email=email,
@@ -475,6 +482,7 @@ def register() -> str:
             app.logger.error(f"Registration failed: {e}")
             return render_template("register.html", error="Registrierung fehlgeschlagen", next=next_page)
 
+        session["user_salutation"] = salutation
         session["user_name"] = name
         session["user_surname"] = surname
         session["user_email"] = email
@@ -482,6 +490,8 @@ def register() -> str:
         session["user_zip"] = zip_code
         session["user_city"] = city
         session["user_country"] = country
+        if customerId:
+            session["user_id"] = customerId
 
         app.logger.info(f"User registered: {email}")
         if next_page:
