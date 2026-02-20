@@ -48,7 +48,7 @@ def get_by_id(id):
     cur = conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
     try:
         cur.execute(
-            "SELECT * FROM orders WHERE id=%s", (id)
+            "SELECT * FROM orders WHERE id=%s", (id,)
         )
         orders = cur.fetchall()
     except Exception as e:
@@ -62,12 +62,14 @@ def cancel_order(id):
     conn = get_db()
     cur = conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
     try:
+        current_app.logger.info(f"Canceling order with id: {id}")
         cur.execute(
-            "UPDATE orders SET canceled = 'TRUE' WHERE id = %s;", (id)
+            "UPDATE orders SET canceled = TRUE WHERE id = %s;", (id,)
         )
         conn.commit()
+        current_app.logger.info(f"Order {id} canceled successfully, rows affected: {cur.rowcount}")
     except Exception as e:
         conn.rollback()
-        current_app.logger.error(e)
+        current_app.logger.error(f"Error canceling order: {e}")
     finally:
         cur.close()

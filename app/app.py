@@ -240,8 +240,10 @@ def download_bestellbestaetigung():
 
 @app.route("/cancel-order", methods=["POST"])
 def cancel_order() -> str:
-    id = request.form['order_id']
+    id = int(request.form['order_id'])
+    app.logger.info(f"Cancel order called with id: {id}")
     orders_repo.cancel_order(id)
+    app.logger.info(f"Order {id} cancel completed")
     return redirect(url_for("orders"))
 
 @app.route("/download-order", methods=["POST"])
