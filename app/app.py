@@ -469,7 +469,7 @@ def register() -> str:
 
         # Kunde in Datenbank speichern
         try:
-            customer_repo.create_customer(
+            customerId = customer_repo.create_customer(
                 salutation=salutation,
                 name=name,
                 surname=surname,
@@ -492,8 +492,7 @@ def register() -> str:
         session["user_zip"] = zip_code
         session["user_city"] = city
         session["user_country"] = country
-        if customerId:
-            session["user_id"] = customerId
+        session["user_id"] = customerId
 
         app.logger.info(f"User registered: {email}")
         if next_page:
