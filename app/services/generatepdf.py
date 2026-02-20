@@ -1,7 +1,7 @@
 from fpdf import FPDF
 from datetime import datetime
 
-def generate_bestellbestaetigung(order_number, user_name, user_surname, user_address, user_zip, user_city, price, quantity):
+def generate_bestellbestaetigung(order_number, user_name, user_surname, user_address, user_zip, user_city, price, quantity, salutation):
 
     pdf = FPDF()
     pdf.add_page()
@@ -10,7 +10,7 @@ def generate_bestellbestaetigung(order_number, user_name, user_surname, user_add
 
     content = (
         f"Betreff: Ihre Bestellung bei DeskDunk - Bestätigung\n\n"
-        f"Hallo {user_name} {user_surname},\n\n"
+        f"Hallo, {salutation} {user_name} {user_surname},\n\n"
         f"vielen Dank für Ihre Bestellung bei DeskDunk!\n"
         f"Wir freuen uns, Ihnen bestätigen zu können, dass Ihre Bestellung erfolgreich eingegangen ist.\n\n"
         f"BESTELLDETAILS\n"
