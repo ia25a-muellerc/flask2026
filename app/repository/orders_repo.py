@@ -2,12 +2,16 @@ from db import get_db
 from flask import current_app
 import psycopg2.extras
 
-def add_order(date, status, shipping_address, price):
+def add_order(date, status, shipping_address, price, customer_id=None, customer_payment_id=None):
     conn = get_db()
     cur = conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
     try:
         cur.execute(
-            "INSERT INTO orders (date, status, shipping_address, price, canceled) VALUES (%s, %s, %s, %s, %s)", (date, status, shipping_address, price, False)
+            """
+            INSERT INTO orders (date, status, shipping_address, price, customer_id, customer_payment_id, canceled)
+            VALUES (%s, %s, %s, %s, %s, %s, %s)
+            """,
+            (date, status, shipping_address, price, customer_id, customer_payment_id, False)
         )
         conn.commit()
     except Exception as e:

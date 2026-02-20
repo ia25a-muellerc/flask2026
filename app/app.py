@@ -8,6 +8,7 @@ from services.generatepdf import generate_bestellbestaetigung
 from services.mailgun_service import send_order_email
 from repository import orders_repo
 from repository import customer_repo
+from repository import payment_repo
 from reportlab.platypus import SimpleDocTemplate, Paragraph
 from reportlab.lib.styles import getSampleStyleSheet
 import db
@@ -147,6 +148,54 @@ def payment() -> str:
     quantity = session.get("cart_quantity", 1)
     
     return render_template("payment.html")
+
+
+@app.route("/api/payment/confirm", methods=["POST"])
+def confirm_payment():
+    if not session.get("user_email"):
+        return jsonify({"success": False, "message": "Nicht eingeloggt"}), 401
+
+    
+    data = request.get_json(silent=True) or {}
+    payment_method = (data.get("payment_method") or "").strip().lower()
+    full_name = (data.get("fullName") or "").strip()
+    email = (data.get("email") or "").strip()
+    address = (data.get("address") or "").strip()
+    zip_code = (data.get("zip") or "").strip()
+    city = (data.get("city") or "").strip()
+    country = (data.get("country") or "").strip()
+  
+
+    if not all([payment_method, full_name, email, address, zip_code, city, country]):
+        return jsonify({"success": False, "message": "Pflichtfelder fehlen"}), 400
+
+    try:
+        customer_payment_id = payment_repo.create_customer_payment(
+            name=full_name,
+            email=email,
+            street=address,
+            city=city,
+            postal_code=zip_code,
+            country=country,
+            payment_method=payment_method
+        )
+    except Exception as e:
+        app.logger.error(f"Payment save failed: {e}")
+        return jsonify({"success": False, "message": "Zahlungsdaten konnten nicht gespeichert werden"}), 500
+
+    customer = customer_repo.get_customer_by_email(session.get("user_email"))
+    session["customer_payment_id"] = customer_payment_id
+    session["customer_id"] = customer.get("customer_id") if customer else None
+
+    session["order_name"] = full_name
+    session["order_email"] = email
+    session["order_address"] = address
+    session["order_zip"] = zip_code
+    session["order_city"] = city
+    session["order_country"] = country
+    session.modified = True
+
+    return jsonify({"success": True})
 
 @app.route("/download_bestellbestaetigung")
 def download_bestellbestaetigung():
@@ -321,12 +370,12 @@ def popUpPayment() -> str:
 
     
     # Benutzerdaten aus Session holen
-    user_name = session.get("user_name", "Kunde")
+    user_name = session.get("order_name") or session.get("user_name", "Kunde")
     user_surname = session.get("user_surname", "")
-    user_email = session.get("user_email", "")
-    user_address = session.get("user_address", "Unbekannte Adresse")
-    user_zip = session.get("user_zip", "")
-    user_city = session.get("user_city", "")
+    user_email = session.get("order_email") or session.get("user_email", "")
+    user_address = session.get("order_address") or session.get("user_address", "Unbekannte Adresse")
+    user_zip = session.get("order_zip") or session.get("user_zip", "")
+    user_city = session.get("order_city") or session.get("user_city", "")
     quantity = session.get("cart_quantity", 1)
     
     # Bestellnummer generieren
@@ -357,11 +406,20 @@ def popUpPayment() -> str:
         date=date.today(),
         status="Bestellt",
         shipping_address=full_address,
-        price=total_price
+        price=total_price,
+        customer_id=session.get("customer_id"),
+        customer_payment_id=session.get("customer_payment_id")
     )
     
     # Warenkorb leeren nach erfolgreicher Bestellung
     session['cart_quantity'] = 1
+    session.pop('customer_payment_id', None)
+    session.pop('order_name', None)
+    session.pop('order_email', None)
+    session.pop('order_address', None)
+    session.pop('order_zip', None)
+    session.pop('order_city', None)
+    session.pop('order_country', None)
     session.modified = True
     
     return render_template("popUpPayment.html", languages=languages)

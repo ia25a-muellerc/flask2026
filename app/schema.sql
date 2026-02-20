@@ -53,7 +53,7 @@ CREATE TABLE IF NOT EXISTS orders (
     status VARCHAR(50) NOT NULL,
     shipping_address VARCHAR(255) NOT NULL,
     price DECIMAL(10,2) NOT NULL,
-    customer_id INT REFERENCES customer(customer_id),
+    customer_id INT NOT NULL REFERENCES customer(customer_id),
     customer_payment_id INT REFERENCES customer_payment(customer_payment_id),
     canceled BOOLEAN NOT NULL
 );
@@ -63,8 +63,6 @@ CREATE TABLE product (
     name VARCHAR(255),
     price DECIMAL(10,2)
 );
-
-
 
 CREATE TABLE contact_message (
     message_id SERIAL PRIMARY KEY,

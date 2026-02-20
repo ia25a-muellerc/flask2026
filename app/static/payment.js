@@ -1,5 +1,7 @@
 // Bestelldaten vom Server holen
 document.addEventListener('DOMContentLoaded', function() {
+    let selectedPaymentMethod = '';
+
     // Daten vom Server holen
     fetch('/api/cart')
         .then(response => response.json())
@@ -28,6 +30,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Zahlungsformular anzeigen
     function showPaymentForm(method) {
+        selectedPaymentMethod = method;
         const titles = {
             paypal: 'PayPal Zahlung', card: 'Kreditkarten Zahlung', applepay: 'Apple Pay Zahlung',
             googlepay: 'Google Pay Zahlung', twint: 'Twint Zahlung', invoice: 'Rechnung ausstellen'
@@ -141,9 +144,33 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     if (purchaseConfirmBtn) {
-        purchaseConfirmBtn.addEventListener('click', function() {
+        purchaseConfirmBtn.addEventListener('click', async function() {
             if (!pendingPurchase) return;
-            window.location.href = '/popUpPayment';
+
+            const paymentForm = document.getElementById('selectedPaymentForm');
+            const formData = new FormData(paymentForm);
+            const payload = Object.fromEntries(formData.entries());
+            payload.payment_method = selectedPaymentMethod;
+
+            try {
+                const response = await fetch('/api/payment/confirm', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(payload)
+                });
+
+                const result = await response.json();
+                if (!response.ok || !result.success) {
+                    throw new Error(result.message || 'Zahlung konnte nicht gespeichert werden');
+                }
+
+                window.location.href = '/popUpPayment';
+            } catch (error) {
+                closePurchaseModal();
+                alert(error.message || 'Fehler beim Speichern der Zahlung');
+            }
         });
     }
 
@@ -161,6 +188,11 @@ document.addEventListener('DOMContentLoaded', function() {
 
         const requiredFields = [...this.querySelectorAll('[required]')];
         const invalidFields = requiredFields.filter(field => !validateField(field));
+
+        if (!selectedPaymentMethod) {
+            alert('Bitte wählen Sie zuerst eine Zahlungsmethode aus.');
+            return;
+        }
 
         if (invalidFields.length > 0) {
             invalidFields[0].scrollIntoView({ behavior: 'smooth', block: 'center' });
