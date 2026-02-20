@@ -72,11 +72,9 @@ def email_exists(email):
 
 
 def delete_customer(email):
-    """Löscht einen Kunden und seine Adresse anhand der E-Mail"""
     db = get_db()
     cursor = db.cursor()
 
-    # Erst address_id holen
     cursor.execute(
         "SELECT address_id FROM customer WHERE email = %s",
         (email,)
@@ -84,10 +82,8 @@ def delete_customer(email):
     result = cursor.fetchone()
     address_id = result[0] if result else None
 
-    # Kunde löschen
     cursor.execute("DELETE FROM customer WHERE email = %s", (email,))
 
-    # Adresse löschen (falls vorhanden)
     if address_id:
         cursor.execute("DELETE FROM customer_address WHERE address_id = %s", (address_id,))
 
@@ -96,7 +92,6 @@ def delete_customer(email):
 
 
 def update_customer(old_email, name, surname, new_email):
-    """Aktualisiert die Kundendaten in der Datenbank"""
     db = get_db()
     cursor = db.cursor()
 

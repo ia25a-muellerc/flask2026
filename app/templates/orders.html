@@ -28,7 +28,7 @@
                         <form class="formButtons" action="{{ url_for('cancel_order') }}" method="POST">
                             <button type="submit" name="order_id" value="{{ order['id'] }}">Cancel Order</button>
                         </form>
-                        <form class="formButtons" action="{{ url_for('download_order') }}" method="POST">
+                        <form class="formButtons" action="{{ url_for('download_bestellbestaetigung') }}">
                             <button type="submit" name="order_id" value="{{ order['id'] }}">Download as PDF</button>  
                         </form>    
                     {% else %}
