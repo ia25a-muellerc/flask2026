@@ -186,15 +186,6 @@ def download_bestellbestaetigung():
         as_attachment=True,
         download_name=f"bestellbestaetigung_{order_number}.pdf"
     )
-@app.route("/add-product", methods=["POST"])
-def add_order() -> str:
-    date = request.form["date"]
-    #id = request.form["id"]
-    status = request.form["status"]
-    shipping_address = request.form["shipping_address"]
-    price = request.form["price"]
-    orders_repo.add_order(date, status, shipping_address, price)
-    return redirect(url_for("orders"))
 
 @app.route("/cancel-order", methods=["POST"])
 def cancel_order() -> str:
@@ -211,8 +202,8 @@ def download_order() -> str:
 
 @app.route("/orders")
 def orders() -> str:
-    orders = orders_repo.get_all_products()
-    return render_template("orders.html", orders=orders)
+    orders = orders_repo.get_orders_by_customer_id(session.get("user_id"))
+    return render_template("orders.html", orders1=orders)
 
 @app.route("/data")
 def data() -> str:
@@ -269,6 +260,7 @@ def signin() -> str:
         session["user_zip"] = user.get("zip", "")
         session["user_city"] = user.get("city", "")
         session["user_country"] = user.get("country", "")
+        session["user_id"] = user.get("customer_id")
 
         app.logger.info(f"User logged in: {email}")
         if next_page:
@@ -403,7 +395,7 @@ def register() -> str:
 
         # Kunde in Datenbank speichern
         try:
-            customer_repo.create_customer(
+            customerId = customer_repo.create_customer(
                 name=name,
                 surname=surname,
                 email=email,
@@ -424,6 +416,8 @@ def register() -> str:
         session["user_zip"] = zip_code
         session["user_city"] = city
         session["user_country"] = country
+        if customerId:
+            session["user_id"] = customerId
 
         app.logger.info(f"User registered: {email}")
         if next_page:

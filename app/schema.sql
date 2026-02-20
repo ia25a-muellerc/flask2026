@@ -53,7 +53,7 @@ CREATE TABLE IF NOT EXISTS orders (
     status VARCHAR(50) NOT NULL,
     shipping_address VARCHAR(255) NOT NULL,
     price DECIMAL(10,2) NOT NULL,
-    customer_id INT REFERENCES customer(customer_id),
+    customer_id INT REFERENCES customer(customer_id) ON DELETE CASCADE NULL,
     customer_payment_id INT REFERENCES customer_payment(customer_payment_id),
     canceled BOOLEAN NOT NULL
 );
@@ -72,13 +72,13 @@ CREATE TABLE contact_message (
     email VARCHAR(255) NOT NULL,
     subject VARCHAR(255),
     message TEXT,
-    customer_id INT REFERENCES customer(customer_id)
+    customer_id INT REFERENCES customer(customer_id) ON DELETE CASCADE NULL
 );
 
 CREATE TABLE product_review (
     review_id SERIAL PRIMARY KEY,
     product_id INT REFERENCES product(product_id),
-    customer_id INT REFERENCES customer(customer_id),
+    customer_id INT REFERENCES customer(customer_id) ON DELETE CASCADE NULL,
     rating INT,
     review_text TEXT
 );
